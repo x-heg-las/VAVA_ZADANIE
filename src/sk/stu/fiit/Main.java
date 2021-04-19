@@ -11,5 +11,12 @@ package sk.stu.fiit;
  * @author patoh
  */
 public class Main {
-    
+    public static void main(String[] args) {
+        System.out.println("Ahoj");
+        
+        User user = new User("aAasdad", 54, "kuty 45", "C;'Ad,. ");
+        System.out.println("user name = " + user.getName());
+        System.out.println("age name = " + user.getAge());
+        System.out.println("user name = " + user.getAddress());
+    }
 }
