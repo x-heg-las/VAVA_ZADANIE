@@ -40,7 +40,7 @@ public class Main_Window extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        teamPanel = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         pnlToolbar = new javax.swing.JPanel();
@@ -136,18 +136,18 @@ public class Main_Window extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
         pnlDashboard.add(jPanel3, gridBagConstraints);
 
-        teamPanel.setBackground(new java.awt.Color(255, 255, 204));
-        teamPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
-        teamPanel.setPreferredSize(new java.awt.Dimension(260, 345));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel5.setPreferredSize(new java.awt.Dimension(260, 345));
 
-        javax.swing.GroupLayout teamPanelLayout = new javax.swing.GroupLayout(teamPanel);
-        teamPanel.setLayout(teamPanelLayout);
-        teamPanelLayout.setHorizontalGroup(
-            teamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 258, Short.MAX_VALUE)
         );
-        teamPanelLayout.setVerticalGroup(
-            teamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 343, Short.MAX_VALUE)
         );
 
@@ -156,7 +156,7 @@ public class Main_Window extends javax.swing.JFrame {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
-        pnlDashboard.add(teamPanel, gridBagConstraints);
+        pnlDashboard.add(jPanel5, gridBagConstraints);
 
         jPanel6.setBackground(new java.awt.Color(204, 255, 204));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
@@ -285,6 +285,7 @@ public class Main_Window extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
@@ -292,7 +293,6 @@ public class Main_Window extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel pnlDashboard;
     private javax.swing.JPanel pnlToolbar;
-    private javax.swing.JPanel teamPanel;
     private javax.swing.JTree tree;
     // End of variables declaration//GEN-END:variables
 }
