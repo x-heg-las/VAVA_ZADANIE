@@ -151,7 +151,7 @@ public class CalendarProgram{
         
         //Apply renderers
         //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
-        tblCalendar.setDefaultRenderer(String[].class, new MyTableCellEditor());
+//        tblCalendar.setDefaultRenderer(String[].class, new MyTableCellEditor());
     }
 /*    
     static class tblCalendarRenderer extends DefaultTableCellRenderer{
