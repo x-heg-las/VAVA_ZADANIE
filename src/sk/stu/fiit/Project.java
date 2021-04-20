@@ -14,6 +14,18 @@ public class Project {
     private String projectName;
     private Date deadline;
     private Priorities priority;
+    private String description;
+    private String id;
+    private String prefix;
+    private String tag;
+
+    public Project(String projectName, Priorities priority, String id, String prefix, String tag) {
+        this.projectName = projectName;
+        this.priority = priority;
+        this.id = id;
+        this.prefix = prefix;
+        this.tag = tag;
+    }
     
     //TODO: pridaj tasky
 
@@ -24,6 +36,8 @@ public class Project {
         this.deadline = deadline;
         this.priority = priority;
     }
+    
+   
     
     public void add(Team e) {
         teams.add(e);

@@ -13,5 +13,7 @@ public enum Priorities {
     
     NORMAL,
     CRITICAL,
-    MAJOR
+    MAJOR,
+    URGENT,
+    NONURGENT
 }
