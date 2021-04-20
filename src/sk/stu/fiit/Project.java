@@ -8,12 +8,10 @@ import java.util.Date;
  * @author patoh
  */
 public class Project {
-    
-    User projectManager;
+    private Project_Manager project_manager;
     private String projectName;
-    Date deadline;
-    Priorities priority;
-    
+    private Date deadline;
+    private Priorities priority;
     
     //TODO: pridaj tasky
     
