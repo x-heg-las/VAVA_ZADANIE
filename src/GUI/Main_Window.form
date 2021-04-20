@@ -67,6 +67,10 @@
                       <Color blue="66" green="66" red="66" type="rgb"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTree(root)"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="DefaultMutableTreeNode root = new Tree(array_projects).get_tree();"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
