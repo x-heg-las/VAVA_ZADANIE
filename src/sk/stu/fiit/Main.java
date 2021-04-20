@@ -1,7 +1,12 @@
 package sk.stu.fiit;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import sk.stu.fiit.Tasks.Task;
 
 /*
@@ -30,6 +35,19 @@ public class Main {
         
         Project_Manager project_Manager = new Project_Manager("Jozef Mlady", 12, "Mlada Boleslav 41", "nemam obrazok");
         
-        Project project = new Project(null, project_Manager, "Najlepsi projekt na svete", new Date(), Priorities.CRITICAL);
+        Project project = new Project(new ArrayList(), project_Manager, "Najlepsi projekt na svete", new Date(), Priorities.CRITICAL);
+        
+        List<User> list = new ArrayList();
+        for (int i = 0; i < 5; i++) {
+            User user1 = new User("AdA", 88, "Holic 12", "cesta k obrazku");
+            list.add(user1);
+        }
+        Team team = new Team(list);
+        project.add(team);
+        
+        System.out.println("project veduic name = " + project.getProject_manager().getName());
+        System.out.println("pocet teamov = " + project.getTeams().size());
+        System.out.println("pocet zamoestnancov = " + project.getTeams().get(0));
+        System.out.println("enum = " + project.getPriority());
     }
 }
