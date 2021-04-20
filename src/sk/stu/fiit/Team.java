@@ -13,12 +13,14 @@ import java.util.List;
  * @author patoh
  */
 public class Team {
+    private String name;
     private ArrayList<User> teamMembers;
     private User leader;
     
 
-    public Team(List<User> users) {
+    public Team(List<User> users, String name) {
         teamMembers = (ArrayList<User>) users;
+        this.name = name;
     }
     
     public void addMember(User user){
@@ -34,4 +36,30 @@ public class Team {
         }
         return false;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<User> getTeamMembers() {
+        return teamMembers;
+    }
+
+    public void setTeamMembers(ArrayList<User> teamMembers) {
+        this.teamMembers = teamMembers;
+    }
+
+    public User getLeader() {
+        return leader;
+    }
+
+    public void setLeader(User leader) {
+        this.leader = leader;
+    }
+    
+    
 }

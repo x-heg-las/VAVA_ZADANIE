@@ -5,19 +5,31 @@
  */
 package GUI;
 
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import sk.stu.fiit.Priorities;
+import sk.stu.fiit.Project;
+import sk.stu.fiit.Project_Manager;
+import sk.stu.fiit.Tasks.Task;
+import sk.stu.fiit.Team;
+import sk.stu.fiit.User;
 
 /**
  *
  * @author adamh
  */
 public class Main_Window extends javax.swing.JFrame {
-
+    private ArrayList<Project> array_projects;
     /**
      * Creates new form Main_Window
      */
     public Main_Window() {
+        load_arrays();
         initComponents();
     }
 
@@ -34,7 +46,8 @@ public class Main_Window extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tree = new javax.swing.JTree();
+        DefaultMutableTreeNode root = new Tree(array_projects).get_tree();
+        tree = new javax.swing.JTree(root);
         jScrollPane1 = new javax.swing.JScrollPane();
         pnlDashboard = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -68,7 +81,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(517, 345));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -91,7 +104,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(jPanel1, gridBagConstraints);
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel2.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -114,7 +127,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(jPanel2, gridBagConstraints);
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 204));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel3.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -137,7 +150,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(jPanel3, gridBagConstraints);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 204));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel5.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -159,7 +172,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(jPanel5, gridBagConstraints);
 
         jPanel6.setBackground(new java.awt.Color(204, 255, 204));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel6.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -181,7 +194,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(jPanel6, gridBagConstraints);
 
         jPanel7.setBackground(new java.awt.Color(255, 51, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel7.setPreferredSize(new java.awt.Dimension(517, 345));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -271,7 +284,7 @@ public class Main_Window extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Main_Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        ArrayList<Project> array_project = new ArrayList<Project>();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -295,4 +308,25 @@ public class Main_Window extends javax.swing.JFrame {
     private javax.swing.JPanel pnlToolbar;
     private javax.swing.JTree tree;
     // End of variables declaration//GEN-END:variables
+
+    private void load_arrays(ArrayList<Project> array_projects){
+        this.array_projects = array_projects;
+    }
+    
+    private void load_arrays(){
+        array_projects = new ArrayList<>();
+        Task task = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super brutalny Task, na ktorom sa seci tesime a pracujeme :)))))");
+        //Task task1 = new Task(new GregorianCalendar(), new Date(), new Date(), new Date(), "toto je super brutalny Task, na ktorom sa seci tesime a pracujeme :)))))");
+        Project_Manager project_Manager = new Project_Manager("Jozef Mlady", 12, "Mlada Boleslav 41", "nemam obrazok");
+        Project project = new Project(new ArrayList(), project_Manager, "Najlepsi projekt na svete", new Date(), Priorities.CRITICAL);
+        List<User> list = new ArrayList();
+        for (int i = 0; i < 5; i++) {
+            User user1 = new User("AdA", 88, "Holic 12", "cesta k obrazku");
+            list.add(user1);
+        }
+        Team team = new Team(list, "tim jednicka");
+        project.add(team);
+        
+        array_projects.add(project);
+    }
 }
