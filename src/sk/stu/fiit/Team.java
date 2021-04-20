@@ -13,7 +13,6 @@ import java.util.List;
  * @author patoh
  */
 public class Team {
-    
     private ArrayList<User> teamMembers;
     private User leader;
     

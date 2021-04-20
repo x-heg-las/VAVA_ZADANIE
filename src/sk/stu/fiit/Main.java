@@ -28,5 +28,8 @@ public class Main {
         //Task task1 = new Task(new GregorianCalendar(), new Date(), new Date(), new Date(), "toto je super brutalny Task, na ktorom sa seci tesime a pracujeme :)))))");
         System.out.println("Casiiiiiiik je: " + task.getDeadline());
         
+        Project_Manager project_Manager = new Project_Manager("Jozef Mlady", 12, "Mlada Boleslav 41", "nemam obrazok");
+        
+        Project project = new Project(null, project_Manager, "Najlepsi projekt na svete", new Date(), Priorities.CRITICAL);
     }
 }
