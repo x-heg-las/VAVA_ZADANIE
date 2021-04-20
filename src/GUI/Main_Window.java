@@ -34,7 +34,7 @@ public class Main_Window extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTree2 = new javax.swing.JTree();
+        tree = new javax.swing.JTree();
         jScrollPane1 = new javax.swing.JScrollPane();
         pnlDashboard = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -51,11 +51,11 @@ public class Main_Window extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        jTree2.setBackground(new java.awt.Color(255, 255, 255));
-        jTree2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 204, 204), null, null));
-        jTree2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        jTree2.setForeground(new java.awt.Color(102, 102, 102));
-        jScrollPane3.setViewportView(jTree2);
+        tree.setBackground(new java.awt.Color(255, 255, 255));
+        tree.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 204, 204), null, null));
+        tree.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        tree.setForeground(new java.awt.Color(102, 102, 102));
+        jScrollPane3.setViewportView(tree);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -291,8 +291,8 @@ public class Main_Window extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTree jTree2;
     private javax.swing.JPanel pnlDashboard;
     private javax.swing.JPanel pnlToolbar;
+    private javax.swing.JTree tree;
     // End of variables declaration//GEN-END:variables
 }
