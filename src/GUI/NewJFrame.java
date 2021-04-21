@@ -18,7 +18,7 @@ public class NewJFrame extends javax.swing.JFrame {
      */
     public NewJFrame() {
         initComponents();
-        JPanel l = new NewProjectViewPanel();
+        JPanel l = new UserTaskChart(null);
         l.setVisible(true);
         add(l);
         revalidate();
