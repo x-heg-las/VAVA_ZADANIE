@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import javax.swing.JOptionPane;
 import sk.stu.fiit.Admin;
 
 /**
@@ -143,11 +144,11 @@ public class Login_Screen extends javax.swing.JFrame {
 
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
         // TODO add your handling code here:
-        log_user();
-        
-        Main_Window main_Window = new Main_Window();
-        main_Window.setVisible(rootPaneCheckingEnabled);
-        this.dispose();
+        if (log_user()){
+            Main_Window main_Window = new Main_Window();
+            main_Window.setVisible(rootPaneCheckingEnabled);
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1MouseReleased
 
     /**
@@ -203,15 +204,24 @@ public class Login_Screen extends javax.swing.JFrame {
         String password = String.valueOf(jPasswordField1.getPassword());
         
         if (username.equals("admin")){
+            
             Admin admin = new Admin("heslo");  //TODO nahradit za load z file-u
+            
+            if (admin.getPassword().equals("heslo")){
+                String new_password = JOptionPane.showInputDialog(this,"Enter new password: ");
+                admin.setPassword(new_password);
+                System.out.println("new_password = " + admin.getPassword());
+                return true;
+            }
+            
             if (password.equals(admin.getPassword())){
-                
+                return true;
             }
         }
         
         System.out.println("password = " + password);
         System.out.println("username = " + username);
         
-        return true;
+        return false;
     }
 }

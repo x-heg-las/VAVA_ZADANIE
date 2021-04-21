@@ -71,7 +71,7 @@ public class CalendarProgram{
         cmbYear.setBounds(pnlCalendar.getWidth() - 100, 25, 80, 20);
         btnPrev.setBounds(10, 25, 50, 25);
         btnNext.setBounds(260, 25, 50, 25);
-        stblCalendar.setBounds(10, 50, pnlCalendar.getWidth() - 5, pnlCalendar.getHeight()-30);//300
+        stblCalendar.setBounds(10, 50, pnlCalendar.getWidth() - 30, pnlCalendar.getHeight()-60);//300
         
         //Make frame visible
         /*
@@ -104,7 +104,7 @@ public class CalendarProgram{
         tblCalendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         //Set row/column count
-        tblCalendar.setRowHeight(pnlCalendar.getHeight()/7);//38
+        tblCalendar.setRowHeight(pnlCalendar.getHeight()/8);//38
         mtblCalendar.setColumnCount(7);
         mtblCalendar.setRowCount(6);
         
@@ -149,20 +149,24 @@ public class CalendarProgram{
             int row = new Integer((i+som-2)/7);
             int column  =  (i+som-2)%7;
             String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
-            mtblCalendar.setValueAt(task, row, column);
+            mtblCalendar.setValueAt(i, row, column);
+            //mtblCalendar.setValueAt(i, row, column);
         }
         
         //Apply renderers
-        tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new TextAreaRenderer());
+        tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new TextAreaRenderer(task));
         //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
+        //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer_2());
 //        tblCalendar.setDefaultRenderer(String[].class, new MyTableCellEditor());
     }
-/*    
+/*
     static class tblCalendarRenderer extends DefaultTableCellRenderer{
         public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
             super.getTableCellRendererComponent(table, value, selected, focused, row, column);
             if (column == 0 || column == 6){ //Week-end
+                tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer_2());
                 setBackground(new Color(255, 220, 220));
+                setText("");
             }
             else{ //Week
                 setBackground(new Color(255, 255, 255));
@@ -177,7 +181,24 @@ public class CalendarProgram{
             return this;
         }
     }
-*/
+    
+    static class tblCalendarRenderer_2 extends DefaultTableCellRenderer{
+        JPanel jPanel = new JPanel();
+        JLabel jLabel = new JLabel();
+        TextArea textArea = new TextArea();
+        public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
+            //super.getTableCellRendererComponent(table, value, selected, focused, row, column);
+            jLabel.setBackground(Color.BLUE);
+            jPanel.add(jLabel);
+            jPanel.add(textArea);
+            jPanel.setBackground(Color.red);
+            //textArea.setText((String)value);
+            setBorder(null);
+            setForeground(Color.black);
+            //return this;
+            return (Component) jPanel;
+        }
+    }
 
  public static class MyTableCellEditor extends AbstractCellEditor implements TableCellEditor {
 
@@ -194,18 +215,23 @@ public class CalendarProgram{
   public Object getCellEditorValue() {
     return ((JTextField) component).getText();
   }
-}
+}*/
  
  static class TextAreaRenderer extends JScrollPane implements TableCellRenderer {
    JTextArea textarea;
-   public TextAreaRenderer() {
+   Task task;
+   public TextAreaRenderer(Task task) {
+      this.task = task;
       textarea = new JTextArea();
       textarea.setLineWrap(true);
       textarea.setWrapStyleWord(true);
       getViewport().add(textarea);
+      //textarea.setText(task.getTopic());
    }
    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,int row, int column) {
-      if (isSelected) {
+       System.out.println(value);
+       textarea.setText("");
+       if (isSelected) {
          setForeground(table.getSelectionForeground());
          setBackground(table.getSelectionBackground());
          textarea.setForeground(table.getSelectionForeground());
@@ -216,12 +242,32 @@ public class CalendarProgram{
          textarea.setForeground(table.getForeground());
          textarea.setBackground(table.getBackground());
       }
-      Task task = (Task)value;
-      textarea.setFont(new java.awt.Font("Segoe UI Light", 0, 10));
-      if (task != null)
-        textarea.setText(task.getTopic());
-      textarea.setCaretPosition(0);
-      return this;
+       //System.out.println(row);
+       //System.out.println(column);
+       System.out.println("----");
+       if (column == 0 || column == 6){ //Week-end
+                textarea.setBackground(new Color(255, 220, 220));
+            }
+            else{ //Week
+                setBackground(new Color(255, 255, 255));
+            }
+            if (value != null){
+                if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
+                    setBackground(new Color(220, 220, 255));
+                }
+            }
+            /*
+            Task task = (Task)value;
+        textarea.setFont(new java.awt.Font("Segoe UI Light", 0, 10));
+        if (task != null)
+          textarea.setText(task.getTopic());
+        textarea.setCaretPosition(0);*/
+            if (value != null){
+                    Integer num_value = (Integer)value;
+                    textarea.setText(task.getTopic());
+                    textarea.append("\n" + num_value.toString());
+                }
+        return this;
    }
 }
     
