@@ -12,14 +12,12 @@ public class CalendarProgram{
     static JButton btnPrev, btnNext;
     static JTable tblCalendar;
     static JComboBox cmbYear;
-    static JFrame frmMain;
     static Container pane;
     static DefaultTableModel mtblCalendar; //Table model
     static JScrollPane stblCalendar; //The scrollpane
-    static JPanel pnlCalendar;
     static int realYear, realMonth, realDay, currentYear, currentMonth;
     
-    public static void main (String args[]){
+    public static void create (JPanel pnlCalendar, Container pane){
         //Look and feel
         try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
         catch (ClassNotFoundException e) {}
@@ -28,12 +26,13 @@ public class CalendarProgram{
         catch (UnsupportedLookAndFeelException e) {}
         
         //Prepare frame
+        /*
         frmMain = new JFrame ("Gestionnaire de clients"); //Create frame
         frmMain.setSize(330, 375); //Set size to 400x400 pixels
         pane = frmMain.getContentPane(); //Get content pane
         pane.setLayout(null); //Apply null layout
         frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Close when X is clicked
-        
+        */
         //Create controls
         lblMonth = new JLabel ("January");
         lblYear = new JLabel ("Change year:");
@@ -43,7 +42,7 @@ public class CalendarProgram{
         mtblCalendar = new DefaultTableModel(){public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
         tblCalendar = new JTable(mtblCalendar);
         stblCalendar = new JScrollPane(tblCalendar);
-        pnlCalendar = new JPanel(null);
+        //pnlCalendar = new JPanel(null);
         
         //Set border
         pnlCalendar.setBorder(BorderFactory.createTitledBorder("Calendar"));
@@ -55,7 +54,7 @@ public class CalendarProgram{
         //mtblCalendar.addActionListener(new cmbYear_Action());
         
         //Add controls to pane
-        pane.add(pnlCalendar);
+        //pane.add(pnlCalendar);
         pnlCalendar.add(lblMonth);
         pnlCalendar.add(lblYear);
         pnlCalendar.add(cmbYear);
@@ -64,18 +63,19 @@ public class CalendarProgram{
         pnlCalendar.add(stblCalendar);
         
         //Set bounds
-        pnlCalendar.setBounds(0, 0, 380, 335);//320
+        //pnlCalendar.setBounds(0, 0, 380, 335);//320
         lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 100, 25);
-        lblYear.setBounds(10, 305, 80, 20);
-        cmbYear.setBounds(230, 305, 80, 20);
+        lblYear.setBounds(pnlCalendar.getWidth() - 200, 25, 80, 20);
+        cmbYear.setBounds(pnlCalendar.getWidth() - 100, 25, 80, 20);
         btnPrev.setBounds(10, 25, 50, 25);
         btnNext.setBounds(260, 25, 50, 25);
-        stblCalendar.setBounds(10, 50, 800, 250);//300
+        stblCalendar.setBounds(10, 50, pnlCalendar.getWidth() - 5, pnlCalendar.getHeight()-30);//300
         
         //Make frame visible
+        /*
         frmMain.setResizable(true);
         frmMain.setVisible(true);
-        
+        */
         //Get real month/year
         GregorianCalendar cal = new GregorianCalendar(); //Create calendar
         realDay = cal.get(GregorianCalendar.DAY_OF_MONTH); //Get day
@@ -102,7 +102,7 @@ public class CalendarProgram{
         tblCalendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         //Set row/column count
-        tblCalendar.setRowHeight(38);
+        tblCalendar.setRowHeight(pnlCalendar.getHeight()/7);//38
         mtblCalendar.setColumnCount(7);
         mtblCalendar.setRowCount(6);
         
