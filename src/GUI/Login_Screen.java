@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import sk.stu.fiit.Admin;
+
 /**
  *
  * @author adamh
@@ -141,6 +143,8 @@ public class Login_Screen extends javax.swing.JFrame {
 
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
         // TODO add your handling code here:
+        log_user();
+        
         Main_Window main_Window = new Main_Window();
         main_Window.setVisible(rootPaneCheckingEnabled);
         this.dispose();
@@ -193,4 +197,21 @@ public class Login_Screen extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    public boolean log_user(){
+        String username = jTextField1.getText();
+        String password = String.valueOf(jPasswordField1.getPassword());
+        
+        if (username.equals("admin")){
+            Admin admin = new Admin("heslo");  //TODO nahradit za load z file-u
+            if (password.equals(admin.getPassword())){
+                
+            }
+        }
+        
+        System.out.println("password = " + password);
+        System.out.println("username = " + username);
+        
+        return true;
+    }
 }

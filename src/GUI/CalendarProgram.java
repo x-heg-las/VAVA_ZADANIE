@@ -5,7 +5,9 @@ import javax.swing.event.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.LocalTime;
 import java.util.*;
+import sk.stu.fiit.Tasks.Task;
 
 public class CalendarProgram{
     static JLabel lblMonth, lblYear;
@@ -141,15 +143,17 @@ public class CalendarProgram{
         nod = cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
         som = cal.get(GregorianCalendar.DAY_OF_WEEK);
         
+        Task task = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis");
         //Draw calendar
         for (int i=1; i<=nod; i++){
             int row = new Integer((i+som-2)/7);
             int column  =  (i+som-2)%7;
             String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
-            mtblCalendar.setValueAt(cars, row, column);
+            mtblCalendar.setValueAt(task, row, column);
         }
         
         //Apply renderers
+        tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new TextAreaRenderer());
         //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
 //        tblCalendar.setDefaultRenderer(String[].class, new MyTableCellEditor());
     }
@@ -190,6 +194,35 @@ public class CalendarProgram{
   public Object getCellEditorValue() {
     return ((JTextField) component).getText();
   }
+}
+ 
+ static class TextAreaRenderer extends JScrollPane implements TableCellRenderer {
+   JTextArea textarea;
+   public TextAreaRenderer() {
+      textarea = new JTextArea();
+      textarea.setLineWrap(true);
+      textarea.setWrapStyleWord(true);
+      getViewport().add(textarea);
+   }
+   public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,int row, int column) {
+      if (isSelected) {
+         setForeground(table.getSelectionForeground());
+         setBackground(table.getSelectionBackground());
+         textarea.setForeground(table.getSelectionForeground());
+         textarea.setBackground(table.getSelectionBackground());
+      } else {
+         setForeground(table.getForeground());
+         setBackground(table.getBackground());
+         textarea.setForeground(table.getForeground());
+         textarea.setBackground(table.getBackground());
+      }
+      Task task = (Task)value;
+      textarea.setFont(new java.awt.Font("Segoe UI Light", 0, 10));
+      if (task != null)
+        textarea.setText(task.getTopic());
+      textarea.setCaretPosition(0);
+      return this;
+   }
 }
     
     static class btnPrev_Action implements ActionListener{
