@@ -5,6 +5,8 @@
  */
 package sk.stu.fiit;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author adamh
@@ -15,14 +17,24 @@ public class User {
     private String address;
     private String picture;
     private String type = "user";
+    private ArrayList<Project> projects;
 
     public User(String name, int age, String address, String picture) {
+        this.projects = new ArrayList<>();
         this.name = name;
         this.age = age;
         this.address = address;
         this.picture = picture;
     }
     
+    public void addProject(Project project){
+        projects.add(project);
+    }
+    
+    public ArrayList<Project> getProjects(){
+        return projects;
+    }
+
     public String getName() {
         return name;
     }
