@@ -20,9 +20,9 @@ public class NewJFrame extends javax.swing.JFrame {
         initComponents();
         JPanel l = new UserTaskChart(null);
         l.setVisible(true);
-        add(l);
-        revalidate();
-        repaint();
+        jPanel1.add(l);
+        jPanel1.revalidate();
+jPanel1.repaint();
     }
 
     /**
