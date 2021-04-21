@@ -74,9 +74,9 @@ private void createChart(User user){
     JFreeChart chart = ChartFactory.createPieChart(
             "",
             createDataset(user),
-            false,
             true,
-            false
+            true,
+            true
     );
     
     chartPanel.setLayout(new java.awt.BorderLayout());
@@ -88,10 +88,10 @@ private void createChart(User user){
   private static PieDataset createDataset(User user){
       DefaultPieDataset dataset = new DefaultPieDataset();
       //TODO : nastavit na hodnoty
-      dataset.setValue( "IPhone 5s" , new Double( 20 ) );  
-      dataset.setValue( "SamSung Grand" , new Double( 20 ) );   
-      dataset.setValue( "MotoG" , new Double( 40 ) );    
-      dataset.setValue( "Nokia Lumia" , new Double( 10 ) );
+      dataset.setValue( "1" , new Double( 20 ) );  
+      dataset.setValue( "2" , new Double( 20 ) );   
+      dataset.setValue( "3" , new Double( 40 ) );    
+      dataset.setValue( "4" , new Double( 10 ) );
       
       return dataset;
   }
