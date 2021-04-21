@@ -107,7 +107,6 @@ public class Login_Screen extends javax.swing.JFrame {
                 jButton1MouseReleased(evt);
             }
         });
-        
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
