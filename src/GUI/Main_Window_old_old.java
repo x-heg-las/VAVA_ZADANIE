@@ -5,8 +5,6 @@
  */
 package GUI;
 
-import GUI.CalendarProgram;
-import GUI.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,16 +23,14 @@ import sk.stu.fiit.User;
  *
  * @author adamh
  */
-public class Main_Window extends javax.swing.JFrame {
+public class Main_Window_old_old extends javax.swing.JFrame {
     private ArrayList<Project> array_projects;
     /**
      * Creates new form Main_Window
      */
-    public Main_Window() {
+    public Main_Window_old_old() {
         load_arrays();
         initComponents();
-        CalendarProgram calendarProgram = new CalendarProgram();
-        calendarProgram.create(jPanel7, this.getContentPane());
     }
 
     /**
@@ -63,11 +59,6 @@ public class Main_Window extends javax.swing.JFrame {
         pnlToolbar = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentResized(java.awt.event.ComponentEvent evt) {
-                formComponentResized(evt);
-            }
-        });
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -245,11 +236,11 @@ public class Main_Window extends javax.swing.JFrame {
         pnlToolbar.setLayout(pnlToolbarLayout);
         pnlToolbarLayout.setHorizontalGroup(
             pnlToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1228, Short.MAX_VALUE)
+            .addGap(0, 1231, Short.MAX_VALUE)
         );
         pnlToolbarLayout.setVerticalGroup(
             pnlToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGap(0, 148, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -266,16 +257,6 @@ public class Main_Window extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        // TODO add your handling code here:
-        jPanel7.removeAll();
-
-        //revalidate();
-        //repaint();
-        CalendarProgram calendarProgram = new CalendarProgram();
-        calendarProgram.create(jPanel7, this.getContentPane());
-    }//GEN-LAST:event_formComponentResized
 
     /**
      * @param args the command line arguments
@@ -294,20 +275,20 @@ public class Main_Window extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main_Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main_Window_old_old.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main_Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main_Window_old_old.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main_Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main_Window_old_old.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main_Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main_Window_old_old.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         ArrayList<Project> array_project = new ArrayList<Project>();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main_Window().setVisible(true);
+                new Main_Window_old_old().setVisible(true);
             }
         });
     }
