@@ -12,8 +12,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import sk.stu.fiit.Priorities;
@@ -40,6 +42,7 @@ public class Main_Window extends javax.swing.JFrame {
         
         showGraph(null);
         showUsersProject(null);
+        showCurrentUser(null);
     }
 
     /**
@@ -60,7 +63,7 @@ public class Main_Window extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         pnlDashboard = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        current_user = new javax.swing.JPanel();
         graphPanel = new javax.swing.JPanel();
         projectPanel = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -95,7 +98,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(517, 345));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -117,18 +120,18 @@ public class Main_Window extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
         pnlDashboard.add(jPanel1, gridBagConstraints);
 
-        jPanel2.setBackground(new java.awt.Color(255, 204, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
-        jPanel2.setPreferredSize(new java.awt.Dimension(260, 345));
+        current_user.setBackground(new java.awt.Color(255, 204, 255));
+        current_user.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        current_user.setPreferredSize(new java.awt.Dimension(260, 345));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout current_userLayout = new javax.swing.GroupLayout(current_user);
+        current_user.setLayout(current_userLayout);
+        current_userLayout.setHorizontalGroup(
+            current_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 258, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        current_userLayout.setVerticalGroup(
+            current_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 343, Short.MAX_VALUE)
         );
 
@@ -138,10 +141,10 @@ public class Main_Window extends javax.swing.JFrame {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
-        pnlDashboard.add(jPanel2, gridBagConstraints);
+        pnlDashboard.add(current_user, gridBagConstraints);
 
         graphPanel.setBackground(new java.awt.Color(255, 204, 204));
-        graphPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        graphPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         graphPanel.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout graphPanelLayout = new javax.swing.GroupLayout(graphPanel);
@@ -164,7 +167,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(graphPanel, gridBagConstraints);
 
         projectPanel.setBackground(new java.awt.Color(255, 255, 204));
-        projectPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        projectPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         projectPanel.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout projectPanelLayout = new javax.swing.GroupLayout(projectPanel);
@@ -186,7 +189,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(projectPanel, gridBagConstraints);
 
         jPanel6.setBackground(new java.awt.Color(204, 255, 204));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel6.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -208,7 +211,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(jPanel6, gridBagConstraints);
 
         jPanel7.setBackground(new java.awt.Color(255, 51, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel7.setPreferredSize(new java.awt.Dimension(517, 345));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -318,9 +321,9 @@ public class Main_Window extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel current_user;
     private javax.swing.JPanel graphPanel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -378,5 +381,23 @@ public class Main_Window extends javax.swing.JFrame {
         projectPanel.revalidate();
         projectPanel.repaint();
         
+    }
+    
+    private void showCurrentUser(User user){
+        User user1 = new User("Ignac Mokry", 21, "Cadca 572", "obrazok no");
+        JTextPane jTextPane = new JTextPane();
+        JScrollPane scrollPane = new JScrollPane(jTextPane);
+        JLabel jLabel = new JLabel("Notes");
+        jLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 20));
+        
+        current_user.setLayout(new BorderLayout());
+        current_user.removeAll();
+        jTextPane.setPreferredSize(current_user.getPreferredSize());
+        
+        current_user.add(jLabel, BorderLayout.NORTH);
+        current_user.add(scrollPane, BorderLayout.CENTER);
+        jTextPane.setFont(new java.awt.Font("Segoe UI Light", 0, 15));
+        current_user.revalidate();
+        current_user.repaint();
     }
 }
