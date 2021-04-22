@@ -23,6 +23,7 @@ import sk.stu.fiit.Project;
 import sk.stu.fiit.Tasks.Task;
 import sk.stu.fiit.Team;
 import sk.stu.fiit.User;
+import sk.stu.fiit.Users_GUI.User_Profile;
 
 /**
  *
@@ -31,6 +32,7 @@ import sk.stu.fiit.User;
 public class Main_Window extends javax.swing.JFrame {
     private ArrayList<Project> array_projects;
     private User user;
+    private Teammates teammates;
     /**
      * Creates new form Main_Window
      */
@@ -73,6 +75,8 @@ public class Main_Window extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         pnlToolbar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -258,7 +262,7 @@ public class Main_Window extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Tasks");
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jLabel2.setMaximumSize(new java.awt.Dimension(150, 454545));
         jLabel2.setPreferredSize(new java.awt.Dimension(150, 40));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -267,6 +271,23 @@ public class Main_Window extends javax.swing.JFrame {
             }
         });
         pnlToolbar.add(jLabel2);
+
+        jLabel1.setText("  ");
+        pnlToolbar.add(jLabel1);
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 51));
+        jLabel3.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Details");
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jLabel3.setMaximumSize(new java.awt.Dimension(150, 40));
+        jLabel3.setPreferredSize(new java.awt.Dimension(150, 40));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel3MouseReleased(evt);
+            }
+        });
+        pnlToolbar.add(jLabel3);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -298,6 +319,15 @@ public class Main_Window extends javax.swing.JFrame {
         Tasks_window tasks_window = new Tasks_window();
         tasks_window.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jLabel2MouseReleased
+
+    private void jLabel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseReleased
+        // TODO add your handling code here:
+        User user = teammates.get_clicked();
+        if (user != null){
+            User_Profile user_Profile = new User_Profile(user);
+            user_Profile.setVisible(rootPaneCheckingEnabled);
+        }
+    }//GEN-LAST:event_jLabel3MouseReleased
 
     /**
      * @param args the command line arguments
@@ -338,7 +368,9 @@ public class Main_Window extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel current_users;
     private javax.swing.JPanel graphPanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
@@ -387,7 +419,8 @@ public class Main_Window extends javax.swing.JFrame {
     }
     
     private void showUsersProject(Project project){
-        JPanel team = new Teammates(project);
+        teammates = new Teammates(project);
+        JPanel team = teammates;
         team.setPreferredSize(projectPanel.getPreferredSize());
         
         team.setVisible(true);

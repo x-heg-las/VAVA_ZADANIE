@@ -5,7 +5,10 @@
  */
 package GUI;
 
+import java.util.ArrayList;
+import sk.stu.fiit.Loader;
 import sk.stu.fiit.Project;
+import sk.stu.fiit.User;
 
 /**
  *
@@ -50,7 +53,7 @@ public class Teammates extends javax.swing.JPanel {
 
         jList1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = get_names();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -64,14 +67,26 @@ public class Teammates extends javax.swing.JPanel {
         add(jScrollPane1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-}
 
-//private void teamMembers(Project project){
-//    int a = 3;
-//}
+    private String[] get_names(){
+        ArrayList<User> users = Loader.getUsers();
+        String[] array_names = new String[users.size()];
+        System.out.println("users = " + users.size());
+        for (int i = 0; i < users.size(); i++) {
+            array_names[i] = users.get(i).getName();
+            
+        }
+        return array_names;
+    }
+    
+    public User get_clicked(){
+        ArrayList<User> users = Loader.getUsers();
+        System.out.println("index = " + jList1.getSelectedIndex());
+        return users.get(jList1.getSelectedIndex());
+    }
+}

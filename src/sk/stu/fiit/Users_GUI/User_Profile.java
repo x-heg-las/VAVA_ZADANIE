@@ -45,9 +45,10 @@ public class User_Profile extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         picture = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel1.setText("Name");
         jLabel1.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -55,6 +56,7 @@ public class User_Profile extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         getContentPane().add(jLabel1, gridBagConstraints);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel2.setText("Type");
         jLabel2.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -62,6 +64,7 @@ public class User_Profile extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         getContentPane().add(jLabel2, gridBagConstraints);
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel3.setText("Age");
         jLabel3.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -69,6 +72,7 @@ public class User_Profile extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         getContentPane().add(jLabel3, gridBagConstraints);
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel4.setText("Address");
         jLabel4.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -76,6 +80,7 @@ public class User_Profile extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         getContentPane().add(jLabel4, gridBagConstraints);
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel5.setText("Picture");
         jLabel5.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -84,6 +89,7 @@ public class User_Profile extends javax.swing.JFrame {
         getContentPane().add(jLabel5, gridBagConstraints);
 
         jTextField1.setEditable(false);
+        jTextField1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jTextField1.setText(user.getName());
         jTextField1.setPreferredSize(new java.awt.Dimension(120, 40));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +103,7 @@ public class User_Profile extends javax.swing.JFrame {
         getContentPane().add(jTextField1, gridBagConstraints);
 
         jTextField2.setEditable(false);
+        jTextField2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jTextField2.setText(user.getType());
         jTextField2.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -105,6 +112,7 @@ public class User_Profile extends javax.swing.JFrame {
         getContentPane().add(jTextField2, gridBagConstraints);
 
         jTextField3.setEditable(false);
+        jTextField3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jTextField3.setText(Integer.toString(user.getAge()));
         jTextField3.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -113,6 +121,7 @@ public class User_Profile extends javax.swing.JFrame {
         getContentPane().add(jTextField3, gridBagConstraints);
 
         jTextField4.setEditable(false);
+        jTextField4.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jTextField4.setText(user.getAddress());
         jTextField4.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
