@@ -42,6 +42,7 @@ public class Main_Window extends javax.swing.JFrame {
         
         showGraph(null);
         showUsersProject(null);
+        showNotes(null);
         showCurrentUser(null);
     }
 
@@ -63,10 +64,10 @@ public class Main_Window extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         pnlDashboard = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        current_user = new javax.swing.JPanel();
+        notes = new javax.swing.JPanel();
         graphPanel = new javax.swing.JPanel();
         projectPanel = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
+        current_users = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         pnlToolbar = new javax.swing.JPanel();
 
@@ -120,18 +121,18 @@ public class Main_Window extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
         pnlDashboard.add(jPanel1, gridBagConstraints);
 
-        current_user.setBackground(new java.awt.Color(255, 204, 255));
-        current_user.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
-        current_user.setPreferredSize(new java.awt.Dimension(260, 345));
+        notes.setBackground(new java.awt.Color(255, 204, 255));
+        notes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        notes.setPreferredSize(new java.awt.Dimension(260, 345));
 
-        javax.swing.GroupLayout current_userLayout = new javax.swing.GroupLayout(current_user);
-        current_user.setLayout(current_userLayout);
-        current_userLayout.setHorizontalGroup(
-            current_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout notesLayout = new javax.swing.GroupLayout(notes);
+        notes.setLayout(notesLayout);
+        notesLayout.setHorizontalGroup(
+            notesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 258, Short.MAX_VALUE)
         );
-        current_userLayout.setVerticalGroup(
-            current_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        notesLayout.setVerticalGroup(
+            notesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 343, Short.MAX_VALUE)
         );
 
@@ -141,7 +142,7 @@ public class Main_Window extends javax.swing.JFrame {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
-        pnlDashboard.add(current_user, gridBagConstraints);
+        pnlDashboard.add(notes, gridBagConstraints);
 
         graphPanel.setBackground(new java.awt.Color(255, 204, 204));
         graphPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
@@ -188,18 +189,18 @@ public class Main_Window extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
         pnlDashboard.add(projectPanel, gridBagConstraints);
 
-        jPanel6.setBackground(new java.awt.Color(204, 255, 204));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
-        jPanel6.setPreferredSize(new java.awt.Dimension(260, 345));
+        current_users.setBackground(new java.awt.Color(204, 255, 204));
+        current_users.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        current_users.setPreferredSize(new java.awt.Dimension(260, 345));
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout current_usersLayout = new javax.swing.GroupLayout(current_users);
+        current_users.setLayout(current_usersLayout);
+        current_usersLayout.setHorizontalGroup(
+            current_usersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 258, Short.MAX_VALUE)
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        current_usersLayout.setVerticalGroup(
+            current_usersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 343, Short.MAX_VALUE)
         );
 
@@ -208,7 +209,7 @@ public class Main_Window extends javax.swing.JFrame {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
-        pnlDashboard.add(jPanel6, gridBagConstraints);
+        pnlDashboard.add(current_users, gridBagConstraints);
 
         jPanel7.setBackground(new java.awt.Color(255, 51, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
@@ -321,15 +322,15 @@ public class Main_Window extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel current_user;
+    private javax.swing.JPanel current_users;
     private javax.swing.JPanel graphPanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JPanel notes;
     private javax.swing.JPanel pnlDashboard;
     private javax.swing.JPanel pnlToolbar;
     private javax.swing.JPanel projectPanel;
@@ -383,21 +384,35 @@ public class Main_Window extends javax.swing.JFrame {
         
     }
     
-    private void showCurrentUser(User user){
+    private void showNotes(User user){
         User user1 = new User("Ignac Mokry", 21, "Cadca 572", "obrazok no");
         JTextPane jTextPane = new JTextPane();
         JScrollPane scrollPane = new JScrollPane(jTextPane);
         JLabel jLabel = new JLabel("Notes");
         jLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 20));
         
-        current_user.setLayout(new BorderLayout());
-        current_user.removeAll();
-        jTextPane.setPreferredSize(current_user.getPreferredSize());
+        notes.setLayout(new BorderLayout());
+        notes.removeAll();
+        jTextPane.setPreferredSize(notes.getPreferredSize());
         
-        current_user.add(jLabel, BorderLayout.NORTH);
-        current_user.add(scrollPane, BorderLayout.CENTER);
+        notes.add(jLabel, BorderLayout.NORTH);
+        notes.add(scrollPane, BorderLayout.CENTER);
         jTextPane.setFont(new java.awt.Font("Segoe UI Light", 0, 15));
-        current_user.revalidate();
-        current_user.repaint();
+        notes.revalidate();
+        notes.repaint();
+    }
+    
+    private void showCurrentUser(User user){
+        User user1 = new User("Ignac Mokry", 21, "Cadca 572", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
+        
+        JPanel current = new Current_User(user1);
+        current.setPreferredSize(current_users.getPreferredSize());
+        
+        current.setVisible(true);
+        current_users.setLayout(new BorderLayout());
+        current_users.removeAll();
+        current_users.add(current, BorderLayout.CENTER);
+        current_users.revalidate();
+        current_users.repaint();
     }
 }
