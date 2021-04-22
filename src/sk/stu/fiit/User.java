@@ -13,19 +13,40 @@ import java.util.ArrayList;
  * @author adamh
  */
 public class User implements Serializable{
+    private String username;
+    private String password;
     private String name;
     private int age;
     private String address;
     private String picture;
-    private String type = "user";
+    private String type;
     private ArrayList<Project> projects;
 
-    public User(String name, int age, String address, String picture) {
-        this.projects = new ArrayList<>();
+    public User(String username, String password, String name, int age, String address, String type, String picture) {
+        this.username = username;
+        this.password = password;
         this.name = name;
         this.age = age;
         this.address = address;
+        this.type = type;
         this.picture = picture;
+        this.projects = new ArrayList<>();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
     public void addProject(Project project){
