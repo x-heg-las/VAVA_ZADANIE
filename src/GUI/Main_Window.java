@@ -44,6 +44,7 @@ public class Main_Window extends javax.swing.JFrame {
         showUsersProject(null);
         showNotes(null);
         showCurrentUser(null);
+        showTask(null);
     }
 
     /**
@@ -63,7 +64,7 @@ public class Main_Window extends javax.swing.JFrame {
         tree = new javax.swing.JTree(root);
         jScrollPane1 = new javax.swing.JScrollPane();
         pnlDashboard = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        tasks = new javax.swing.JPanel();
         notes = new javax.swing.JPanel();
         graphPanel = new javax.swing.JPanel();
         projectPanel = new javax.swing.JPanel();
@@ -98,18 +99,18 @@ public class Main_Window extends javax.swing.JFrame {
 
         pnlDashboard.setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
-        jPanel1.setPreferredSize(new java.awt.Dimension(517, 345));
+        tasks.setBackground(new java.awt.Color(204, 204, 255));
+        tasks.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        tasks.setPreferredSize(new java.awt.Dimension(517, 345));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tasksLayout = new javax.swing.GroupLayout(tasks);
+        tasks.setLayout(tasksLayout);
+        tasksLayout.setHorizontalGroup(
+            tasksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 534, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        tasksLayout.setVerticalGroup(
+            tasksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 343, Short.MAX_VALUE)
         );
 
@@ -119,7 +120,7 @@ public class Main_Window extends javax.swing.JFrame {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
-        pnlDashboard.add(jPanel1, gridBagConstraints);
+        pnlDashboard.add(tasks, gridBagConstraints);
 
         notes.setBackground(new java.awt.Color(255, 204, 255));
         notes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
@@ -324,7 +325,6 @@ public class Main_Window extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel current_users;
     private javax.swing.JPanel graphPanel;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
@@ -334,6 +334,7 @@ public class Main_Window extends javax.swing.JFrame {
     private javax.swing.JPanel pnlDashboard;
     private javax.swing.JPanel pnlToolbar;
     private javax.swing.JPanel projectPanel;
+    private javax.swing.JPanel tasks;
     private javax.swing.JTree tree;
     // End of variables declaration//GEN-END:variables
 
@@ -343,7 +344,7 @@ public class Main_Window extends javax.swing.JFrame {
     
     private void load_arrays(){
         array_projects = new ArrayList<>();
-        Task task = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super brutalny Task, na ktorom sa seci tesime a pracujeme :)))))");
+        Task task = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super brutalny Task, na ktorom sa seci tesime a pracujeme :)))))", "Yenfang_Invoices");
         //Task task1 = new Task(new GregorianCalendar(), new Date(), new Date(), new Date(), "toto je super brutalny Task, na ktorom sa seci tesime a pracujeme :)))))");
         Project_Manager project_Manager = new Project_Manager("Jozef Mlady", 12, "Mlada Boleslav 41", "nemam obrazok");
         Project project = new Project(new ArrayList(), project_Manager, "Najlepsi projekt na svete", new Date(), Priorities.CRITICAL);
@@ -414,5 +415,19 @@ public class Main_Window extends javax.swing.JFrame {
         current_users.add(current, BorderLayout.CENTER);
         current_users.revalidate();
         current_users.repaint();
+    }
+    
+    private void showTask(Task task){
+        Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
+        
+        JPanel current = new Task_show(task1);
+        current.setPreferredSize(tasks.getPreferredSize());
+        
+        current.setVisible(true);
+        tasks.setLayout(new BorderLayout());
+        tasks.removeAll();
+        tasks.add(current, BorderLayout.CENTER);
+        tasks.revalidate();
+        tasks.repaint();
     }
 }

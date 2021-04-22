@@ -13,13 +13,15 @@ import java.util.Date;
  * @author adamh
  */
 public class Task {
+    private String name;
     private Date start_date;
     private Date deadline;
     private LocalTime start_time;
     private LocalTime end_time;
     private String topic;
 
-    public Task(Date start_date, Date deadline, LocalTime start_time, LocalTime end_time, String topic) {
+    public Task(Date start_date, Date deadline, LocalTime start_time, LocalTime end_time, String topic, String name) {
+        this.name = name;
         this.start_date = start_date;
         this.deadline = deadline;
         this.start_time = start_time;
@@ -27,6 +29,14 @@ public class Task {
         this.topic = topic;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     public LocalTime getStart_time() {
         return start_time;
     }
