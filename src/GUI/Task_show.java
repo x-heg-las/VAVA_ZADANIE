@@ -7,6 +7,7 @@ package GUI;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import javax.swing.JPanel;
 import sk.stu.fiit.Tasks.Task;
 
 /**
@@ -77,6 +78,10 @@ public class Task_show extends javax.swing.JPanel {
         jLabel1.setText(task.getName());
         jLabel3.setText(s);
         jLabel2.setText(task.getTopic());
+    }
+    
+    public JPanel get_panel(){
+        return this;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

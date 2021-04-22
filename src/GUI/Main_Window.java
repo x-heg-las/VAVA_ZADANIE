@@ -71,6 +71,7 @@ public class Main_Window extends javax.swing.JFrame {
         current_users = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         pnlToolbar = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -250,17 +251,21 @@ public class Main_Window extends javax.swing.JFrame {
         pnlToolbar.setBackground(new java.awt.Color(51, 51, 255));
         pnlToolbar.setMinimumSize(new java.awt.Dimension(0, 40));
         pnlToolbar.setPreferredSize(new java.awt.Dimension(864, 40));
+        pnlToolbar.setLayout(new javax.swing.BoxLayout(pnlToolbar, javax.swing.BoxLayout.LINE_AXIS));
 
-        javax.swing.GroupLayout pnlToolbarLayout = new javax.swing.GroupLayout(pnlToolbar);
-        pnlToolbar.setLayout(pnlToolbarLayout);
-        pnlToolbarLayout.setHorizontalGroup(
-            pnlToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1228, Short.MAX_VALUE)
-        );
-        pnlToolbarLayout.setVerticalGroup(
-            pnlToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Tasks");
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        jLabel2.setMaximumSize(new java.awt.Dimension(150, 454545));
+        jLabel2.setPreferredSize(new java.awt.Dimension(150, 40));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel2MouseReleased(evt);
+            }
+        });
+        pnlToolbar.add(jLabel2);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -286,6 +291,12 @@ public class Main_Window extends javax.swing.JFrame {
         CalendarProgram calendarProgram = new CalendarProgram();
         calendarProgram.create(jPanel7, this.getContentPane());
     }//GEN-LAST:event_formComponentResized
+
+    private void jLabel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseReleased
+        // TODO add your handling code here:
+        Tasks_window tasks_window = new Tasks_window();
+        tasks_window.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jLabel2MouseReleased
 
     /**
      * @param args the command line arguments
@@ -325,6 +336,7 @@ public class Main_Window extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel current_users;
     private javax.swing.JPanel graphPanel;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
