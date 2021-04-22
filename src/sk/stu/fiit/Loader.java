@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,14 +75,26 @@ public class Loader {
     }
 
     
-    public static void load(){
-        XMLDecoder decoder = null;
-        try{
-            decoder = new XMLDecoder(new BufferedInputStream( new FileInputStream(SAVEFILE)));
-            
-        }catch(FileNotFoundException ex){}
+    public static void load() throws ClassNotFoundException{
+              
+            FileInputStream savefile;
         
-        users = (ArrayList<User>)decoder.readObject();
+        try{
+            savefile = new FileInputStream(SAVEFILE);
+            ObjectInputStream input = new ObjectInputStream(savefile);
+            //TODO : pridaj veci na ulozenie
+            users = (ArrayList<User>)input.readObject();
+            projects = (HashMap<String,Project>)input.readObject();
+            input.close();
+            input.close();
+            //TODO : logger add logger
+                  
+        }catch(IOException | ClassNotFoundException ex){
+            //TODO: logger
+        }
+       
+        
+        
         
     }
     
