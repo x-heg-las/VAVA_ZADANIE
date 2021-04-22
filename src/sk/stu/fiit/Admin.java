@@ -13,6 +13,7 @@ import java.io.Serializable;
  */
 public class Admin implements Serializable {
     private String type = "admin";
+    private String name = "admin";
     private String password;
 
     public Admin(String password) {

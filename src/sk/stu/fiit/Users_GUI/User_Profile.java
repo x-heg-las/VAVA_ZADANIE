@@ -161,7 +161,7 @@ public class User_Profile extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(User_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        User user = new User("Ignac Bajza", 44, "Hodonin 17", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_2.jpg");
+        User user = new User("ignac.b", "lajza","Ignac Bajza", 44, "Hodonin 17","user", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_2.jpg");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
