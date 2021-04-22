@@ -18,11 +18,11 @@ public class NewJFrame extends javax.swing.JFrame {
      */
     public NewJFrame() {
         initComponents();
-        JPanel l = new UserTaskChart(null);
+        JPanel l = new NewProjectViewPanel();
         l.setVisible(true);
-        jPanel1.add(l);
-        jPanel1.revalidate();
-jPanel1.repaint();
+        add(l);
+        revalidate();
+        repaint();
     }
 
     /**

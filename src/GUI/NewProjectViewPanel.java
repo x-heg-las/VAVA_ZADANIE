@@ -5,7 +5,11 @@
  */
 package GUI;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.UnsupportedLookAndFeelException;
+import sk.stu.fiit.InputVerifiers;
+import sk.stu.fiit.Loader;
 import sk.stu.fiit.Priorities;
 import sk.stu.fiit.Project;
 
@@ -40,7 +44,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         taName = new javax.swing.JTextField();
         taID = new javax.swing.JTextField();
-        taStartingNumber = new javax.swing.JTextField();
+        taTag = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         taDescription = new javax.swing.JTextArea();
         radioUrgent = new javax.swing.JRadioButton();
@@ -101,12 +105,16 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         add(jLabel5, gridBagConstraints);
+
+        taName.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         add(taName, gridBagConstraints);
+
+        taID.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
@@ -114,15 +122,18 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         add(taID, gridBagConstraints);
+
+        taTag.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
-        add(taStartingNumber, gridBagConstraints);
+        add(taTag, gridBagConstraints);
 
         taDescription.setColumns(20);
+        taDescription.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
         taDescription.setRows(5);
         jScrollPane1.setViewportView(taDescription);
 
@@ -197,15 +208,37 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        //TODO .. ochrana vstupu
-        Priorities priority;
-        if(radioNonUrgent.isSelected())
-            priority = Priorities.NONURGENT;
-        else
-            priority = Priorities.URGENT;
+        String errMessage = "";
+        try{
+            errMessage = "";
+            //Overenie vstupu
+            InputVerifiers.hasEmptyFields(taDescription, taID, taName, taTag);
+            Priorities priority;
+            
+            if(Loader.getProjects().containsKey(taID.getText())){
+                errMessage = "Duplicit project ID, consider changing it.";
+                throw new RuntimeException("Duplicit project ID");
+            }
+
+            if(radioNonUrgent.isSelected())
+                priority = Priorities.NONURGENT;
+            else
+                priority = Priorities.URGENT;
+
+            Project newProject = new Project(taName.getText(), priority,
+            taTag.getText(), taID.getText(), taDescription.getText());
+            
+            JPanel next = new ProjectTeammates(newProject);
+            removeAll();
+            next.setVisible(true);
+            add(next);
+            revalidate();
+            repaint();
         
-        Project newProject = new Project(taName.getText(), priority,
-                taStartingNumber.getText(), taID.getText(), taDescription.getText());
+        }catch (RuntimeException runt){
+            //TODO :: add loggger
+            JOptionPane.showMessageDialog(null ,"Wrong input: " + errMessage , "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
   
@@ -227,6 +260,6 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
     private javax.swing.JTextArea taDescription;
     private javax.swing.JTextField taID;
     private javax.swing.JTextField taName;
-    private javax.swing.JTextField taStartingNumber;
+    private javax.swing.JTextField taTag;
     // End of variables declaration//GEN-END:variables
 }

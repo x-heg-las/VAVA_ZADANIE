@@ -5,11 +5,13 @@
  */
 package sk.stu.fiit;
 
+import java.io.Serializable;
+
 /**
  *
  * @author adamh
  */
-public class Admin {
+public class Admin implements Serializable {
     private String type = "admin";
     private String password;
 

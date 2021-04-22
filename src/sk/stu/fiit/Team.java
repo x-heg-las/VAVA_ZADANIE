@@ -5,6 +5,7 @@
  */
 package sk.stu.fiit;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author patoh
  */
-public class Team {
+public class Team implements Serializable{
     private String name;
     private ArrayList<User> teamMembers;
     private User leader;

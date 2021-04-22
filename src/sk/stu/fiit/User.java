@@ -5,13 +5,14 @@
  */
 package sk.stu.fiit;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author adamh
  */
-public class User {
+public class User implements Serializable{
     private String name;
     private int age;
     private String address;
@@ -74,5 +75,12 @@ public class User {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return  name + "\t" + type ;
+    }
+    
+    
     
 }
