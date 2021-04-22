@@ -143,7 +143,7 @@ public class CalendarProgram{
         nod = cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
         som = cal.get(GregorianCalendar.DAY_OF_WEEK);
         
-        Task task = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis");
+        Task task = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
         //Draw calendar
         for (int i=1; i<=nod; i++){
             int row = new Integer((i+som-2)/7);
@@ -253,7 +253,7 @@ public class CalendarProgram{
             }
             if (value != null){
                 if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
-                    setBackground(new Color(220, 220, 255));
+                    textarea.setBackground(new Color(220, 220, 255));
                 }
             }
             /*
@@ -264,7 +264,7 @@ public class CalendarProgram{
         textarea.setCaretPosition(0);*/
             if (value != null){
                     Integer num_value = (Integer)value;
-                    textarea.setText(task.getTopic());
+                    textarea.setText(task.getName());
                     textarea.append("\n" + num_value.toString());
                 }
         return this;
