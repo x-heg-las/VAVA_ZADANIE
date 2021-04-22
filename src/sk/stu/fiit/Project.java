@@ -1,6 +1,7 @@
 
 package sk.stu.fiit;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,7 +9,7 @@ import java.util.Date;
  *
  * @author patoh
  */
-public class Project {
+public class Project implements Serializable {
     private ArrayList<Team> teams;
     private Project_Manager project_manager;
     private String projectName;
@@ -45,6 +46,18 @@ public class Project {
 
     public void remove(Team z) {
         teams.remove(z);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getPrefix() {
+        return prefix;
     }
 
     public ArrayList<Team> getTeams() {

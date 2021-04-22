@@ -5,11 +5,13 @@
  */
 package sk.stu.fiit;
 
+import java.io.Serializable;
+
 /**
  *
  * @author adamh
  */
-public class Project_Manager extends User {
+public class Project_Manager extends User implements Serializable{
     private String type = "project_manajer";
 
     public Project_Manager(String name, int age, String address, String picture) {

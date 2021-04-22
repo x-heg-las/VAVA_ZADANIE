@@ -5,11 +5,13 @@
  */
 package sk.stu.fiit;
 
+import java.io.Serializable;
+
 /**
  *
  * @author adamh
  */
-public class Director extends User {
+public class Director extends User implements Serializable{
     private final String type = "director";
 
     public Director(String name, int age, String address, String picture) {

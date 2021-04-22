@@ -5,11 +5,13 @@
  */
 package sk.stu.fiit;
 
+import java.io.Serializable;
+
 /**
  *
  * @author patoh
  */
-public enum Priorities {
+public enum Priorities implements Serializable {
     
     NORMAL,
     CRITICAL,
