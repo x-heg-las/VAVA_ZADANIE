@@ -4,6 +4,7 @@ package sk.stu.fiit;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import sk.stu.fiit.Tasks.Task;
 
 /**
  *
@@ -11,21 +12,24 @@ import java.util.Date;
  */
 public class Project implements Serializable {
     private ArrayList<Team> teams;
-    private User project_manager;
+     private ArrayList<Task> tasks;
+    private Project_Manager project_manager;
+   private User project_manager;
+
     private String projectName;
     private Date deadline;
     private Priorities priority;
     private String description;
     private String id;
-    private String prefix;
+
     private String tag;
 
-    public Project(String projectName, Priorities priority, String id, String prefix, String tag) {
+    public Project(String projectName, Priorities priority, String tag, String prefix, String description) {
         this.projectName = projectName;
         this.priority = priority;
-        this.id = id;
-        this.prefix = prefix;
+        this.id = prefix;
         this.tag = tag;
+        this.description = description;
     }
     
     //TODO: pridaj tasky
@@ -37,8 +41,14 @@ public class Project implements Serializable {
         this.deadline = deadline;
         this.priority = priority;
     }
+
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
     
-   
+    public void add(Task task){
+        tasks.add(task);
+    }
     
     public void add(Team e) {
         teams.add(e);
@@ -56,9 +66,6 @@ public class Project implements Serializable {
         return id;
     }
 
-    public String getPrefix() {
-        return prefix;
-    }
 
     public ArrayList<Team> getTeams() {
         return teams;

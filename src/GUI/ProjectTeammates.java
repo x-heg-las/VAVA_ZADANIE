@@ -23,9 +23,10 @@ public class ProjectTeammates extends javax.swing.JPanel {
     
     private Project project;
     public ProjectTeammates(Project project) {
+        this.project = project;
         initComponents();
         setValues();
-        this.project = project;
+       
     }
 
     /**
@@ -97,6 +98,7 @@ public class ProjectTeammates extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         add(jButton1, gridBagConstraints);
 
+        jTable1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -124,6 +126,7 @@ public class ProjectTeammates extends javax.swing.JPanel {
             }
         });
         jTable1.setColumnSelectionAllowed(true);
+        jTable1.setDragEnabled(true);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);

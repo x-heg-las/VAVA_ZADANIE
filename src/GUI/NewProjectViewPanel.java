@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import java.awt.Container;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -49,7 +50,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
         taDescription = new javax.swing.JTextArea();
         radioUrgent = new javax.swing.JRadioButton();
         radioNonUrgent = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        btnCreateProject = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
@@ -165,20 +166,20 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
         add(radioNonUrgent, gridBagConstraints);
         projectPriorityGroup.add(radioNonUrgent);
 
-        jButton1.setBackground(new java.awt.Color(51, 153, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Create project");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCreateProject.setBackground(new java.awt.Color(51, 153, 255));
+        btnCreateProject.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnCreateProject.setForeground(new java.awt.Color(0, 0, 0));
+        btnCreateProject.setText("Create project");
+        btnCreateProject.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnCreateProjectMouseClicked(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
-        add(jButton1, gridBagConstraints);
+        add(btnCreateProject, gridBagConstraints);
 
         jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
@@ -207,7 +208,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btnCreateProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateProjectMouseClicked
         String errMessage = "";
         try{
             errMessage = "";
@@ -229,23 +230,25 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
             taTag.getText(), taID.getText(), taDescription.getText());
             
             JPanel next = new ProjectTeammates(newProject);
-            removeAll();
+            Container pane = this.getParent();
+            
+            pane.removeAll();
             next.setVisible(true);
-            add(next);
-            revalidate();
-            repaint();
+            pane.add(next);
+            pane.revalidate();
+            pane.repaint();
         
         }catch (RuntimeException runt){
             //TODO :: add loggger
             JOptionPane.showMessageDialog(null ,"Wrong input: " + errMessage , "Warning", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btnCreateProjectMouseClicked
 
   
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCreateProject;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
