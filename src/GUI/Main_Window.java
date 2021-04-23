@@ -79,6 +79,8 @@ public class Main_Window extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -308,6 +310,23 @@ public class Main_Window extends javax.swing.JFrame {
         });
         pnlToolbar.add(jLabel5);
 
+        jLabel6.setText("  ");
+        pnlToolbar.add(jLabel6);
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 51));
+        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("New Task");
+        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jLabel7.setMaximumSize(new java.awt.Dimension(150, 40));
+        jLabel7.setPreferredSize(new java.awt.Dimension(150, 40));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel7MouseReleased(evt);
+            }
+        });
+        pnlToolbar.add(jLabel7);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -354,6 +373,10 @@ public class Main_Window extends javax.swing.JFrame {
         standalone_Calendar.create();
     }//GEN-LAST:event_jLabel5MouseReleased
 
+    private void jLabel7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel7MouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -398,6 +421,8 @@ public class Main_Window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
