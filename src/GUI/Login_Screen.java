@@ -161,6 +161,7 @@ public class Login_Screen extends javax.swing.JFrame {
         // TODO add your handling code here:
         User user = log_user();
         if (user != null){
+            Loader.setCurrentlyLogged(user);
             Main_Window main_Window = new Main_Window(user);
             main_Window.setVisible(rootPaneCheckingEnabled);
             this.dispose();

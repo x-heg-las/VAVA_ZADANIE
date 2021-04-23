@@ -12,12 +12,16 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import sk.stu.fiit.Loader;
+import sk.stu.fiit.TaskState;
 import sk.stu.fiit.Tasks.Task;
+import sk.stu.fiit.User;
 
 /**
  *
@@ -25,16 +29,25 @@ import sk.stu.fiit.Tasks.Task;
  */
 public class Tasks_window extends javax.swing.JFrame {
     private ArrayList<Task> array_tasks = new ArrayList<>();
-    static DefaultTableModel jtable1_model;
+    private ArrayList<Task> array_todo = new ArrayList<>();
+    private ArrayList<Task> array_doing = new ArrayList<>();
+    private ArrayList<Task> array_done = new ArrayList<>();
     /**
      * Creates new form Tasks_window
      */
     public Tasks_window() {
         initComponents();
+        
+        /*DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
+        DefaultTableModel model3 = (DefaultTableModel) jTable3.getModel();*/
+        
         Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "Potrbea zryhclit intrnet vyzaduje, aby sme zrychlili obeh dat po sieti.", "Inernat_Speeed");
         array_tasks.add(task1);
         Task task2 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site99");
+        task2.setTaskState(TaskState.DONE);
         array_tasks.add(task2);
+        divide_arrays(Loader.getCurrentlyLogged());
         fill_table();
     }
 
@@ -106,10 +119,7 @@ public class Tasks_window extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Title 1"
@@ -136,10 +146,7 @@ public class Tasks_window extends javax.swing.JFrame {
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Title 1"
@@ -161,14 +168,25 @@ public class Tasks_window extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel3, gridBagConstraints);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Move to DONE");
+        jButton1.setMaximumSize(new java.awt.Dimension(200, 40));
+        jButton1.setMinimumSize(new java.awt.Dimension(200, 40));
+        jButton1.setPreferredSize(new java.awt.Dimension(200, 40));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton1MouseReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
         getContentPane().add(jButton1, gridBagConstraints);
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Move to DOING");
+        jButton2.setMaximumSize(new java.awt.Dimension(999999999, 999999999));
+        jButton2.setMinimumSize(new java.awt.Dimension(200, 40));
+        jButton2.setPreferredSize(new java.awt.Dimension(250, 50));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jButton2MouseReleased(evt);
@@ -179,13 +197,29 @@ public class Tasks_window extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         getContentPane().add(jButton2, gridBagConstraints);
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Move to DOING");
+        jButton3.setMaximumSize(new java.awt.Dimension(200, 40));
+        jButton3.setMinimumSize(new java.awt.Dimension(200, 40));
+        jButton3.setPreferredSize(new java.awt.Dimension(200, 40));
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton3MouseReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         getContentPane().add(jButton3, gridBagConstraints);
 
-        jButton4.setText("jButton4");
+        jButton4.setText("Move to TODO");
+        jButton4.setMaximumSize(new java.awt.Dimension(200, 40));
+        jButton4.setMinimumSize(new java.awt.Dimension(200, 40));
+        jButton4.setPreferredSize(new java.awt.Dimension(200, 40));
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton4MouseReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -197,8 +231,67 @@ public class Tasks_window extends javax.swing.JFrame {
 
     private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
         // TODO add your handling code here:
-        System.out.println("Presun no sak sto tak je neviem, co to je fakt Sadge :(");
+        if (jTable1.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(rootPane, "You have to choose task!", "Wrong input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Task task = array_todo.get(jTable1.getSelectedRow());
+        task.setTaskState(TaskState.DOING);
+        
+        clear_tables();
+        
+        array_doing.add(task);
+        array_todo.remove(task);
+        fill_table();
     }//GEN-LAST:event_jButton2MouseReleased
+
+    private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
+        // TODO add your handling code here:
+        if (jTable2.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(rootPane, "You have to choose task!", "Wrong input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Task task = array_doing.get(jTable2.getSelectedRow());
+        task.setTaskState(TaskState.TODO);
+        
+        clear_tables();
+        
+        array_todo.add(task);
+        array_doing.remove(task);
+        fill_table();
+    }//GEN-LAST:event_jButton4MouseReleased
+
+    private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
+        // TODO add your handling code here:
+        if (jTable2.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(rootPane, "You have to choose task!", "Wrong input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Task task = array_doing.get(jTable2.getSelectedRow());
+        task.setTaskState(TaskState.DONE);
+        
+        clear_tables();
+        
+        array_done.add(task);
+        array_doing.remove(task);
+        fill_table();
+    }//GEN-LAST:event_jButton1MouseReleased
+
+    private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
+        // TODO add your handling code here:
+        if (jTable3.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(rootPane, "You have to choose task!", "Wrong input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Task task = array_done.get(jTable3.getSelectedRow());
+        task.setTaskState(TaskState.DOING);
+        
+        clear_tables();
+        
+        array_doing.add(task);
+        array_done.remove(task);
+        fill_table();
+    }//GEN-LAST:event_jButton3MouseReleased
 
     /**
      * @param args the command line arguments
@@ -256,11 +349,76 @@ public class Tasks_window extends javax.swing.JFrame {
         jTable1.setRowHeight(300);
         
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        for (int i = 0; i < array_tasks.size(); i++) {
+        
+        for (int i = 0; i < array_todo.size(); i++) {
             model.addRow(new Object[]{i});
         }
+        System.out.println("pocet raidok = " + model.getRowCount());
+        jTable1.setDefaultRenderer(jTable1.getColumnClass(0), new RssFeedCellRenderer(array_todo));
         
-        jTable1.setDefaultRenderer(jTable1.getColumnClass(0), new RssFeedCellRenderer(array_tasks));
+        jTable2.setShowGrid(true);
+        jTable2.setRowHeight(300);
+        
+        DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
+        
+        for (int i = 0; i < array_doing.size(); i++) {
+            model2.addRow(new Object[]{i});
+        }
+        
+        jTable2.setDefaultRenderer(jTable2.getColumnClass(0), new RssFeedCellRenderer(array_doing));
+        
+        jTable3.setShowGrid(true);
+        jTable3.setRowHeight(300);
+        
+        DefaultTableModel model3 = (DefaultTableModel) jTable3.getModel();
+        
+        for (int i = 0; i < array_done.size(); i++) {
+            model3.addRow(new Object[]{i});
+        }
+        
+        jTable3.setDefaultRenderer(jTable3.getColumnClass(0), new RssFeedCellRenderer(array_done));
+    }
+    
+    private void clear_tables(){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+        for (int i = model.getRowCount() - 1; i >= 0; i--) {
+            System.out.println("y = " + i);
+            model.removeRow(i);
+        }
+        
+        DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
+        
+        for (int i = model2.getRowCount() - 1; i >= 0; i--) {
+            System.out.println("i = " + i);
+            model2.removeRow(i);
+        }
+        
+        DefaultTableModel model3= (DefaultTableModel) jTable3.getModel();
+        
+        for (int i = model3.getRowCount() - 1; i >= 0; i--) {
+            System.out.println("i = " + i);
+            model3.removeRow(i);
+        }
+    }
+    
+    private void divide_arrays(User user){
+        for (Task task : array_tasks) {
+            switch (task.getTaskState()) {
+                case TODO:
+                    array_todo.add(task);
+                    break;
+                case DOING:
+                    array_doing.add(task);
+                    break;
+                default:
+                    array_done.add(task);
+                    break;
+            }
+        }
+        System.out.println("todo = " + array_todo.size());
+        System.out.println("doing = " + array_doing.size());
+        System.out.println("done = " + array_done.size());
     }
 }
 
@@ -269,6 +427,7 @@ class RssFeedCellRenderer implements TableCellRenderer{
 
     public RssFeedCellRenderer(ArrayList<Task> array_tasks) {
         this.array_tasks = array_tasks;
+        System.out.println("Toto postihnute pole je velke: " + this.array_tasks.size());
     }
     
     @Override
