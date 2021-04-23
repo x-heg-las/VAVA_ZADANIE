@@ -9,11 +9,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import sk.stu.fiit.Tasks.Task;
 
@@ -22,13 +24,18 @@ import sk.stu.fiit.Tasks.Task;
  * @author adamh
  */
 public class Tasks_window extends javax.swing.JFrame {
-
+    private ArrayList<Task> array_tasks = new ArrayList<>();
+    static DefaultTableModel jtable1_model;
     /**
      * Creates new form Tasks_window
      */
     public Tasks_window() {
         initComponents();
-        naco();
+        Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "Potrbea zryhclit intrnet vyzaduje, aby sme zrychlili obeh dat po sieti.", "Inernat_Speeed");
+        array_tasks.add(task1);
+        Task task2 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site99");
+        array_tasks.add(task2);
+        fill_table();
     }
 
     /**
@@ -64,10 +71,7 @@ public class Tasks_window extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Title 1"
@@ -247,36 +251,42 @@ public class Tasks_window extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
 
-    private void naco(){
+    private void fill_table(){
         jTable1.setShowGrid(true);
         jTable1.setRowHeight(300);
-        jTable1.setDefaultRenderer(jTable1.getColumnClass(0), new RssFeedCellRenderer());
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < array_tasks.size(); i++) {
+            model.addRow(new Object[]{i});
+        }
+        
+        jTable1.setDefaultRenderer(jTable1.getColumnClass(0), new RssFeedCellRenderer(array_tasks));
     }
 }
 
 class RssFeedCellRenderer implements TableCellRenderer{
-    Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
-    Task_show task_show = new Task_show(task1);
-    JPanel jPanel = task_show.get_panel();
+    private ArrayList<Task> array_tasks = new ArrayList<>();
 
-    public RssFeedCellRenderer() {
-        System.out.println("!");
+    public RssFeedCellRenderer(ArrayList<Task> array_tasks) {
+        this.array_tasks = array_tasks;
     }
     
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        Task_show task_show = new Task_show(array_tasks.get((Integer)value));
+        JPanel jPanel = task_show.get_panel();
         if (isSelected) {
             table.setForeground(table.getSelectionForeground());
             table.setBackground(table.getSelectionBackground());
             jPanel.setForeground(Color.red);
             jPanel.setBackground(Color.BLUE);
-         
-      } else {
-        table.setForeground(table.getForeground());
-        table.setBackground(table.getBackground());
-        jPanel.setForeground(table.getForeground());
-        jPanel.setBackground(new Color(204,204,255));
-      }
+        
+        } else {
+          table.setForeground(table.getForeground());
+          table.setBackground(table.getBackground());
+          jPanel.setForeground(table.getForeground());
+          jPanel.setBackground(new Color(204,204,255));
+        }
         
        return jPanel;
     }
