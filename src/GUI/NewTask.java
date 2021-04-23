@@ -27,14 +27,33 @@ public class NewTask extends javax.swing.JFrame {
 
     private Project project;
     private ArrayList<User> asignedTo;
+    private User curentUser;
     
+    
+    public NewTask(User user)
+    {
+        this.project = null;
+        this.curentUser = user;
+        initComponents();
+        CurrentDateSelectionConstraint constraint = new CurrentDateSelectionConstraint();
+        taskDeadline.addDateSelectionConstraint(constraint);
+        btnAssignUser.setVisible(false);
+        userCombo.setVisible(false);
+        
+        DefaultListModel<User> model = ( DefaultListModel<User>) userList.getModel();
+        model.addElement(user);
+        userList.setModel(model);
+        initializeValues();
+    }
     
     public NewTask(Project project) {
         this.project = project;
+        this.curentUser = null;
         this.asignedTo = new ArrayList<>();
         initComponents();
         CurrentDateSelectionConstraint constraint = new CurrentDateSelectionConstraint();
         taskDeadline.addDateSelectionConstraint(constraint);
+        initializeValues();
     }
 
     /**
@@ -65,13 +84,13 @@ public class NewTask extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         userList = new javax.swing.JList<>();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        projectLabel = new javax.swing.JLabel();
+        idLabel = new javax.swing.JLabel();
+        projectTextLbl = new javax.swing.JLabel();
+        projectIdLbl = new javax.swing.JLabel();
         btnCreateTask = new javax.swing.JButton();
         bntCancel = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAssignUser = new javax.swing.JButton();
         userCombo = new javax.swing.JComboBox<>();
 
         jTextField1.setText("jTextField1");
@@ -195,29 +214,29 @@ public class NewTask extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel7, gridBagConstraints);
 
-        jLabel8.setText("Project");
+        projectLabel.setText("Project");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        jPanel2.add(jLabel8, gridBagConstraints);
+        jPanel2.add(projectLabel, gridBagConstraints);
 
-        jLabel9.setText("ID");
+        idLabel.setText("ID");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        jPanel2.add(jLabel9, gridBagConstraints);
+        jPanel2.add(idLabel, gridBagConstraints);
 
-        jLabel10.setText("jLabel10");
+        projectTextLbl.setText("jLabel10");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        jPanel2.add(jLabel10, gridBagConstraints);
+        jPanel2.add(projectTextLbl, gridBagConstraints);
 
-        jLabel11.setText("jLabel11");
+        projectIdLbl.setText("jLabel11");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        jPanel2.add(jLabel11, gridBagConstraints);
+        jPanel2.add(projectIdLbl, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -258,10 +277,10 @@ public class NewTask extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
         jPanel1.add(bntCancel, gridBagConstraints);
 
-        jButton2.setText("Assign");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAssignUser.setText("Assign");
+        btnAssignUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                btnAssignUserMouseClicked(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -269,7 +288,7 @@ public class NewTask extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
-        jPanel1.add(jButton2, gridBagConstraints);
+        jPanel1.add(btnAssignUser, gridBagConstraints);
 
         Loader.getUsers().forEach(user ->{
             userCombo.addItem(user);
@@ -291,7 +310,7 @@ public class NewTask extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bntCancelActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void btnAssignUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAssignUserMouseClicked
         int index = userCombo.getSelectedIndex();
         
         
@@ -305,7 +324,7 @@ public class NewTask extends javax.swing.JFrame {
             model.addElement(user);
             userList.setModel(model);
         }
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_btnAssignUserMouseClicked
 
     private void btnCreateTaskMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateTaskMouseClicked
         try{
@@ -318,15 +337,21 @@ public class NewTask extends javax.swing.JFrame {
             }
             if(deadline != null){
                 Task task = new Task(taSummary.getText(), new Date(), deadline, taDescription.getText());
-                task.setAsignedTo(asignedTo);
                 task.setPriority(priority);
+                 
                 if(stateCombo.getSelectedIndex() >= 0)
-                {
-                    task.setTaskState((TaskState) stateCombo.getSelectedItem());
+                    {
+                        task.setTaskState((TaskState) stateCombo.getSelectedItem());
+                    }
+
+                if(project != null){
+                    task.setAsignedTo(asignedTo);
+                    project.add(task);
                 }
-                
-                project.add(task);
-                
+                else if (curentUser != null){
+                    
+                    curentUser.addUserTask(task);
+                }
                 dispose();
             }else
                 throw new Exception("Zle udaje");
@@ -370,32 +395,32 @@ public class NewTask extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewTask(null).setVisible(true);
+                new NewTask((User) new User("Patrik", 21, "ahoj", "ahoj") ).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntCancel;
+    private javax.swing.JButton btnAssignUser;
     private javax.swing.JButton btnCreateTask;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel idLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<Priorities> priorityCombo;
+    private javax.swing.JLabel projectIdLbl;
+    private javax.swing.JLabel projectLabel;
+    private javax.swing.JLabel projectTextLbl;
     private javax.swing.JComboBox<TaskState> stateCombo;
     private javax.swing.JTextArea taDescription;
     private javax.swing.JTextField taSummary;
@@ -406,7 +431,15 @@ public class NewTask extends javax.swing.JFrame {
 
     private void initializeValues(){
     
-        
+        if(curentUser != null && project == null){
+            idLabel.setVisible(false);
+            projectLabel.setVisible(false);
+            projectTextLbl.setVisible(false);
+            projectIdLbl.setVisible(false);
+        }else if(curentUser == null && project != null){
+            projectIdLbl.setText(project.getId());
+            projectTextLbl.setText(project.getProjectName());
+        }
     
     }
 
