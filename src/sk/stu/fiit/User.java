@@ -7,6 +7,7 @@ package sk.stu.fiit;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import sk.stu.fiit.Tasks.Task;
 
 /**
  *
@@ -21,6 +22,18 @@ public class User implements Serializable{
     private String picture;
     private String type;
     private ArrayList<Project> projects;
+    private ArrayList<Task> userTasks;
+
+    public ArrayList<Task> getUserTasks() {
+        return userTasks;
+    }
+    
+    public void addUserTask(Task task){
+        if(userTasks == null)
+            userTasks = new ArrayList<>();
+        
+        userTasks.add(task);
+    }
 
     public User(String username, String password, String name, int age, String address, String type, String picture) {
         this.username = username;
