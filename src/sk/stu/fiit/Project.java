@@ -12,8 +12,10 @@ import sk.stu.fiit.Tasks.Task;
  */
 public class Project implements Serializable {
     private ArrayList<Team> teams;
-    private ArrayList<Task> tasks;
+     private ArrayList<Task> tasks;
     private Project_Manager project_manager;
+   private User project_manager;
+
     private String projectName;
     private Date deadline;
     private Priorities priority;
@@ -32,7 +34,7 @@ public class Project implements Serializable {
     
     //TODO: pridaj tasky
 
-    public Project(ArrayList<Team> teams, Project_Manager project_manager, String projectName, Date deadline, Priorities priority) {
+    public Project(ArrayList<Team> teams, User project_manager, String projectName, Date deadline, Priorities priority) {
         this.teams = teams;
         this.project_manager = project_manager;
         this.projectName = projectName;
@@ -73,11 +75,11 @@ public class Project implements Serializable {
         this.teams = teams;
     }
 
-    public Project_Manager getProject_manager() {
+    public User getProject_manager() {
         return project_manager;
     }
 
-    public void setProject_manager(Project_Manager project_manager) {
+    public void setProject_manager(User project_manager) {
         this.project_manager = project_manager;
     }
 

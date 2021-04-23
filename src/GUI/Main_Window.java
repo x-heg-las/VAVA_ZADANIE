@@ -20,10 +20,10 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import sk.stu.fiit.Priorities;
 import sk.stu.fiit.Project;
-import sk.stu.fiit.Project_Manager;
 import sk.stu.fiit.Tasks.Task;
 import sk.stu.fiit.Team;
 import sk.stu.fiit.User;
+import sk.stu.fiit.Users_GUI.User_Profile;
 
 /**
  *
@@ -31,19 +31,22 @@ import sk.stu.fiit.User;
  */
 public class Main_Window extends javax.swing.JFrame {
     private ArrayList<Project> array_projects;
+    private User user;
+    private Teammates teammates;
     /**
      * Creates new form Main_Window
      */
-    public Main_Window() {
+    public Main_Window(User user) {
+        this.user = user;
         load_arrays();
         initComponents();
         CalendarProgram calendarProgram = new CalendarProgram();
         calendarProgram.create(jPanel7, this.getContentPane());
         
-        showGraph(null);
+        showGraph();
         showUsersProject(null);
-        showNotes(null);
-        showCurrentUser(null);
+        showNotes();
+        showCurrentUser();
         showTask(null);
     }
 
@@ -72,6 +75,8 @@ public class Main_Window extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         pnlToolbar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -101,7 +106,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.setLayout(new java.awt.GridBagLayout());
 
         tasks.setBackground(new java.awt.Color(204, 204, 255));
-        tasks.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        tasks.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         tasks.setPreferredSize(new java.awt.Dimension(517, 345));
 
         javax.swing.GroupLayout tasksLayout = new javax.swing.GroupLayout(tasks);
@@ -124,7 +129,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(tasks, gridBagConstraints);
 
         notes.setBackground(new java.awt.Color(255, 204, 255));
-        notes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        notes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         notes.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout notesLayout = new javax.swing.GroupLayout(notes);
@@ -147,7 +152,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(notes, gridBagConstraints);
 
         graphPanel.setBackground(new java.awt.Color(255, 204, 204));
-        graphPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        graphPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         graphPanel.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout graphPanelLayout = new javax.swing.GroupLayout(graphPanel);
@@ -170,7 +175,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(graphPanel, gridBagConstraints);
 
         projectPanel.setBackground(new java.awt.Color(255, 255, 204));
-        projectPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        projectPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         projectPanel.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout projectPanelLayout = new javax.swing.GroupLayout(projectPanel);
@@ -192,7 +197,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(projectPanel, gridBagConstraints);
 
         current_users.setBackground(new java.awt.Color(204, 255, 204));
-        current_users.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        current_users.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         current_users.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout current_usersLayout = new javax.swing.GroupLayout(current_users);
@@ -214,7 +219,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(current_users, gridBagConstraints);
 
         jPanel7.setBackground(new java.awt.Color(255, 51, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel7.setPreferredSize(new java.awt.Dimension(517, 345));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -254,10 +259,10 @@ public class Main_Window extends javax.swing.JFrame {
         pnlToolbar.setLayout(new javax.swing.BoxLayout(pnlToolbar, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Tasks");
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jLabel2.setMaximumSize(new java.awt.Dimension(150, 454545));
         jLabel2.setPreferredSize(new java.awt.Dimension(150, 40));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -266,6 +271,23 @@ public class Main_Window extends javax.swing.JFrame {
             }
         });
         pnlToolbar.add(jLabel2);
+
+        jLabel1.setText("  ");
+        pnlToolbar.add(jLabel1);
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 51));
+        jLabel3.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Details");
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jLabel3.setMaximumSize(new java.awt.Dimension(150, 40));
+        jLabel3.setPreferredSize(new java.awt.Dimension(150, 40));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel3MouseReleased(evt);
+            }
+        });
+        pnlToolbar.add(jLabel3);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -298,6 +320,15 @@ public class Main_Window extends javax.swing.JFrame {
         tasks_window.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jLabel2MouseReleased
 
+    private void jLabel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseReleased
+        // TODO add your handling code here:
+        User user = teammates.get_clicked();
+        if (user != null){
+            User_Profile user_Profile = new User_Profile(user);
+            user_Profile.setVisible(rootPaneCheckingEnabled);
+        }
+    }//GEN-LAST:event_jLabel3MouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -326,9 +357,10 @@ public class Main_Window extends javax.swing.JFrame {
         //</editor-fold>
         ArrayList<Project> array_project = new ArrayList<Project>();
         /* Create and display the form */
+        User user = new User("andrea", "adam","AdA", 88, "Holic 12", "user", "cesta k obrazku");
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main_Window().setVisible(true);
+                new Main_Window(user).setVisible(true);
             }
         });
     }
@@ -336,7 +368,9 @@ public class Main_Window extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel current_users;
     private javax.swing.JPanel graphPanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
@@ -358,11 +392,11 @@ public class Main_Window extends javax.swing.JFrame {
         array_projects = new ArrayList<>();
         Task task = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super brutalny Task, na ktorom sa seci tesime a pracujeme :)))))", "Yenfang_Invoices");
         //Task task1 = new Task(new GregorianCalendar(), new Date(), new Date(), new Date(), "toto je super brutalny Task, na ktorom sa seci tesime a pracujeme :)))))");
-        Project_Manager project_Manager = new Project_Manager("Jozef Mlady", 12, "Mlada Boleslav 41", "nemam obrazok");
+        User project_Manager = new User("jozef.m", "stary","Jozef Mlady", 12, "Mlada Boleslav 41", "project_manager", "nemam obrazok");
         Project project = new Project(new ArrayList(), project_Manager, "Najlepsi projekt na svete", new Date(), Priorities.CRITICAL);
         List<User> list = new ArrayList();
         for (int i = 0; i < 5; i++) {
-            User user1 = new User("AdA", 88, "Holic 12", "cesta k obrazku");
+            User user1 = new User("andrea", "adam","AdA", 88, "Holic 12", "user", "cesta k obrazku");
             list.add(user1);
         }
         Team team = new Team(list, "tim jednicka");
@@ -371,7 +405,7 @@ public class Main_Window extends javax.swing.JFrame {
         array_projects.add(project);
     }
     
-    private void showGraph(User user){
+    private void showGraph(){
         JPanel graph = new UserTaskChart(user);
         graph.setPreferredSize(graphPanel.getPreferredSize());
         
@@ -385,7 +419,8 @@ public class Main_Window extends javax.swing.JFrame {
     }
     
     private void showUsersProject(Project project){
-        JPanel team = new Teammates(project);
+        teammates = new Teammates(project);
+        JPanel team = teammates;
         team.setPreferredSize(projectPanel.getPreferredSize());
         
         team.setVisible(true);
@@ -397,8 +432,7 @@ public class Main_Window extends javax.swing.JFrame {
         
     }
     
-    private void showNotes(User user){
-        User user1 = new User("Ignac Mokry", 21, "Cadca 572", "obrazok no");
+    private void showNotes(){
         JTextPane jTextPane = new JTextPane();
         JScrollPane scrollPane = new JScrollPane(jTextPane);
         JLabel jLabel = new JLabel("Notes");
@@ -415,10 +449,9 @@ public class Main_Window extends javax.swing.JFrame {
         notes.repaint();
     }
     
-    private void showCurrentUser(User user){
-        User user1 = new User("Ignac Mokry", 21, "Cadca 572", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
-        
-        JPanel current = new Current_User(user1);
+    private void showCurrentUser(){
+        System.out.println("user = " + user.getType());
+        JPanel current = new Current_User(user);
         current.setPreferredSize(current_users.getPreferredSize());
         
         current.setVisible(true);

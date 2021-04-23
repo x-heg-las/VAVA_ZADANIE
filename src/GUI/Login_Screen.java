@@ -5,8 +5,11 @@
  */
 package GUI;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.Admin;
+import sk.stu.fiit.Loader;
+import sk.stu.fiit.User;
 
 /**
  *
@@ -18,6 +21,18 @@ public class Login_Screen extends javax.swing.JFrame {
      * Creates new form Login_Screen
      */
     public Login_Screen() {
+        User user = new User("jonas.k", "dlhy","Jonas Kratky", 12, "Ilava 99", "user", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
+        Loader.addUser(user);
+        User user1 = new User("edvard.p", "neparny","Edvard Parny", 13, "Ilava 99","user", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
+        Loader.addUser(user1);
+        User user2 = new User("marina.k", "skareda","Marina Krasna", 14, "Ilava 99", "user","C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
+        Loader.addUser(user2);
+        User user3 = new User("petra.s", "vlhka","Petra Sucha", 15, "Ilava 99", "user","C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
+        Loader.addUser(user3);
+        User user4 = new User("matus.v", "smradlavy","Matus Vonavy", 16, "Ilava 99", "user","C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
+        Loader.addUser(user4);
+        User user5 = new User("otepka.d", "otepkis","Dagmar Otepka", 16, "Senica 63", "director", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_2.png");
+        Loader.addUser(user5);
         initComponents();
     }
 
@@ -144,8 +159,9 @@ public class Login_Screen extends javax.swing.JFrame {
 
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
         // TODO add your handling code here:
-        if (log_user()){
-            Main_Window main_Window = new Main_Window();
+        User user = log_user();
+        if (user != null){
+            Main_Window main_Window = new Main_Window(user);
             main_Window.setVisible(rootPaneCheckingEnabled);
             this.dispose();
         }
@@ -199,29 +215,20 @@ public class Login_Screen extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-    public boolean log_user(){
+    public User log_user(){
         String username = jTextField1.getText();
         String password = String.valueOf(jPasswordField1.getPassword());
         
-        if (username.equals("admin")){
-            
-            Admin admin = new Admin("heslo");  //TODO nahradit za load z file-u
-            
-            if (admin.getPassword().equals("heslo")){
-                String new_password = JOptionPane.showInputDialog(this,"Enter new password: ");
-                admin.setPassword(new_password);
-                System.out.println("new_password = " + admin.getPassword());
-                return true;
-            }
-            
-            if (password.equals(admin.getPassword())){
-                return true;
-            }
+        ArrayList<User> users = Loader.getUsers();
+        
+        for (User user : users) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password))
+                return user;
         }
         
         System.out.println("password = " + password);
         System.out.println("username = " + username);
         
-        return false;
+        return null;
     }
 }
