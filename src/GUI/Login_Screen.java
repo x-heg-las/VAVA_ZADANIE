@@ -220,8 +220,9 @@ public class Login_Screen extends javax.swing.JFrame {
         String password = String.valueOf(jPasswordField1.getPassword());
         
         ArrayList<User> users = Loader.getUsers();
-        
+        System.out.println(users.size());
         for (User user : users) {
+            System.out.println(user.getName());
             if (user.getUsername().equals(username) && user.getPassword().equals(password))
                 return user;
         }

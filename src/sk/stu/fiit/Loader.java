@@ -34,7 +34,7 @@ public class Loader {
         users = new  ArrayList<>();
         projects = new HashMap<>();
         
-        users.add(new User("jaja", 10, "Adresa", "pic"));
+        //users.add(new User("jaja", 10, "Adresa", "pic"));
     }
     
     
