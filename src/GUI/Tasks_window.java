@@ -38,10 +38,6 @@ public class Tasks_window extends javax.swing.JFrame {
     public Tasks_window() {
         initComponents();
         
-        /*DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
-        DefaultTableModel model3 = (DefaultTableModel) jTable3.getModel();*/
-        
         Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "Potrbea zryhclit intrnet vyzaduje, aby sme zrychlili obeh dat po sieti.", "Inernat_Speeed");
         array_tasks.add(task1);
         Task task2 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site99");
