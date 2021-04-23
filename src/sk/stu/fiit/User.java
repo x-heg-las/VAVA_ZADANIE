@@ -33,6 +33,13 @@ public class User implements Serializable{
         this.projects = new ArrayList<>();
     }
 
+    public User(String name, int age, String address, String pic) {
+        this.name = name;
+        this.age = age;
+        this.address = address;
+        this.picture = pic;
+    }
+
     public String getUsername() {
         return username;
     }

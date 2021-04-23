@@ -13,7 +13,7 @@ import sk.stu.fiit.Tasks.Task;
 public class Project implements Serializable {
     private ArrayList<Team> teams;
      private ArrayList<Task> tasks;
-    private Project_Manager project_manager;
+    
    private User project_manager;
 
     private String projectName;

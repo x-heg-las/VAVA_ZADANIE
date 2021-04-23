@@ -65,6 +65,10 @@ public class NewTask extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         userList = new javax.swing.JList<>();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         btnCreateTask = new javax.swing.JButton();
         bntCancel = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -183,13 +187,19 @@ public class NewTask extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel7, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridheight = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jPanel2, gridBagConstraints);
+        jLabel8.setText("jLabel8");
+        jPanel2.add(jLabel8, new java.awt.GridBagConstraints());
+
+        jLabel9.setText("jLabel9");
+        jPanel2.add(jLabel9, new java.awt.GridBagConstraints());
+
+        jLabel10.setText("jLabel10");
+        jPanel2.add(jLabel10, new java.awt.GridBagConstraints());
+
+        jLabel11.setText("jLabel11");
+        jPanel2.add(jLabel11, new java.awt.GridBagConstraints());
+
+        jPanel1.add(jPanel2, new java.awt.GridBagConstraints());
 
         btnCreateTask.setText("Create");
         btnCreateTask.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -344,12 +354,16 @@ public class NewTask extends javax.swing.JFrame {
     private javax.swing.JButton btnCreateTask;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
