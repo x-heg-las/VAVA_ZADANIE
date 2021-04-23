@@ -18,7 +18,10 @@ public class ProjectSummary extends javax.swing.JPanel {
     /**
      * Creates new form ProjectViewPanel
      */
-    public ProjectSummary() {
+    private Project project;
+    
+    public ProjectSummary(Project project) {
+        this.project = project;
         initComponents();
     }
 
@@ -33,41 +36,52 @@ public class ProjectSummary extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         projectPriorityGroup = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jDialog1 = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        lablDescription = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Project Tasks", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 0, 18), new java.awt.Color(0, 0, 0))); // NOI18N
+        jDialog1.getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Create Project > Teammates > Summary", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semilight", 0, 24), new java.awt.Color(0, 0, 0))); // NOI18N
         setForeground(new java.awt.Color(0, 0, 0));
         setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("TEAM");
+        lablDescription.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lablDescription.setForeground(new java.awt.Color(0, 0, 0));
+        lablDescription.setText("TEAM");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
-        add(jLabel1, gridBagConstraints);
+        add(lablDescription, gridBagConstraints);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("jLabel2");
+        lblID.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblID.setForeground(new java.awt.Color(0, 0, 0));
+        lblID.setText("jLabel2");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(7, 7, 0, 0);
-        add(jLabel2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(7, 7, 0, 5);
+        add(lblID, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("jLabel3");
-        add(jLabel3, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 8);
+        add(jLabel3, gridBagConstraints);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,17 +124,33 @@ public class ProjectSummary extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         add(jScrollPane1, gridBagConstraints);
+
+        jButton1.setText("Create project");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
+        add(jButton1, gridBagConstraints);
+
+        jButton2.setText("Project tasks");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        add(jButton2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
   
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lablDescription;
+    private javax.swing.JLabel lblID;
     private javax.swing.ButtonGroup projectPriorityGroup;
     // End of variables declaration//GEN-END:variables
 }

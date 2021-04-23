@@ -22,6 +22,9 @@ import java.util.HashMap;
  */
 public class Loader {
     
+  
+    //User prihlaseny = p;
+ 
     private static ArrayList<User> users;
     //key : project ID
     private static HashMap<String, Project> projects;
