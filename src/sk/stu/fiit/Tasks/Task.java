@@ -6,7 +6,11 @@
 package sk.stu.fiit.Tasks;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
+import sk.stu.fiit.Priorities;
+import sk.stu.fiit.TaskState;
+import sk.stu.fiit.User;
 
 /**
  *
@@ -19,6 +23,42 @@ public class Task {
     private LocalTime start_time;
     private LocalTime end_time;
     private String topic;
+    private ArrayList<User> asignedTo;
+    private Priorities priority;
+    private TaskState taskState;
+
+    public Priorities getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priorities priority) {
+        this.priority = priority;
+    }
+
+    public TaskState getTaskState() {
+        return taskState;
+    }
+
+    public void setTaskState(TaskState taskState) {
+        this.taskState = taskState;
+    }
+    
+    public ArrayList<User> getAsignedTo() {
+        return asignedTo;
+    }
+
+    public void setAsignedTo(ArrayList<User> asignedTo) {
+        this.asignedTo = asignedTo;
+    }
+    
+
+    public Task(String name, Date start_date, Date deadline, String topic) {
+        this.name = name;
+        this.start_date = start_date;
+        this.deadline = deadline;
+        this.topic = topic;
+        this.taskState = TaskState.TODO;
+    }
 
     public Task(Date start_date, Date deadline, LocalTime start_time, LocalTime end_time, String topic, String name) {
         this.name = name;
@@ -27,6 +67,7 @@ public class Task {
         this.start_time = start_time;
         this.end_time = end_time;
         this.topic = topic;
+        this.taskState = TaskState.TODO;
     }
 
     public String getName() {
@@ -77,5 +118,11 @@ public class Task {
         this.topic = topic;
     }
     
+    public void add(User user){
+        if(asignedTo == null || asignedTo.isEmpty())
+            asignedTo = new ArrayList<>();
+        
+        asignedTo.add(user);
+    }
     
 }
