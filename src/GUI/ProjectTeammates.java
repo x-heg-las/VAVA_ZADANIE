@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import java.awt.Container;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.UnsupportedLookAndFeelException;
 import sk.stu.fiit.Loader;
 import sk.stu.fiit.Priorities;
@@ -48,6 +51,8 @@ public class ProjectTeammates extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         userCombo = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
+        btnAddTask = new javax.swing.JButton();
+        btnContinue = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Create Project > Teammates", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semilight", 0, 24), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -134,7 +139,7 @@ public class ProjectTeammates extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
@@ -161,16 +166,69 @@ public class ProjectTeammates extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         add(jLabel4, gridBagConstraints);
+
+        btnAddTask.setText("Add task");
+        btnAddTask.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddTaskMouseClicked(evt);
+            }
+        });
+        btnAddTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddTaskActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
+        gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
+        add(btnAddTask, gridBagConstraints);
+
+        btnContinue.setText("Continue");
+        btnContinue.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnContinueMouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
+        add(btnContinue, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnAddTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTaskActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddTaskActionPerformed
+
+    private void btnAddTaskMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddTaskMouseClicked
+        JFrame taskFrame = new NewTask(project);
+        taskFrame.setVisible(true);
+    }//GEN-LAST:event_btnAddTaskMouseClicked
+
+    private void btnContinueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinueMouseClicked
+        JPanel next = new ProjectSummary(project);
+            Container pane = this.getParent();
+            
+            pane.removeAll();
+            next.setVisible(true);
+            pane.add(next);
+            pane.revalidate();
+            pane.repaint();
+    }//GEN-LAST:event_btnContinueMouseClicked
+
   
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddTask;
+    private javax.swing.JButton btnContinue;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
