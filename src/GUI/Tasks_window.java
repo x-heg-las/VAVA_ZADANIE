@@ -74,8 +74,12 @@ public class Tasks_window extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1806, 900));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
@@ -87,7 +91,7 @@ public class Tasks_window extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1"
+                "TODO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -108,7 +112,7 @@ public class Tasks_window extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -122,7 +126,7 @@ public class Tasks_window extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1"
+                "DOING"
             }
         ));
         jScrollPane5.setViewportView(jTable2);
@@ -135,7 +139,7 @@ public class Tasks_window extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -149,7 +153,7 @@ public class Tasks_window extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1"
+                "DONE"
             }
         ));
         jScrollPane6.setViewportView(jTable3);
@@ -162,13 +166,15 @@ public class Tasks_window extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel3, gridBagConstraints);
 
+        jButton1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jButton1.setText("Move to DONE");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton1.setMaximumSize(new java.awt.Dimension(200, 40));
         jButton1.setMinimumSize(new java.awt.Dimension(200, 40));
         jButton1.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -179,14 +185,16 @@ public class Tasks_window extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jButton1, gridBagConstraints);
 
+        jButton2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jButton2.setText("Move to DOING");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton2.setMaximumSize(new java.awt.Dimension(999999999, 999999999));
         jButton2.setMinimumSize(new java.awt.Dimension(200, 40));
-        jButton2.setPreferredSize(new java.awt.Dimension(250, 50));
+        jButton2.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jButton2MouseReleased(evt);
@@ -194,10 +202,12 @@ public class Tasks_window extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         getContentPane().add(jButton2, gridBagConstraints);
 
+        jButton3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jButton3.setText("Move to DOING");
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton3.setMaximumSize(new java.awt.Dimension(200, 40));
         jButton3.setMinimumSize(new java.awt.Dimension(200, 40));
         jButton3.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -208,10 +218,12 @@ public class Tasks_window extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         getContentPane().add(jButton3, gridBagConstraints);
 
+        jButton4.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jButton4.setText("Move to TODO");
+        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton4.setMaximumSize(new java.awt.Dimension(200, 40));
         jButton4.setMinimumSize(new java.awt.Dimension(200, 40));
         jButton4.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -222,9 +234,36 @@ public class Tasks_window extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         getContentPane().add(jButton4, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
+        jLabel1.setText("TODO");
+        jLabel1.setMaximumSize(new java.awt.Dimension(150, 40));
+        jLabel1.setPreferredSize(new java.awt.Dimension(150, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        getContentPane().add(jLabel1, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
+        jLabel2.setText("DOING");
+        jLabel2.setMaximumSize(new java.awt.Dimension(150, 40));
+        jLabel2.setPreferredSize(new java.awt.Dimension(150, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        getContentPane().add(jLabel2, gridBagConstraints);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
+        jLabel3.setText("DONE");
+        jLabel3.setMaximumSize(new java.awt.Dimension(150, 40));
+        jLabel3.setPreferredSize(new java.awt.Dimension(150, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        getContentPane().add(jLabel3, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -333,6 +372,9 @@ public class Tasks_window extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
