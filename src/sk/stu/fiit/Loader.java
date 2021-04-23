@@ -23,7 +23,7 @@ import java.util.HashMap;
 public class Loader {
     
   
-    //User prihlaseny = p;
+    private static User currentlyLogged;
  
     private static ArrayList<User> users;
     //key : project ID
@@ -31,6 +31,7 @@ public class Loader {
     
     
     static{
+        currentlyLogged = null;
         users = new  ArrayList<>();
         projects = new HashMap<>();
         
@@ -39,8 +40,20 @@ public class Loader {
     
     
     private static final String SAVEFILE = "save.ser";
+
+    public static User getCurrentlyLogged() {
+        return currentlyLogged;
+    }
+
+    public static void setCurrentlyLogged(User currentlyLogged) {
+        Loader.currentlyLogged = currentlyLogged;
+    }
     
-    
+    public static void logoutUser(){
+        currentlyLogged = null;               
+                
+    }
+            
     public static void addProject(Project project){
         projects.put(project.getId(), project);
         save();
