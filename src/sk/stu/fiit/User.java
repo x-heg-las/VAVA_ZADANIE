@@ -23,6 +23,7 @@ public class User implements Serializable{
     private String type;
     private ArrayList<Project> projects;
     private ArrayList<Task> userTasks;
+    private String notes = "";
 
     public ArrayList<Task> getUserTasks() {
         return userTasks;

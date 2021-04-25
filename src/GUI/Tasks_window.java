@@ -391,7 +391,6 @@ public class Tasks_window extends javax.swing.JFrame {
         for (int i = 0; i < array_todo.size(); i++) {
             model.addRow(new Object[]{i});
         }
-        System.out.println("pocet raidok = " + model.getRowCount());
         jTable1.setDefaultRenderer(jTable1.getColumnClass(0), new RssFeedCellRenderer(array_todo));
         
         jTable2.setShowGrid(true);

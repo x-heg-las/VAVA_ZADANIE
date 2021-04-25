@@ -12,12 +12,19 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.JTree;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 import javax.swing.tree.DefaultMutableTreeNode;
+import sk.stu.fiit.Loader;
 import sk.stu.fiit.Priorities;
 import sk.stu.fiit.Project;
 import sk.stu.fiit.Tasks.Task;
@@ -42,6 +49,8 @@ public class Main_Window extends javax.swing.JFrame {
         initComponents();
         CalendarProgram calendarProgram = new CalendarProgram();
         calendarProgram.create(jPanel7, this.getContentPane());
+        
+        hide_buttons();
         
         showGraph();
         showUsersProject(null);
@@ -80,11 +89,11 @@ public class Main_Window extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        new_task = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        new_project = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        new_profile = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -317,53 +326,53 @@ public class Main_Window extends javax.swing.JFrame {
         jLabel6.setText("  ");
         pnlToolbar.add(jLabel6);
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 51));
-        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("New Task");
-        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jLabel7.setMaximumSize(new java.awt.Dimension(150, 40));
-        jLabel7.setPreferredSize(new java.awt.Dimension(150, 40));
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        new_task.setBackground(new java.awt.Color(255, 255, 51));
+        new_task.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        new_task.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        new_task.setText("New Task");
+        new_task.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        new_task.setMaximumSize(new java.awt.Dimension(150, 40));
+        new_task.setPreferredSize(new java.awt.Dimension(150, 40));
+        new_task.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabel7MouseReleased(evt);
+                new_taskMouseReleased(evt);
             }
         });
-        pnlToolbar.add(jLabel7);
+        pnlToolbar.add(new_task);
 
         jLabel8.setText("  ");
         pnlToolbar.add(jLabel8);
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 51));
-        jLabel9.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("New Project");
-        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jLabel9.setMaximumSize(new java.awt.Dimension(150, 40));
-        jLabel9.setPreferredSize(new java.awt.Dimension(150, 40));
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+        new_project.setBackground(new java.awt.Color(255, 255, 51));
+        new_project.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        new_project.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        new_project.setText("New Project");
+        new_project.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        new_project.setMaximumSize(new java.awt.Dimension(150, 40));
+        new_project.setPreferredSize(new java.awt.Dimension(150, 40));
+        new_project.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabel9MouseReleased(evt);
+                new_projectMouseReleased(evt);
             }
         });
-        pnlToolbar.add(jLabel9);
+        pnlToolbar.add(new_project);
 
         jLabel10.setText("  ");
         pnlToolbar.add(jLabel10);
 
-        jLabel11.setBackground(new java.awt.Color(255, 255, 51));
-        jLabel11.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("New Profile");
-        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jLabel11.setMaximumSize(new java.awt.Dimension(150, 40));
-        jLabel11.setPreferredSize(new java.awt.Dimension(150, 40));
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+        new_profile.setBackground(new java.awt.Color(255, 255, 51));
+        new_profile.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        new_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        new_profile.setText("New Profile");
+        new_profile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        new_profile.setMaximumSize(new java.awt.Dimension(150, 40));
+        new_profile.setPreferredSize(new java.awt.Dimension(150, 40));
+        new_profile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabel11MouseReleased(evt);
+                new_profileMouseReleased(evt);
             }
         });
-        pnlToolbar.add(jLabel11);
+        pnlToolbar.add(new_profile);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -411,17 +420,25 @@ public class Main_Window extends javax.swing.JFrame {
         standalone_Calendar.create();
     }//GEN-LAST:event_jLabel5MouseReleased
 
-    private void jLabel7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseReleased
+    private void new_taskMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_new_taskMouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel7MouseReleased
+        NewTask newTask = new NewTask(user);
+        newTask.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_new_taskMouseReleased
 
-    private void jLabel9MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseReleased
+    private void new_projectMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_new_projectMouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel9MouseReleased
+        JFrame window = new JFrame();
+        JPanel panel = new NewProjectViewPanel();
+        window.setSize(800, 600);
+        window.add(panel);
+        window.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_new_projectMouseReleased
 
-    private void jLabel11MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseReleased
+    private void new_profileMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_new_profileMouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel11MouseReleased
+        System.out.println("Treba asi dorobit, toto, pridavanie pracovnika ne?");
+    }//GEN-LAST:event_new_profileMouseReleased
 
     /**
      * @param args the command line arguments
@@ -464,20 +481,20 @@ public class Main_Window extends javax.swing.JFrame {
     private javax.swing.JPanel graphPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel new_profile;
+    private javax.swing.JLabel new_project;
+    private javax.swing.JLabel new_task;
     private javax.swing.JPanel notes;
     private javax.swing.JPanel pnlDashboard;
     private javax.swing.JPanel pnlToolbar;
@@ -547,6 +564,17 @@ public class Main_Window extends javax.swing.JFrame {
         notes.add(jLabel, BorderLayout.NORTH);
         notes.add(scrollPane, BorderLayout.CENTER);
         jTextPane.setFont(new java.awt.Font("Segoe UI Light", 0, 15));
+        
+        SimpleAttributeSet attributeSet = new SimpleAttributeSet();
+        StyleConstants.setBold(attributeSet, true);
+
+        SimpleAttributeSet invoice_text = new SimpleAttributeSet();
+        StyleConstants.setItalic(invoice_text, true);
+        
+        //Document doc = jTextPane.getStyledDocument();
+        jTextPane.getDocument().addDocumentListener(new MyDocumentListener());
+        
+        
         notes.revalidate();
         notes.repaint();
     }
@@ -577,4 +605,55 @@ public class Main_Window extends javax.swing.JFrame {
         tasks.revalidate();
         tasks.repaint();
     }
+    
+    private void hide_buttons(){
+        String type_of_user = Loader.getCurrentlyLogged().getType();
+        
+        switch (type_of_user) {
+            case "user":
+                new_task.setVisible(false);
+                new_project.setVisible(false);
+                new_profile.setVisible(false);
+                break;
+            case "project_manager":
+                new_project.setVisible(false);
+                new_profile.setVisible(false);
+                break;
+            case "director":
+                new_profile.setVisible(false);
+                break;
+            default:
+                break;
+        }
+    }
+    
 }
+
+class MyDocumentListener implements DocumentListener {
+        final String newline = "\n";
+
+        public void insertUpdate(DocumentEvent e) {
+            //updateLog(e, "inserted into");
+            System.out.println("INSERT UPDATE");
+        }
+        public void removeUpdate(DocumentEvent e) {
+            //updateLog(e, "removed from");
+            System.out.println("REMOVE UPDATE");
+        }
+        public void changedUpdate(DocumentEvent e) {
+            //Plain text components don't fire these events.
+            System.out.println("Nechaoenm jako co je too");
+        }
+
+        //public void updateLog(DocumentEvent e, String action) {
+            /*Document doc = (Document)e.getDocument();
+            int changeLength = e.getLength();
+            displayArea.append(
+                changeLength + " character"
+              + ((changeLength == 1) ? " " : "s ")
+              + action + " " + doc.getProperty("name") + "."
+              + newline
+              + "  Text length = " + doc.getLength() + newline);
+            displayArea.setCaretPosition(displayArea.getDocument().getLength());*/
+        //}
+    }

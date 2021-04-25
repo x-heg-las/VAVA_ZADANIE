@@ -13,11 +13,12 @@ import java.time.LocalTime;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sk.stu.fiit.Loader;
 import sk.stu.fiit.Tasks.Task;
 
 public class Standalone_Calendar{
     static JLabel lblMonth, lblYear;
-    static JButton btnPrev, btnNext;
+    static JButton btnPrev, btnNext, details;
     static JTable tblCalendar;
     static JComboBox cmbYear;
     static JFrame frmMain;
@@ -49,8 +50,9 @@ public class Standalone_Calendar{
         lblMonth = new JLabel ("January");
         lblYear = new JLabel ("Change year:");
         cmbYear = new JComboBox();
-        btnPrev = new JButton ("&lt;&lt;");
-        btnNext = new JButton ("&gt;&gt;");
+        btnPrev = new JButton ("<");
+        btnNext = new JButton (">");
+        details = new JButton ("Detail view");
         mtblCalendar = new DefaultTableModel(){public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
         tblCalendar = new JTable(mtblCalendar);
         stblCalendar = new JScrollPane(tblCalendar);
@@ -62,6 +64,7 @@ public class Standalone_Calendar{
         //Register action listeners
         btnPrev.addActionListener(new btnPrev_Action());
         btnNext.addActionListener(new btnNext_Action());
+        details.addActionListener(new details_Action());
         cmbYear.addActionListener(new cmbYear_Action());
         frmMain.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
@@ -76,6 +79,7 @@ public class Standalone_Calendar{
         pnlCalendar.add(cmbYear);
         pnlCalendar.add(btnPrev);
         pnlCalendar.add(btnNext);
+        pnlCalendar.add(details);
         pnlCalendar.add(stblCalendar);
         
         //Set bounds
@@ -85,6 +89,7 @@ public class Standalone_Calendar{
         cmbYear.setBounds(pnlCalendar.getWidth() - 100, 25, 80, 20);
         btnPrev.setBounds(10, 25, 50, 25);
         btnNext.setBounds(260, 25, 50, 25);
+        details.setBounds(350, 25, 125, 25);
         stblCalendar.setBounds(10, 50, pnlCalendar.getWidth() - 30, pnlCalendar.getHeight()-60);//300
         
         //Make frame visible
@@ -137,6 +142,7 @@ public class Standalone_Calendar{
         cmbYear.setBounds(pnlCalendar.getWidth() - 100, 25, 80, 20);
         btnPrev.setBounds(10, 25, 50, 25);
         btnNext.setBounds(260, 25, 50, 25);
+        details.setBounds(350, 25, 125, 25);
         stblCalendar.setBounds(10, 50, pnlCalendar.getWidth() - 30, pnlCalendar.getHeight()-60);//300
     }
     
@@ -148,6 +154,7 @@ public class Standalone_Calendar{
         //Allow/disallow buttons
         btnPrev.setEnabled(true);
         btnNext.setEnabled(true);
+        details.setEnabled(true);
         if (month == 0 && year <= realYear-10){btnPrev.setEnabled(false);} //Too early
         if (month == 11 && year >= realYear+100){btnNext.setEnabled(false);} //Too late
         lblMonth.setText(months[month]); //Refresh the month label (at the top)
@@ -239,12 +246,12 @@ static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer
           setBackground(table.getSelectionBackground());
           textarea.setForeground(table.getSelectionForeground());
           textarea.setBackground(table.getSelectionBackground());
-         } else {
+        } else {
           setForeground(table.getForeground());
           setBackground(table.getBackground());
           textarea.setForeground(table.getForeground());
           textarea.setBackground(table.getBackground());
-         }
+        }
 
          if (column == 0 || column == 6){ //Week-end
                  textarea.setBackground(new Color(255, 220, 220));
@@ -345,6 +352,50 @@ static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer
                 String b = cmbYear.getSelectedItem().toString();
                 currentYear = Integer.parseInt(b);
                 refreshCalendar(currentMonth, currentYear);
+            }
+        }
+    }
+    static class details_Action implements ActionListener{
+        public void actionPerformed (ActionEvent e){
+            String[] months =  {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+            int number_month = 0;
+            for (String month : months) {
+                number_month++;
+                if (month.equals(lblMonth.getText()))
+                    break;
+            }
+            
+            System.out.println("terz zobrazim tento dniiiiik, lolik XDXDXD");
+            int riadok = tblCalendar.getSelectedRow();
+            int stlpec = tblCalendar.getSelectedColumn();
+            Object value = tblCalendar.getValueAt(riadok, stlpec);
+            
+            int day = 0;
+            
+            if (value  != null){
+                String value_new = (String)value;
+                for (String line : value_new.split("\\n")){
+                    day = Integer.parseInt(line);
+                    break;
+                }
+            }
+            
+            Date date = new GregorianCalendar(Integer.parseInt((String)cmbYear.getSelectedItem()), number_month - 1, day).getTime();
+            
+            System.out.println("date = " + date);
+            
+            ArrayList<Task> array_tasks = new ArrayList<>();
+            
+            for (Task task : Loader.getCurrentlyLogged().getUserTasks()) {
+                System.out.println("task date = " + WithoutTime(task.getDeadline()));
+                if (WithoutTime(task.getDeadline()).equals(date)){
+                    array_tasks.add(task);
+                }
+            }
+            
+            if (array_tasks.size() != 0){
+                Task_at_Day task_at_Day = new Task_at_Day(array_tasks);
+                task_at_Day.setVisible(true);
             }
         }
     }
