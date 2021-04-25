@@ -8,6 +8,8 @@ package GUI;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.Admin;
 import sk.stu.fiit.Loader;
@@ -37,12 +39,15 @@ public class Login_Screen extends javax.swing.JFrame {
         Loader.addUser(user1);
         User user2 = new User("marina.k", "skareda","Marina Krasna", 14, "Ilava 99", "user","C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
         Loader.addUser(user2);
-        User user3 = new User("petra.s", "vlhka","Petra Sucha", 15, "Ilava 99", "user","C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
+        User user3 = new User("petra.s", "vlhka","Petra Sucha", 15, "Ilava 99", "project_manager","C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
         Loader.addUser(user3);
         User user4 = new User("matus.v", "smradlavy","Matus Vonavy", 16, "Ilava 99", "user","C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
         Loader.addUser(user4);
-        User user5 = new User("otepka.d", "otepkis","Dagmar Otepka", 16, "Senica 63", "director", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_2.png");
+        User user5 = new User("otepka.d", "otepkis","Dagmar Otepka", 16, "Senica 63", "director", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_2.jpg");
         Loader.addUser(user5);
+        User user6 = new User("admin", "admin","Dagmar OtepkaLUL", 16, "Senica 63", "admin", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_2.jpg");
+        Loader.addUser(user6);
+        Loader.save();
         initComponents();
     }
 
@@ -233,7 +238,6 @@ public class Login_Screen extends javax.swing.JFrame {
         ArrayList<User> users = Loader.getUsers();
         System.out.println(users.size());
         for (User user : users) {
-            System.out.println(user.getName());
             if (user.getUsername().equals(username) && user.getPassword().equals(password))
                 return user;
         }
