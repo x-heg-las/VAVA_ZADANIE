@@ -6,6 +6,9 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -13,6 +16,10 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
+import sk.stu.fiit.Loader;
+import sk.stu.fiit.Priorities;
+import sk.stu.fiit.Project;
+import sk.stu.fiit.Tasks.Task;
 import sk.stu.fiit.User;
 
 /**
@@ -72,7 +79,7 @@ public class UserTaskChart extends javax.swing.JPanel {
 private void createChart(User user){
 
     JFreeChart chart = ChartFactory.createPieChart(
-            "",
+            "User's progress",
             createDataset(user),
             true,
             true,
@@ -86,13 +93,30 @@ private void createChart(User user){
     
     
   private static PieDataset createDataset(User user){
-      DefaultPieDataset dataset = new DefaultPieDataset();
-      //TODO : nastavit na hodnoty
-      dataset.setValue( "1" , new Double( 20 ) );  
-      dataset.setValue( "2" , new Double( 20 ) );   
-      dataset.setValue( "3" , new Double( 40 ) );    
-      dataset.setValue( "4" , new Double( 10 ) );
       
+      DefaultPieDataset dataset = new DefaultPieDataset();
+      if(user != null){
+       
+        //TODO : nastavit na hodnoty
+  //      dataset.setValue( "1" , new Double( 20 ) );  
+  //      dataset.setValue( "2" , new Double( 20 ) );   
+  //      dataset.setValue( "3" , new Double( 40 ) );    
+  //      dataset.setValue( "4" , new Double( 10 ) );
+        HashMap<Priorities, Integer> taskPriorities = new HashMap<>();
+
+        user.getUserTasks().forEach(task -> {
+            int count = 0;
+            if(!taskPriorities.containsKey(task.getPriority()))
+                taskPriorities.put(task.getPriority(), 0);
+            else
+                count = taskPriorities.get(task.getPriority());
+            taskPriorities.put(task.getPriority(), count +1 );
+          });
+
+        taskPriorities.entrySet().forEach(entry -> {
+            dataset.setValue(entry.getKey(), entry.getValue());
+          }); 
+     }
       return dataset;
   }
   
