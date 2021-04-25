@@ -25,7 +25,6 @@ import sk.stu.fiit.User;
  * @author adamh
  */
 public class Tasks_window extends javax.swing.JFrame {
-    private ArrayList<Task> array_tasks = new ArrayList<>();
     private ArrayList<Task> array_todo = new ArrayList<>();
     private ArrayList<Task> array_doing = new ArrayList<>();
     private ArrayList<Task> array_done = new ArrayList<>();
@@ -34,13 +33,17 @@ public class Tasks_window extends javax.swing.JFrame {
      */
     public Tasks_window() {
         initComponents();
-        
+        /*
         Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "Potrbea zryhclit intrnet vyzaduje, aby sme zrychlili obeh dat po sieti.", "Inernat_Speeed");
         array_tasks.add(task1);
         Task task2 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site99");
         task2.setTaskState(TaskState.DONE);
-        array_tasks.add(task2);
-        divide_arrays(Loader.getCurrentlyLogged());
+        array_tasks.add(task2);*/
+        if (Loader.getCurrentlyLogged().getUserTasks() == null){
+            JOptionPane.showMessageDialog(rootPane, "This user has no Tasks!", "No Tasks", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        divide_arrays();
         fill_table();
     }
 
@@ -437,8 +440,8 @@ public class Tasks_window extends javax.swing.JFrame {
         }
     }
     
-    private void divide_arrays(User user){
-        for (Task task : array_tasks) {
+    private void divide_arrays(){
+        for (Task task : Loader.getCurrentlyLogged().getUserTasks()) {
             switch (task.getTaskState()) {
                 case TODO:
                     array_todo.add(task);
@@ -451,9 +454,6 @@ public class Tasks_window extends javax.swing.JFrame {
                     break;
             }
         }
-        System.out.println("todo = " + array_todo.size());
-        System.out.println("doing = " + array_doing.size());
-        System.out.println("done = " + array_done.size());
     }
 }
 
@@ -462,7 +462,6 @@ class RssFeedCellRenderer implements TableCellRenderer{
 
     public RssFeedCellRenderer(ArrayList<Task> array_tasks) {
         this.array_tasks = array_tasks;
-        System.out.println("Toto postihnute pole je velke: " + this.array_tasks.size());
     }
     
     @Override

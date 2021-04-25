@@ -90,6 +90,7 @@ public class Standalone_Calendar{
         //Make frame visible
         frmMain.setResizable(true);
         frmMain.setVisible(true);
+        frmMain.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         //Get real month/year
         GregorianCalendar cal = new GregorianCalendar(); //Create calendar
         realDay = cal.get(GregorianCalendar.DAY_OF_MONTH); //Get day

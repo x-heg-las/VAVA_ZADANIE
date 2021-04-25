@@ -5,8 +5,14 @@ import javax.swing.event.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sk.stu.fiit.Loader;
 import sk.stu.fiit.Tasks.Task;
 
 public class CalendarProgram{
@@ -39,8 +45,8 @@ public class CalendarProgram{
         lblMonth = new JLabel ("January");
         lblYear = new JLabel ("Change year:");
         cmbYear = new JComboBox();
-        btnPrev = new JButton ("&lt;&lt;");
-        btnNext = new JButton ("&gt;&gt;");
+        btnPrev = new JButton ("<");
+        btnNext = new JButton (">");
         mtblCalendar = new DefaultTableModel(){public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
         tblCalendar = new JTable(mtblCalendar);
         stblCalendar = new JScrollPane(tblCalendar);
@@ -117,6 +123,17 @@ public class CalendarProgram{
         refreshCalendar (realMonth, realYear); //Refresh calendar
     }
     
+    private static Date WithoutTime(Date date) {
+            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date date_without_time = formatter.parse(formatter.format(date));
+            return date_without_time;
+        } catch (ParseException ex) {
+            Logger.getLogger(Standalone_Calendar.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
     public static void refreshCalendar(int month, int year){
         //Variables
         String[] months =  {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
@@ -143,79 +160,85 @@ public class CalendarProgram{
         nod = cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
         som = cal.get(GregorianCalendar.DAY_OF_WEEK);
         
-        Task task = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
+        //Task task = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
         //Draw calendar
         for (int i=1; i<=nod; i++){
             int row = new Integer((i+som-2)/7);
             int column  =  (i+som-2)%7;
-            String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
-            mtblCalendar.setValueAt(i, row, column);
+            
+            Date date = new GregorianCalendar(year, month, i).getTime();
+            mtblCalendar.setValueAt(Integer.toString(i), row, column);
+            
+            int number_tasks = 0;
+            
+            if (Loader.getCurrentlyLogged().getUserTasks() != null){
+                for (Task task : Loader.getCurrentlyLogged().getUserTasks()) {
+                    if (WithoutTime(task.getDeadline()).equals(date)){
+                        number_tasks++;
+                    }
+                }
+                if (number_tasks != 0)
+                    mtblCalendar.setValueAt(Integer.toString(i)+ "\nDeadlines: " + Integer.toString(number_tasks), row, column);
+            }
+            
+            //mtblCalendar.setValueAt(i, row, column);
             //mtblCalendar.setValueAt(i, row, column);
         }
         
         //Apply renderers
-        tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new TextAreaRenderer(task));
+        //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new TextAreaRenderer(task));
+        tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new TextAreaRenderer_2());
         //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
         //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer_2());
 //        tblCalendar.setDefaultRenderer(String[].class, new MyTableCellEditor());
     }
-/*
-    static class tblCalendarRenderer extends DefaultTableCellRenderer{
-        public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
-            super.getTableCellRendererComponent(table, value, selected, focused, row, column);
-            if (column == 0 || column == 6){ //Week-end
-                tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer_2());
-                setBackground(new Color(255, 220, 220));
-                setText("");
-            }
-            else{ //Week
-                setBackground(new Color(255, 255, 255));
-            }
-            if (value != null){
-                if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
-                    setBackground(new Color(220, 220, 255));
-                }
-            }
-            setBorder(null);
-            setForeground(Color.black);
-            return this;
-        }
+static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer {
+   JTextArea textarea;
+   public TextAreaRenderer_2() {
+      textarea = new JTextArea();
+      textarea.setLineWrap(true);
+      textarea.setWrapStyleWord(true);
+      textarea.setFont(new java.awt.Font("Segoe UI Light", 0, 12));
+      getViewport().add(textarea);
+      //textarea.setText(task.getTopic());
     }
-    
-    static class tblCalendarRenderer_2 extends DefaultTableCellRenderer{
-        JPanel jPanel = new JPanel();
-        JLabel jLabel = new JLabel();
-        TextArea textArea = new TextArea();
-        public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
-            //super.getTableCellRendererComponent(table, value, selected, focused, row, column);
-            jLabel.setBackground(Color.BLUE);
-            jPanel.add(jLabel);
-            jPanel.add(textArea);
-            jPanel.setBackground(Color.red);
-            //textArea.setText((String)value);
-            setBorder(null);
-            setForeground(Color.black);
-            //return this;
-            return (Component) jPanel;
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,int row, int column) {
+        ArrayList<String> array_strings = new ArrayList<String>();
+        String value_new = (String)value;
+        if (value  != null){
+            for (String line : value_new.split("\\n")){
+                array_strings.add(line);
+            }
         }
-    }
+        
+        textarea.setText((String)value);
+        
+        if (isSelected) {
+          setForeground(table.getSelectionForeground());
+          setBackground(table.getSelectionBackground());
+          textarea.setForeground(table.getSelectionForeground());
+          textarea.setBackground(table.getSelectionBackground());
+         } else {
+          setForeground(table.getForeground());
+          setBackground(table.getBackground());
+          textarea.setForeground(table.getForeground());
+          textarea.setBackground(table.getBackground());
+         }
 
- public static class MyTableCellEditor extends AbstractCellEditor implements TableCellEditor {
-
-  JComponent component = new JTextField();
-
-  public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,
-      int rowIndex, int vColIndex) {
-
-    ((JTextField) component).setText((String) value);
-
-    return component;
-  }
-
-  public Object getCellEditorValue() {
-    return ((JTextField) component).getText();
-  }
-}*/
+         if (column == 0 || column == 6){ //Week-end
+                 textarea.setBackground(new Color(255, 220, 220));
+             }
+             else{ //Week
+                 setBackground(new Color(255, 255, 255));
+             }
+             if (value != null){
+                 if (Integer.parseInt(array_strings.get(0)) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
+                     textarea.setBackground(new Color(220, 220, 255));
+                 }
+             }
+        return this;
+   }
+}
  
  static class TextAreaRenderer extends JScrollPane implements TableCellRenderer {
    JTextArea textarea;

@@ -81,6 +81,10 @@ public class Main_Window extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -327,6 +331,40 @@ public class Main_Window extends javax.swing.JFrame {
         });
         pnlToolbar.add(jLabel7);
 
+        jLabel8.setText("  ");
+        pnlToolbar.add(jLabel8);
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 51));
+        jLabel9.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("New Project");
+        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jLabel9.setMaximumSize(new java.awt.Dimension(150, 40));
+        jLabel9.setPreferredSize(new java.awt.Dimension(150, 40));
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel9MouseReleased(evt);
+            }
+        });
+        pnlToolbar.add(jLabel9);
+
+        jLabel10.setText("  ");
+        pnlToolbar.add(jLabel10);
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 51));
+        jLabel11.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("New Profile");
+        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jLabel11.setMaximumSize(new java.awt.Dimension(150, 40));
+        jLabel11.setPreferredSize(new java.awt.Dimension(150, 40));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel11MouseReleased(evt);
+            }
+        });
+        pnlToolbar.add(jLabel11);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -377,6 +415,14 @@ public class Main_Window extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel7MouseReleased
 
+    private void jLabel9MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel9MouseReleased
+
+    private void jLabel11MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel11MouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -417,12 +463,16 @@ public class Main_Window extends javax.swing.JFrame {
     private javax.swing.JPanel current_users;
     private javax.swing.JPanel graphPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
