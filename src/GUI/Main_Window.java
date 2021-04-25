@@ -436,7 +436,11 @@ public class Main_Window extends javax.swing.JFrame {
     }//GEN-LAST:event_new_projectMouseReleased
 
     private void new_profileMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_new_profileMouseReleased
-        // TODO add your handling code here:
+        
+        
+        JFrame newUser = new NewUserFactory();
+        newUser.setVisible(rootPaneCheckingEnabled);
+        
         System.out.println("Treba asi dorobit, toto, pridavanie pracovnika ne?");
     }//GEN-LAST:event_new_profileMouseReleased
 

@@ -95,13 +95,9 @@ private void createChart(User user){
   private static PieDataset createDataset(User user){
       
       DefaultPieDataset dataset = new DefaultPieDataset();
-      if(user != null){
+      if(user != null && user.getUserTasks()!=null){
        
-        //TODO : nastavit na hodnoty
-  //      dataset.setValue( "1" , new Double( 20 ) );  
-  //      dataset.setValue( "2" , new Double( 20 ) );   
-  //      dataset.setValue( "3" , new Double( 40 ) );    
-  //      dataset.setValue( "4" , new Double( 10 ) );
+ 
         HashMap<Priorities, Integer> taskPriorities = new HashMap<>();
 
         user.getUserTasks().forEach(task -> {
