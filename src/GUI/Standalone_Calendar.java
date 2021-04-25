@@ -143,6 +143,7 @@ public class Standalone_Calendar{
         btnPrev.setBounds(10, 25, 50, 25);
         btnNext.setBounds(260, 25, 50, 25);
         details.setBounds(350, 25, 125, 25);
+        tblCalendar.setRowHeight(pnlCalendar.getHeight()/8);
         stblCalendar.setBounds(10, 50, pnlCalendar.getWidth() - 30, pnlCalendar.getHeight()-60);//300
     }
     
@@ -173,11 +174,11 @@ public class Standalone_Calendar{
         nod = cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
         som = cal.get(GregorianCalendar.DAY_OF_WEEK);
         
-        Task task_new = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
+        /*Task task_new = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
         Task task_new1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Yanfeng_Invoices");
         ArrayList<Task> array_tasks = new ArrayList<>();
         array_tasks.add(task_new);
-        array_tasks.add(task_new1);
+        array_tasks.add(task_new1);*/
         //Draw calendar
         //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new TextAreaRenderer_2());
         for (int i=1; i<=nod; i++){
@@ -188,9 +189,9 @@ public class Standalone_Calendar{
             
             String tasks = "";
             
-            for (Task task : array_tasks) {
+            for (Task task : Loader.getCurrentlyLogged().getUserTasks()) {
                 if (WithoutTime(task.getDeadline()).equals(date)){
-                    tasks = tasks + "\n" + task.getName();
+                    tasks = tasks + task.getName() + "\n";
                 }
             }
             mtblCalendar.setValueAt(Integer.toString(i)+ "\n" + tasks, row, column);
@@ -234,12 +235,25 @@ static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer
         ArrayList<String> array_strings = new ArrayList<String>();
         String value_new = (String)value;
         if (value  != null){
+            int i = 0;
             for (String line : value_new.split("\\n")){
-                array_strings.add(line);
+                i++;
+                if(i < 4)
+                    array_strings.add(line);
+            }
+            System.out.println("i = " + i);
+            if (i > 3){
+                array_strings.add(Integer.toString(i - 3) + " more tasks");
+                System.out.println("VYIIIIIIIIIIIIIIIIIIIIIIP = " + array_strings.size());
             }
         }
         
-        textarea.setText((String)value);
+        String vypis = "";
+        for (String string : array_strings) {
+            vypis = vypis + string + "\n";
+        }
+        
+        textarea.setText(vypis);
         
         if (isSelected) {
           setForeground(table.getSelectionForeground());
@@ -365,7 +379,6 @@ static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer
                     break;
             }
             
-            System.out.println("terz zobrazim tento dniiiiik, lolik XDXDXD");
             int riadok = tblCalendar.getSelectedRow();
             int stlpec = tblCalendar.getSelectedColumn();
             Object value = tblCalendar.getValueAt(riadok, stlpec);
@@ -382,12 +395,9 @@ static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer
             
             Date date = new GregorianCalendar(Integer.parseInt((String)cmbYear.getSelectedItem()), number_month - 1, day).getTime();
             
-            System.out.println("date = " + date);
-            
             ArrayList<Task> array_tasks = new ArrayList<>();
             
             for (Task task : Loader.getCurrentlyLogged().getUserTasks()) {
-                System.out.println("task date = " + WithoutTime(task.getDeadline()));
                 if (WithoutTime(task.getDeadline()).equals(date)){
                     array_tasks.add(task);
                 }
