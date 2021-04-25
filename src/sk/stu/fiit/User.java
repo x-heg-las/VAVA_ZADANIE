@@ -24,6 +24,7 @@ public class User implements Serializable{
     private ArrayList<Project> projects;
     private ArrayList<Task> userTasks;
     private String notes = "";
+    private boolean firtTimeLogged;
 
     public ArrayList<Task> getUserTasks() {
         return userTasks;
@@ -45,10 +46,12 @@ public class User implements Serializable{
         this.type = type;
         this.picture = picture;
         this.projects = new ArrayList<>();
+        this.firtTimeLogged = false;
     }
 
     public User(String name, int age, String address, String pic) {
         this.name = name;
+        this.firtTimeLogged = false;
         this.age = age;
         this.address = address;
         this.picture = pic;
