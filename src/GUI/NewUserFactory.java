@@ -244,7 +244,7 @@ public class NewUserFactory extends javax.swing.JFrame {
           
           
           if(!status.isEmpty()){
-             newUser = new User(usernameField.getText(), Arrays.toString(passwordField.getPassword()),
+             newUser = new User(usernameField.getText(), String.valueOf(passwordField.getPassword()),
                      nameField.getText(), age, addressField.getText(), status, filepath);
           }
           
