@@ -5,6 +5,7 @@
  */
 package sk.stu.fiit.Tasks;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,7 +17,7 @@ import sk.stu.fiit.User;
  *
  * @author adamh
  */
-public class Task {
+public class Task implements Serializable{
     private String name;
     private Date start_date;
     private Date deadline;

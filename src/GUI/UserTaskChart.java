@@ -110,7 +110,8 @@ private void createChart(User user){
           });
 
         taskPriorities.entrySet().forEach(entry -> {
-            dataset.setValue(entry.getKey(), entry.getValue());
+            if(entry != null && entry.getKey()!= null && entry.getValue() != null)
+                dataset.setValue(entry.getKey(), entry.getValue());
           }); 
      }
       return dataset;
