@@ -19,6 +19,7 @@ import org.jfree.ui.RefineryUtilities;
 import sk.stu.fiit.Loader;
 import sk.stu.fiit.Priorities;
 import sk.stu.fiit.Project;
+import sk.stu.fiit.TaskState;
 import sk.stu.fiit.Tasks.Task;
 import sk.stu.fiit.User;
 
@@ -98,15 +99,15 @@ private void createChart(User user){
       if(user != null && user.getUserTasks()!=null){
        
  
-        HashMap<Priorities, Integer> taskPriorities = new HashMap<>();
+        HashMap<TaskState, Integer> taskPriorities = new HashMap<>();
 
         user.getUserTasks().forEach(task -> {
             int count = 0;
             if(!taskPriorities.containsKey(task.getPriority()))
-                taskPriorities.put(task.getPriority(), 0);
+                taskPriorities.put(task.getTaskState(), 0);
             else
                 count = taskPriorities.get(task.getPriority());
-            taskPriorities.put(task.getPriority(), count +1 );
+            taskPriorities.put(task.getTaskState(), count +1 );
           });
 
         taskPriorities.entrySet().forEach(entry -> {
