@@ -353,6 +353,12 @@ public class NewTask extends javax.swing.JFrame {
                     curentUser.addUserTask(task);
                 }
                 dispose();
+                
+                UserTaskChart chartInstance = UserTaskChart.getCurrentInstance();
+                if(chartInstance != null && Loader.getCurrentlyLogged() != null){
+                    chartInstance.updateChartInstance(Loader.getCurrentlyLogged());
+                }
+                
             }else
                 throw new Exception("Zle udaje");
             
