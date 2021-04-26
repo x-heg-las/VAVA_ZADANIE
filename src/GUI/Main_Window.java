@@ -72,7 +72,7 @@ public class Main_Window extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        DefaultMutableTreeNode root = new Tree(array_projects).get_tree();
+        DefaultMutableTreeNode root = new Tree().get_tree();
         tree = new javax.swing.JTree(root);
         jScrollPane1 = new javax.swing.JScrollPane();
         pnlDashboard = new javax.swing.JPanel();

@@ -13,7 +13,10 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.Admin;
 import sk.stu.fiit.Loader;
+import sk.stu.fiit.Priorities;
+import sk.stu.fiit.Project;
 import sk.stu.fiit.Tasks.Task;
+import sk.stu.fiit.Team;
 import sk.stu.fiit.User;
 
 /**
@@ -27,6 +30,27 @@ public class Login_Screen extends javax.swing.JFrame {
      */
     public Login_Screen() {
         try {
+            /*Loader.load();
+            Project project = Loader.getUsers().get(0).getProjects().get(3);
+            User user = Loader.getUsers().get(1);
+            user.addProject(project);
+            Loader.save();*/
+            /*ArrayList<User> iny_zanestannci = new ArrayList<>();
+            iny_zanestannci.add(Loader.getUsers().get(1));
+            iny_zanestannci.add(Loader.getUsers().get(2));
+            iny_zanestannci.add(Loader.getUsers().get(3));
+            Team team = new Team(iny_zanestannci, "Dvojkarysky tim");
+            project.add(team);
+            Loader.save();*/
+            
+            /*Loader.load();
+            Project project = new Project("Holikasd", Priorities.NORMAL, "hehe", "11", "Vyuplnovi dilino jako.");
+            Team team = new Team(Loader.getUsers(), "Tim cislo jednicak");
+            project.add(team);
+            User user = Loader.getUsers().get(0);
+            System.out.println("user name = " + user.getUsername());
+            user.addProject(project);
+            Loader.save();*/
 //                    User user = new User("jonas.k", "dlhy","Jonas Kratky", 12, "Ilava 99", "user", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
 //
 //        Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
@@ -245,6 +269,8 @@ Loader.load();
         ArrayList<User> users = Loader.getUsers();
         System.out.println(users.size());
         for (User user : users) {
+            System.out.println("username = " + user.getUsername());
+            System.out.println("password = " + user.getPassword());
             if (user.getUsername().equals(username) && user.getPassword().equals(password))
                 return user;
         }
