@@ -278,6 +278,8 @@ public class Tasks_window extends javax.swing.JFrame {
         array_doing.add(task);
         array_todo.remove(task);
         fill_table();
+        updateTaskChart();
+        Loader.save();
     }//GEN-LAST:event_jButton2MouseReleased
 
     private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
@@ -294,6 +296,8 @@ public class Tasks_window extends javax.swing.JFrame {
         array_todo.add(task);
         array_doing.remove(task);
         fill_table();
+        updateTaskChart();
+        Loader.save();
     }//GEN-LAST:event_jButton4MouseReleased
 
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
@@ -310,6 +314,8 @@ public class Tasks_window extends javax.swing.JFrame {
         array_done.add(task);
         array_doing.remove(task);
         fill_table();
+        updateTaskChart();
+        Loader.save();
     }//GEN-LAST:event_jButton1MouseReleased
 
     private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
@@ -326,6 +332,8 @@ public class Tasks_window extends javax.swing.JFrame {
         array_doing.add(task);
         array_done.remove(task);
         fill_table();
+        updateTaskChart();
+        Loader.save();
     }//GEN-LAST:event_jButton3MouseReleased
 
     /**
@@ -454,6 +462,15 @@ public class Tasks_window extends javax.swing.JFrame {
             }
         }
     }
+    
+     
+    private void updateTaskChart(){
+        UserTaskChart chartInstance =  UserTaskChart.getCurrentInstance();
+        if(chartInstance != null){
+            if(Loader.getCurrentlyLogged() != null)
+                chartInstance.updateChartInstance(Loader.getCurrentlyLogged());
+        }
+    }
 }
 
 class RssFeedCellRenderer implements TableCellRenderer{
@@ -483,4 +500,5 @@ class RssFeedCellRenderer implements TableCellRenderer{
        return jPanel;
     }
     
+   
 }
