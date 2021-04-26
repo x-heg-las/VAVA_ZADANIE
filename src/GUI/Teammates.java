@@ -27,8 +27,10 @@ public class Teammates extends javax.swing.JPanel {
      * Creates new form Teammates
      */
     public Teammates(Project project) {
-        get_projects();
         initComponents();
+        get_projects();
+        if (array_projects.size() != 0)
+            get_names(array_projects.get(0).getProjectName());
     }
 
     /**
@@ -60,7 +62,7 @@ public class Teammates extends javax.swing.JPanel {
                 // The item affected by the event.
                 String item = (String)event.getItem();
                 //jList1 = new javax.swing.JList(get_names(item));
-                jList1.setListData(get_names(item));
+                get_names(item);
             }
         });
         /*
@@ -80,7 +82,8 @@ public class Teammates extends javax.swing.JPanel {
 
         jList1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = get_names(array_projects.get(0).getProjectName());
+            //String[] strings = get_names(array_projects.get(0).getProjectName());
+            String[] strings = {"None"};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -121,6 +124,7 @@ public class Teammates extends javax.swing.JPanel {
         for (int i = 0; i < array_users.size(); i++) {
             array_names[i] = array_users.get(i).getName();
         }
+        jList1.setListData(array_names);
         return array_names;
     }
     
