@@ -32,11 +32,23 @@ public class UserTaskChart extends javax.swing.JPanel {
     /**
      * Creates new form UserTaskChart
      */
+    
+    private static UserTaskChart instance = null;
+    
     public UserTaskChart(User user) {
         initComponents();
         createChart(user);
+        instance = this;
     }
-
+    
+    public static UserTaskChart getCurrentInstance(){
+        return instance;
+    }
+    
+    public void updateChartInstance(User user){
+        createChart(user);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,12 +114,11 @@ private void createChart(User user){
         HashMap<TaskState, Integer> taskPriorities = new HashMap<>();
 
         user.getUserTasks().forEach(task -> {
-            int count = 0;
-            if(!taskPriorities.containsKey(task.getPriority()))
-                taskPriorities.put(task.getTaskState(), 0);
+           
+            if(!taskPriorities.containsKey(task.getTaskState()))
+                taskPriorities.put(task.getTaskState(), 1);
             else
-                count = taskPriorities.get(task.getPriority());
-            taskPriorities.put(task.getTaskState(), count +1 );
+                taskPriorities.put(task.getTaskState(),(int) (( taskPriorities.get(task.getTaskState())) +1) );
           });
 
         taskPriorities.entrySet().forEach(entry -> {
