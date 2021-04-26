@@ -130,7 +130,8 @@ public class Teammates extends javax.swing.JPanel {
     
     public User get_clicked(){
         ArrayList<User> users = Loader.getUsers();
-        System.out.println("index = " + jList1.getSelectedIndex());
+        if ( array_projects.size() == 0 )
+            return null;
         return array_users.get(jList1.getSelectedIndex());
     }
     

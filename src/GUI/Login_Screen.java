@@ -267,7 +267,7 @@ Loader.load();
         String password = String.valueOf(jPasswordField1.getPassword());
         
         ArrayList<User> users = Loader.getUsers();
-        System.out.println(users.size());
+        System.out.println("Pocet userov je: " + users.size());
         for (User user : users) {
             System.out.println("username = " + user.getUsername());
             System.out.println("password = " + user.getPassword());

@@ -40,6 +40,7 @@ public class Main_Window extends javax.swing.JFrame {
     private ArrayList<Project> array_projects;
     private User user;
     private Teammates teammates;
+    //public JTextPane jTextPane = new JTextPane();
     /**
      * Creates new form Main_Window
      */
@@ -440,8 +441,6 @@ public class Main_Window extends javax.swing.JFrame {
         
         JFrame newUser = new NewUserFactory();
         newUser.setVisible(rootPaneCheckingEnabled);
-        
-        System.out.println("Treba asi dorobit, toto, pridavanie pracovnika ne?");
     }//GEN-LAST:event_new_profileMouseReleased
 
     /**
@@ -576,8 +575,10 @@ public class Main_Window extends javax.swing.JFrame {
         StyleConstants.setItalic(invoice_text, true);
         
         //Document doc = jTextPane.getStyledDocument();
-        jTextPane.getDocument().addDocumentListener(new MyDocumentListener());
+        jTextPane.getDocument().addDocumentListener(new MyDocumentListener(jTextPane));
         
+        if (!Loader.getCurrentlyLogged().getNotes().isEmpty())
+            jTextPane.setText(Loader.getCurrentlyLogged().getNotes());
         
         notes.revalidate();
         notes.repaint();
@@ -634,15 +635,22 @@ public class Main_Window extends javax.swing.JFrame {
 }
 
 class MyDocumentListener implements DocumentListener {
-        final String newline = "\n";
+    final String newline = "\n";
+    private JTextPane jTextPane;
 
+    public MyDocumentListener(JTextPane jTextPane) {
+        this.jTextPane = jTextPane;
+    }
+        
         public void insertUpdate(DocumentEvent e) {
-            //updateLog(e, "inserted into");
-            System.out.println("INSERT UPDATE");
+            
+            Loader.getCurrentlyLogged().setNotes(jTextPane.getText());
+            Loader.save();
         }
         public void removeUpdate(DocumentEvent e) {
             //updateLog(e, "removed from");
-            System.out.println("REMOVE UPDATE");
+            Loader.getCurrentlyLogged().setNotes(jTextPane.getText());
+            Loader.save();
         }
         public void changedUpdate(DocumentEvent e) {
             //Plain text components don't fire these events.
