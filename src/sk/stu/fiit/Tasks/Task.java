@@ -58,6 +58,7 @@ public class Task implements Serializable{
         this.start_date = start_date;
         this.deadline = deadline;
         this.topic = topic;
+        this.priority = Priorities.NORMAL;
         this.taskState = TaskState.TODO;
     }
 
@@ -69,6 +70,7 @@ public class Task implements Serializable{
         this.end_time = end_time;
         this.topic = topic;
         this.taskState = TaskState.TODO;
+        this.priority = Priorities.NORMAL;
     }
 
     public String getName() {

@@ -27,7 +27,7 @@ public class Login_Screen extends javax.swing.JFrame {
      */
     public Login_Screen() {
         try {
-            //        User user = new User("jonas.k", "dlhy","Jonas Kratky", 12, "Ilava 99", "user", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
+//                    User user = new User("jonas.k", "dlhy","Jonas Kratky", 12, "Ilava 99", "user", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
 //
 //        Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
 //        Task task2 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "Praca na tejto rychle rastujcej stranke o dronoch lulW", "Drony.sk");
