@@ -141,7 +141,8 @@ public class Teammates extends javax.swing.JPanel {
      * @return 
      */
     private String[] get_projects(){
-        if (Loader.getProjects() == null){
+        System.out.println("dlzka je jako = " + Loader.getCurrentlyLogged().getProjects().size());
+        if (Loader.getCurrentlyLogged().getProjects() == null){
             return null;
         }
         String[] names = new String[Loader.getCurrentlyLogged().getProjects().size()];

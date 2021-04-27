@@ -6,16 +6,14 @@
 package GUI;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingUtilities;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.Loader;
-import sk.stu.fiit.Priorities;
 import sk.stu.fiit.Project;
 import sk.stu.fiit.Tasks.Task;
+import sk.stu.fiit.Team;
+import sk.stu.fiit.User;
 
 /**
  *
@@ -223,6 +221,12 @@ public class ProjectSummary extends javax.swing.JPanel {
         
         Loader.addProject(project);
         SwingUtilities.getWindowAncestor(this).dispose();
+        for (int i = 0; i < project.getTeams().size(); i++) {
+            Team team = project.getTeams().get(i);
+            for (User user : team.getTeamMembers()) {
+                Loader.findUser(user.getUsername()).addProject(project);
+            }
+        }
         Loader.findUser(Loader.getCurrentlyLogged().getUsername()).addProject(project);
         
     }//GEN-LAST:event_btnCreateProjectMouseClicked
