@@ -7,17 +7,17 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import sk.stu.fiit.Loader;
-import sk.stu.fiit.Priorities;
 import sk.stu.fiit.Project;
+import sk.stu.fiit.Team;
 import sk.stu.fiit.User;
 
 /**
@@ -35,14 +35,18 @@ public class AllProjectsSummary extends javax.swing.JFrame {
         this.user = user;
         initComponents();
         setProjectValues();
-         
+        
+        if(user.getType().equals("project_manager") ||  user.getType().equals("admin"))
+            btnAddTask.setVisible(true);
+        else
+            btnAddTask.setVisible(false);
         
     }
     
     public AllProjectsSummary(){
         user = null;
         initComponents();
-        Loader.addProject(new Project("nazov", Priorities.NORMAL, "taag", "idde", "popiis"));
+        //Loader.addProject(new Project("nazov", Priorities.NORMAL, "taag", "idde", "popiis"));
         setProjectValues();
         
        
@@ -76,7 +80,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         projectList = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 formComponentResized(evt);
@@ -130,24 +134,25 @@ public class AllProjectsSummary extends javax.swing.JFrame {
 
         lblPName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         lblPName.setForeground(new java.awt.Color(0, 0, 0));
-        lblPName.setText("jLabel4");
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel2.add(lblPName, gridBagConstraints);
 
         lblPid.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         lblPid.setForeground(new java.awt.Color(0, 0, 0));
-        lblPid.setText("jLabel5");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel2.add(lblPid, gridBagConstraints);
 
         lblPDate.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         lblPDate.setForeground(new java.awt.Color(0, 0, 0));
-        lblPDate.setText("jLabel6");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel2.add(lblPDate, gridBagConstraints);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -169,29 +174,42 @@ public class AllProjectsSummary extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel2.add(jLabel8, gridBagConstraints);
 
-        userList.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
+        userList.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        userList.setForeground(new java.awt.Color(0, 0, 0));
         userList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(userList);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel2.add(jScrollPane1, gridBagConstraints);
 
+        description.setEditable(false);
         description.setColumns(20);
         description.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
+        description.setLineWrap(true);
         description.setRows(5);
+        description.setWrapStyleWord(true);
         jScrollPane3.setViewportView(description);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel2.add(jScrollPane3, gridBagConstraints);
 
         btnAddTask.setText("Add task");
+        btnAddTask.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddTaskMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -240,12 +258,17 @@ public class AllProjectsSummary extends javax.swing.JFrame {
         Loader.saveDimension(this.getClass().getName(), this.getSize());
     }//GEN-LAST:event_formWindowClosing
 
+    /**
+     * Funkcia zabezpeci zobrazenie okna takej velkosti, aka je ulozena v XML
+     * subore.
+     * @param evt 
+     */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        try{
             this.setPreferredSize(Loader.lookupDimension(this.getClass().getName()));
             pack();
         }catch(Exception ex){
-           
+           //TODO : logger
         }
     }//GEN-LAST:event_formWindowOpened
     
@@ -257,10 +280,26 @@ public class AllProjectsSummary extends javax.swing.JFrame {
     private void projectListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_projectListValueChanged
         
         if(!projectList.isSelectionEmpty()){
-            
+            Project selected = projectList.getSelectedValue();
+            setProjectValues(selected);
         }
     }//GEN-LAST:event_projectListValueChanged
 
+    /**
+     * Funkcia spracovava stlacenie tlacidla pre pridelovanie novej ulohy k
+     * existujucemu projektu.
+     * @param evt 
+     */
+    private void btnAddTaskMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddTaskMouseClicked
+        if(!projectList.isSelectionEmpty()){
+            Project selected = projectList.getSelectedValue();
+            if(selected != null){
+                JFrame newTask = new NewTask(selected);
+                newTask.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_btnAddTaskMouseClicked
+    
     /**
      * @param args the command line arguments
      */
@@ -296,6 +335,27 @@ public class AllProjectsSummary extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Funkica nastavi hodnoty detailu projektu podla zvolenej polozky
+     * @param project Projekt, ktoreho detail sa ma zobrazit.
+     */
+    private void setProjectValues(Project project){
+        if(project != null){
+            lblPDate.setText(new SimpleDateFormat("dd.MM.yyyy").format(project.getDeadline()));
+            lblPName.setText(project.getProjectName());
+            lblPid.setText(project.getId());
+            description.setText(project.getDescription());
+            DefaultListModel<User> model=  new DefaultListModel<User>();
+            
+            for(Team team : project.getTeams()){
+                for(User user : team.getTeamMembers()){
+                    model.addElement(user);
+                }
+            }
+            userList.setModel(model);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddTask;
     private javax.swing.JTextArea description;
@@ -316,6 +376,8 @@ public class AllProjectsSummary extends javax.swing.JFrame {
     private javax.swing.JList<User> userList;
     // End of variables declaration//GEN-END:variables
 
+  
+    
     
   /**
    * Funkcia zabezpeci inicializovanie hodnot v liste s projektmi.
@@ -327,8 +389,13 @@ public class AllProjectsSummary extends javax.swing.JFrame {
         projectList.setCellRenderer(new MyCellRenderer());
         
         Loader.getProjects().values().forEach(project ->{
-            if(user == null || project.hasUser(user)){
-                model.addElement(project);
+            if(user == null ||
+                    (user.getType().equals("project_manager") && project.getProject_manager().getUsername().equals(user.getUsername())) ||
+                    user.getType().equals("admin") ||
+                         project.hasUser(user)){
+                
+                    model.addElement(project);
+        
             }
         });
         
