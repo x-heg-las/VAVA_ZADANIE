@@ -128,6 +128,7 @@ public class NewTask extends javax.swing.JFrame {
         jPanel1.add(jLabel3, gridBagConstraints);
 
         taDescription.setColumns(20);
+        taDescription.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         taDescription.setLineWrap(true);
         taDescription.setRows(5);
         taDescription.setWrapStyleWord(true);

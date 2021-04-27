@@ -1,14 +1,12 @@
 package GUI;
 
 import javax.swing.*;
-import javax.swing.event.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +23,11 @@ public class CalendarProgram{
     static JScrollPane stblCalendar; //The scrollpane
     static int realYear, realMonth, realDay, currentYear, currentMonth;
     
+    /**
+     * Tu sa vytvori dany kalendar.
+     * @param pnlCalendar
+     * @param pane 
+     */
     public static void create (JPanel pnlCalendar, Container pane){
         //Look and feel
         try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
@@ -33,14 +36,6 @@ public class CalendarProgram{
         catch (IllegalAccessException e) {}
         catch (UnsupportedLookAndFeelException e) {}
         
-        //Prepare frame
-        /*
-        frmMain = new JFrame ("Gestionnaire de clients"); //Create frame
-        frmMain.setSize(330, 375); //Set size to 400x400 pixels
-        pane = frmMain.getContentPane(); //Get content pane
-        pane.setLayout(null); //Apply null layout
-        frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Close when X is clicked
-        */
         //Create controls
         lblMonth = new JLabel ("January");
         lblYear = new JLabel ("Change year:");
@@ -79,11 +74,6 @@ public class CalendarProgram{
         btnNext.setBounds(260, 25, 50, 25);
         stblCalendar.setBounds(10, 50, pnlCalendar.getWidth() - 30, pnlCalendar.getHeight()-60);//300
         
-        //Make frame visible
-        /*
-        frmMain.setResizable(true);
-        frmMain.setVisible(true);
-        */
         //Get real month/year
         GregorianCalendar cal = new GregorianCalendar(); //Create calendar
         realDay = cal.get(GregorianCalendar.DAY_OF_MONTH); //Get day
@@ -123,6 +113,11 @@ public class CalendarProgram{
         refreshCalendar (realMonth, realYear); //Refresh calendar
     }
     
+    /**
+     * Metoda, kde sa porovnavaju dva datumy bezohladu na cas.
+     * @param date
+     * @return 
+     */
     private static Date WithoutTime(Date date) {
             DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -134,6 +129,11 @@ public class CalendarProgram{
         }
     }
     
+    /**
+     * Metoda, kde sa vytvara vypln kalendara
+     * @param month
+     * @param year 
+     */
     public static void refreshCalendar(int month, int year){
         //Variables
         String[] months =  {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
@@ -180,18 +180,12 @@ public class CalendarProgram{
                 if (number_tasks != 0)
                     mtblCalendar.setValueAt(Integer.toString(i)+ "\nDeadlines: " + Integer.toString(number_tasks), row, column);
             }
-            
-            //mtblCalendar.setValueAt(i, row, column);
-            //mtblCalendar.setValueAt(i, row, column);
         }
         
         //Apply renderers
-        //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new TextAreaRenderer(task));
         tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new TextAreaRenderer_2());
-        //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
-        //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer_2());
-//        tblCalendar.setDefaultRenderer(String[].class, new MyTableCellEditor());
     }
+
 static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer {
    JTextArea textarea;
    public TextAreaRenderer_2() {
@@ -200,7 +194,6 @@ static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer
       textarea.setWrapStyleWord(true);
       textarea.setFont(new java.awt.Font("Segoe UI Light", 0, 12));
       getViewport().add(textarea);
-      //textarea.setText(task.getTopic());
     }
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,int row, int column) {
         ArrayList<String> array_strings = new ArrayList<String>();
@@ -236,60 +229,6 @@ static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer
                      textarea.setBackground(new Color(220, 220, 255));
                  }
              }
-        return this;
-   }
-}
- 
- static class TextAreaRenderer extends JScrollPane implements TableCellRenderer {
-   JTextArea textarea;
-   Task task;
-   public TextAreaRenderer(Task task) {
-      this.task = task;
-      textarea = new JTextArea();
-      textarea.setLineWrap(true);
-      textarea.setWrapStyleWord(true);
-      getViewport().add(textarea);
-      //textarea.setText(task.getTopic());
-   }
-   public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,int row, int column) {
-       System.out.println(value);
-       textarea.setText("");
-       if (isSelected) {
-         setForeground(table.getSelectionForeground());
-         setBackground(table.getSelectionBackground());
-         textarea.setForeground(table.getSelectionForeground());
-         textarea.setBackground(table.getSelectionBackground());
-      } else {
-         setForeground(table.getForeground());
-         setBackground(table.getBackground());
-         textarea.setForeground(table.getForeground());
-         textarea.setBackground(table.getBackground());
-      }
-       //System.out.println(row);
-       //System.out.println(column);
-       System.out.println("----");
-       if (column == 0 || column == 6){ //Week-end
-                textarea.setBackground(new Color(255, 220, 220));
-            }
-            else{ //Week
-                setBackground(new Color(255, 255, 255));
-            }
-            if (value != null){
-                if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
-                    textarea.setBackground(new Color(220, 220, 255));
-                }
-            }
-            /*
-            Task task = (Task)value;
-        textarea.setFont(new java.awt.Font("Segoe UI Light", 0, 10));
-        if (task != null)
-          textarea.setText(task.getTopic());
-        textarea.setCaretPosition(0);*/
-            if (value != null){
-                    Integer num_value = (Integer)value;
-                    textarea.setText(task.getName());
-                    textarea.append("\n" + num_value.toString());
-                }
         return this;
    }
 }

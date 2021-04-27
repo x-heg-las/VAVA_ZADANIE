@@ -6,11 +6,9 @@
 package GUI;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import sk.stu.fiit.Loader;
 import sk.stu.fiit.Project;
-import sk.stu.fiit.Tasks.Task;
 import sk.stu.fiit.Team;
 import sk.stu.fiit.User;
 
@@ -19,6 +17,11 @@ import sk.stu.fiit.User;
  * @author adamh
  */
 public class Tree {
+    /**
+     * Rozdelovacia metoda. Podla typu usera vybera, ako zobrazi strom.
+     * @param project
+     * @param root 
+     */
     private static void projects_trees(Project project, DefaultMutableTreeNode root){
         DefaultMutableTreeNode projects = null;
         projects = new DefaultMutableTreeNode(project.getProjectName());
@@ -41,6 +44,11 @@ public class Tree {
         }
     }
     
+    /**
+     * Metoda, ktora vyhlada vsetky projekty, na ktorych pracuje user.
+     * @param teams
+     * @param project 
+     */
     private static void teams_trees(Team teams, DefaultMutableTreeNode project){
         DefaultMutableTreeNode team = null;
         team = new DefaultMutableTreeNode(teams.getName());
@@ -52,12 +60,22 @@ public class Tree {
         }
     }
     
+    /**
+     * Metoda, ktora vrati vsetky teamy z projektu.
+     * @param teams
+     * @param project
+     * @param type 
+     */
     private static void teams_trees(Team teams, DefaultMutableTreeNode project, String type){
         DefaultMutableTreeNode team = null;
         team = new DefaultMutableTreeNode(teams.getName());
         project.add(team);
     }
     
+    /**
+     * metoda, ktora vrati root stormu, ktori sa zobnrazi v bocnej liste
+     * @return 
+     */
     public static DefaultMutableTreeNode get_tree(){
         if (Loader.getCurrentlyLogged().getType().equals("director") || Loader.getCurrentlyLogged().getType().equals("admin")){
             ArrayList<String> already_done = new ArrayList<>();
@@ -83,6 +101,10 @@ public class Tree {
         return root;
     }
     
+    /**
+     * Metoda, kde sa zacne s vytvaranim.
+     * @return 
+     */
     private static DefaultMutableTreeNode start(){
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Projects");
         for (Project project : Loader.getCurrentlyLogged().getProjects()) {
@@ -91,6 +113,11 @@ public class Tree {
         return root;
     }
     
+    /**
+     * Tu sa vkladaju projecty do stromu.
+     * @param projects
+     * @return 
+     */
     private static DefaultMutableTreeNode start(ArrayList<Project> projects){
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Projects");
         for (Project project : projects) {

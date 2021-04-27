@@ -76,6 +76,9 @@ public class Current_User extends javax.swing.JPanel {
         add(jLabel3, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
     
+    /**
+     * Metoda, kde sa vyplni Panel s hodnotami o pouzivatelovi.
+     */
     private void fill_values(){
         jLabel1.setText(user.getType());
         jLabel2.setText(user.getName());
