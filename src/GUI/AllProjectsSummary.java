@@ -60,6 +60,19 @@ public class AllProjectsSummary extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblPName = new javax.swing.JLabel();
+        lblPid = new javax.swing.JLabel();
+        lblPDate = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        userList = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        description = new javax.swing.JTextArea();
+        btnAddTask = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         projectList = new javax.swing.JList<>();
 
@@ -86,7 +99,105 @@ public class AllProjectsSummary extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jPanel2.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Project Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        jPanel2.add(jLabel1, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Project ID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        jPanel2.add(jLabel2, gridBagConstraints);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Deadline");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        jPanel2.add(jLabel3, gridBagConstraints);
+
+        lblPName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblPName.setForeground(new java.awt.Color(0, 0, 0));
+        lblPName.setText("jLabel4");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        jPanel2.add(lblPName, gridBagConstraints);
+
+        lblPid.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblPid.setForeground(new java.awt.Color(0, 0, 0));
+        lblPid.setText("jLabel5");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        jPanel2.add(lblPid, gridBagConstraints);
+
+        lblPDate.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lblPDate.setForeground(new java.awt.Color(0, 0, 0));
+        lblPDate.setText("jLabel6");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        jPanel2.add(lblPDate, gridBagConstraints);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Description");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        jPanel2.add(jLabel7, gridBagConstraints);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Assigned to");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        jPanel2.add(jLabel8, gridBagConstraints);
+
+        userList.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
+        userList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(userList);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        jPanel2.add(jScrollPane1, gridBagConstraints);
+
+        description.setColumns(20);
+        description.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
+        description.setRows(5);
+        jScrollPane3.setViewportView(description);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        jPanel2.add(jScrollPane3, gridBagConstraints);
+
+        btnAddTask.setText("Add task");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        jPanel2.add(btnAddTask, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -97,6 +208,11 @@ public class AllProjectsSummary extends javax.swing.JFrame {
 
         projectList.setFixedCellHeight(100);
         projectList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        projectList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                projectListValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(projectList);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -132,6 +248,18 @@ public class AllProjectsSummary extends javax.swing.JFrame {
            
         }
     }//GEN-LAST:event_formWindowOpened
+    
+    /**
+     * Pri zmene vyberu projekt zo zoznamu funkcia zabezpeci aktualizovanie
+     * udajov zvolenej polozky (Project) zo zoznamu
+     * @param evt 
+     */
+    private void projectListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_projectListValueChanged
+        
+        if(!projectList.isSelectionEmpty()){
+            
+        }
+    }//GEN-LAST:event_projectListValueChanged
 
     /**
      * @param args the command line arguments
@@ -169,23 +297,31 @@ public class AllProjectsSummary extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddTask;
+    private javax.swing.JTextArea description;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblPDate;
+    private javax.swing.JLabel lblPName;
+    private javax.swing.JLabel lblPid;
     private javax.swing.JList<Project> projectList;
+    private javax.swing.JList<User> userList;
     // End of variables declaration//GEN-END:variables
 
+    
+  /**
+   * Funkcia zabezpeci inicializovanie hodnot v liste s projektmi.
+   */  
   private void setProjectValues(){
-        
-//        DefaultTableModel model  = (DefaultTableModel) projectTable.getModel();
-//        projectTable.setDefaultRenderer(projectTable.getColumnClass(0), new ProjectDetailTableCellRender());
-//        
-//        Loader.getProjects().values().forEach(project ->{
-//            if(user == null || project.hasUser(user)){
-//                model.addRow(new Object[] {project});
-//            }
-//        });
-        
+
      DefaultListModel model  = new DefaultListModel();
         
         projectList.setCellRenderer(new MyCellRenderer());
