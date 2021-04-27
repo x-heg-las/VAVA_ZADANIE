@@ -363,8 +363,10 @@ public class NewTask extends javax.swing.JFrame {
                 dispose();
                 
                 UserTaskChart chartInstance = UserTaskChart.getCurrentInstance();
-                if(chartInstance != null && Loader.getCurrentlyLogged() != null){
+                if(chartInstance != null && Loader.getCurrentlyLogged() != null &&
+                        Main_Window.getInstance() != null){
                     chartInstance.updateChartInstance(Loader.getCurrentlyLogged());
+                    Main_Window.getInstance().showGraph();
                 }
                 
                 if (main != null){
