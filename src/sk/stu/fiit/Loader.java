@@ -143,6 +143,11 @@ public class Loader {
         
     }
     
+    /**
+     * Funkcia sluziaca pre vyhladanie zaznamu s ulozenym rozmerov v XML subore.
+     * @param classname Nazov triedy (zaznamu), pre ktore sa vyhladavaju rozmery.
+     * @return Rozmery pozadovaneho komponentu.
+     */
     public static Dimension lookupDimension(String classname){
         
          try {
@@ -193,27 +198,35 @@ public class Loader {
         return null;
     }
     
+    /**
+     * Funkcia ulozi zaznam o rozmeroch okien do XML formatu. Ak zaznam v subore
+     * neexistuje, vytvori sa novy pod prislusnym nazvom.
+     * @param classname Nazov triedy, v ktorej sa okno vytvorilo. Sucasne to
+     * je aj nazov zaznamu pouzity pre neskorsiu identifikaciu.
+     * @param d Rozmery okna, ktore sa maju zaznamenat. 
+     */
+    
     public static void saveDimension(String classname, Dimension d){
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             Document input = factory.newDocumentBuilder().parse(SETTINGSFILE);
             
-            String debug;
+      
             
             Node root = input.getFirstChild();
 
-            debug = root.getNodeName();
+          ;
                  
             
             NodeList windows = ((Element)root).getElementsByTagName("window");
             
             for(int i =0; i < windows.getLength(); i++){
                 Element window = (Element) windows.item(i);
-                debug = window.getNodeName();
+               
                 NodeList windowNodes = ((Node)window).getChildNodes();
                 for(int k = 0; k < windowNodes.getLength(); k++){
                     
-                    debug = windowNodes.item(k).getNodeName();
+                   
                     Element record ;
                     try{
                          record =(Element) windowNodes.item(k);
