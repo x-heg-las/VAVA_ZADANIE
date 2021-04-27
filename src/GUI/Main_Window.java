@@ -12,6 +12,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -38,7 +40,6 @@ import sk.stu.fiit.Users_GUI.User_Profile;
  * @author adamh
  */
 public class Main_Window extends javax.swing.JFrame {
-    private ArrayList<Project> array_projects;
     private User user;
     private Teammates teammates;
     //public JTextPane jTextPane = new JTextPane();
@@ -47,7 +48,6 @@ public class Main_Window extends javax.swing.JFrame {
      */
     public Main_Window(User user) {
         this.user = user;
-        load_arrays();
         initComponents();
         CalendarProgram calendarProgram = new CalendarProgram();
         calendarProgram.create(jPanel7, this.getContentPane());
@@ -458,8 +458,6 @@ public class Main_Window extends javax.swing.JFrame {
         // TODO add your handling code here:
         jPanel7.removeAll();
 
-        //revalidate();
-        //repaint();
         CalendarProgram calendarProgram = new CalendarProgram();
         calendarProgram.create(jPanel7, this.getContentPane());
     }//GEN-LAST:event_formComponentResized
@@ -489,9 +487,6 @@ public class Main_Window extends javax.swing.JFrame {
         // TODO add your handling code here:
         NewTask newTask = new NewTask(user, this);
         newTask.setVisible(rootPaneCheckingEnabled);
-        
-        System.out.println("Uz som tutkaj mroe :)");
-        showTask();
     }//GEN-LAST:event_new_taskMouseReleased
 
     private void new_projectMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_new_projectMouseReleased
@@ -599,27 +594,9 @@ public class Main_Window extends javax.swing.JFrame {
     private javax.swing.JTree tree;
     // End of variables declaration//GEN-END:variables
 
-    private void load_arrays(ArrayList<Project> array_projects){
-        this.array_projects = array_projects;
-    }
-    
-    private void load_arrays(){
-        array_projects = new ArrayList<>();
-        Task task = new Task("Yenfang_Invoices", new Date(), new Date(), "toto je super brutalny Task, na ktorom sa seci tesime a pracujeme :)))))");
-        //Task task1 = new Task(new GregorianCalendar(), new Date(), new Date(), new Date(), "toto je super brutalny Task, na ktorom sa seci tesime a pracujeme :)))))");
-        User project_Manager = new User("jozef.m", "stary","Jozef Mlady", 12, "Mlada Boleslav 41", "project_manager", "nemam obrazok");
-        Project project = new Project(new ArrayList(), project_Manager, "Najlepsi projekt na svete", new Date(), Priorities.CRITICAL);
-        List<User> list = new ArrayList();
-        for (int i = 0; i < 5; i++) {
-            User user1 = new User("andrea", "adam","AdA", 88, "Holic 12", "user", "cesta k obrazku");
-            list.add(user1);
-        }
-        Team team = new Team(list, "tim jednicka");
-        project.add(team);
-        
-        array_projects.add(project);
-    }
-    
+    /**
+     * Tato metoda zobrazi graf s rozlozenim prace na Taskoch.
+     */
     private void showGraph(){
         JPanel graph = new UserTaskChart(user);
         graph.setPreferredSize(graphPanel.getPreferredSize());
@@ -633,6 +610,10 @@ public class Main_Window extends javax.swing.JFrame {
        
     }
     
+    /**
+     * Metoda, ktora zobrazi vsetkych spolupracovnikov na projekte.
+     * @param project 
+     */
     private void showUsersProject(Project project){
         teammates = new Teammates(project);
         JPanel team = teammates;
@@ -647,6 +628,9 @@ public class Main_Window extends javax.swing.JFrame {
         
     }
     
+    /**
+     * Tato metoda zobrazi poznamkovy blok aj s poznamkami, ak su.
+     */
     private void showNotes(){
         JTextPane jTextPane = new JTextPane();
         JScrollPane scrollPane = new JScrollPane(jTextPane);
@@ -667,7 +651,6 @@ public class Main_Window extends javax.swing.JFrame {
         SimpleAttributeSet invoice_text = new SimpleAttributeSet();
         StyleConstants.setItalic(invoice_text, true);
         
-        //Document doc = jTextPane.getStyledDocument();
         jTextPane.getDocument().addDocumentListener(new MyDocumentListener(jTextPane));
         
         if (!Loader.getCurrentlyLogged().getNotes().isEmpty())
@@ -677,6 +660,9 @@ public class Main_Window extends javax.swing.JFrame {
         notes.repaint();
     }
     
+    /**
+     * Tato metoda zobrazi inforamacie o momentalnom pouzivatelovi.
+     */
     private void showCurrentUser(){
         System.out.println("user = " + user.getType());
         JPanel current = new Current_User(user);
@@ -690,6 +676,9 @@ public class Main_Window extends javax.swing.JFrame {
         current_users.repaint();
     }
     
+    /**
+     * Tu sa vytvori novy kalendar po pridani Tasku.
+     */
     public void refreshCalendar(){
         jPanel7.removeAll();
 
@@ -697,8 +686,10 @@ public class Main_Window extends javax.swing.JFrame {
         calendarProgram.create(jPanel7, this.getContentPane());
     }
     
+    /**
+     * Metoda, ktora zobrazi najblizsi task pre usera.
+     */
     public void showTask(){
-        //Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
         JLabel popis;
         JPanel current_none = new JPanel();
         Task closes_Task;
@@ -731,6 +722,9 @@ public class Main_Window extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Metoda, ktora zobrazuje tlacitka v liste podla typu usera.
+     */
     private void hide_buttons(){
         String type_of_user = Loader.getCurrentlyLogged().getType();
         
@@ -760,31 +754,34 @@ class MyDocumentListener implements DocumentListener {
     public MyDocumentListener(JTextPane jTextPane) {
         this.jTextPane = jTextPane;
     }
-        
+        /**
+         * Metoda, ktora sa vola pri zmene Textu v Notes.
+         * @param e 
+         */
+        @Override 
         public void insertUpdate(DocumentEvent e) {
             
             Loader.getCurrentlyLogged().setNotes(jTextPane.getText());
             Loader.save();
         }
+        /**
+         * Metoda, ktora sa vola pri mazani textu v chate.
+         * @param e 
+         */
+        @Override
         public void removeUpdate(DocumentEvent e) {
             //updateLog(e, "removed from");
             Loader.getCurrentlyLogged().setNotes(jTextPane.getText());
             Loader.save();
         }
+        /**
+         * Metoda, ktora sa vola pri zmene textoveho pola.
+         * @param e 
+         */
+        @Override
         public void changedUpdate(DocumentEvent e) {
             //Plain text components don't fire these events.
-            System.out.println("Nechaoenm jako co je too");
+            Logger logger = Logger.getLogger(this.getClass().getName());
+            logger.log(Level.INFO, "TextArea was changed.");
         }
-
-        //public void updateLog(DocumentEvent e, String action) {
-            /*Document doc = (Document)e.getDocument();
-            int changeLength = e.getLength();
-            displayArea.append(
-                changeLength + " character"
-              + ((changeLength == 1) ? " " : "s ")
-              + action + " " + doc.getProperty("name") + "."
-              + newline
-              + "  Text length = " + doc.getLength() + newline);
-            displayArea.setCaretPosition(displayArea.getDocument().getLength());*/
-        //}
     }
