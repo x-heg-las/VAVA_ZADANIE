@@ -57,6 +57,14 @@ public class User implements Serializable{
         this.picture = pic;
     }
 
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+    
     public String getUsername() {
         return username;
     }

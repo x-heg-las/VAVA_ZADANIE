@@ -5,7 +5,13 @@
  */
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import sk.stu.fiit.Loader;
 import sk.stu.fiit.Project;
 import sk.stu.fiit.User;
@@ -15,12 +21,16 @@ import sk.stu.fiit.User;
  * @author patoh
  */
 public class Teammates extends javax.swing.JPanel {
-
+    private ArrayList<Project> array_projects = new ArrayList<>();
+    private ArrayList<User> array_users = new ArrayList<>();
     /**
      * Creates new form Teammates
      */
     public Teammates(Project project) {
         initComponents();
+        get_projects();
+        if (array_projects.size() != 0)
+            get_names(array_projects.get(0).getProjectName());
     }
 
     /**
@@ -33,7 +43,9 @@ public class Teammates extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        String[] array = get_projects();
+        if (array == null) return;
+        jComboBox1 = new javax.swing.JComboBox<>(array);
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
 
@@ -43,6 +55,23 @@ public class Teammates extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jComboBox1.addItemListener(new ItemListener() {
+            // Listening if a new items of the combo box has been selected.
+            public void itemStateChanged(ItemEvent event) {
+                JComboBox jComboBox1 = (JComboBox) event.getSource();
+                // The item affected by the event.
+                String item = (String)event.getItem();
+                //jList1 = new javax.swing.JList(get_names(item));
+                get_names(item);
+            }
+        });
+        /*
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
+        */
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
@@ -53,7 +82,8 @@ public class Teammates extends javax.swing.JPanel {
 
         jList1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = get_names();
+            //String[] strings = get_names(array_projects.get(0).getProjectName());
+            String[] strings = {"None"};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -72,21 +102,51 @@ public class Teammates extends javax.swing.JPanel {
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
-    private String[] get_names(){
+    
+    private String[] get_names(String project_name){
         ArrayList<User> users = Loader.getUsers();
-        String[] array_names = new String[users.size()];
-        System.out.println("users = " + users.size());
+        String[] array_names = new String[Loader.getUsers().size()];
+        /*
         for (int i = 0; i < users.size(); i++) {
             array_names[i] = users.get(i).getName();
             
         }
+        return array_names;*/
+        array_users.clear();
+        for (User user : users) {
+            for (Project project : user.getProjects()) {
+                if (project.getProjectName().equals(project_name)){
+                    array_users.add(user);
+                }
+            }
+        }
+        
+        for (int i = 0; i < array_users.size(); i++) {
+            array_names[i] = array_users.get(i).getName();
+        }
+        jList1.setListData(array_names);
         return array_names;
     }
     
     public User get_clicked(){
         ArrayList<User> users = Loader.getUsers();
-        System.out.println("index = " + jList1.getSelectedIndex());
-        return users.get(jList1.getSelectedIndex());
+        if ( array_projects.size() == 0 )
+            return null;
+        return array_users.get(jList1.getSelectedIndex());
+    }
+    
+    private String[] get_projects(){
+        if (Loader.getProjects() == null){
+            return null;
+        }
+        String[] names = new String[Loader.getCurrentlyLogged().getProjects().size()];
+        int i = 0;
+        System.out.println("Loliiik = " + Loader.getCurrentlyLogged().getProjects().size());
+        for (Project project : Loader.getCurrentlyLogged().getProjects()) {
+            array_projects.add(project);
+            names[i] = project.getProjectName();
+            i++;
+        }
+        return names;
     }
 }

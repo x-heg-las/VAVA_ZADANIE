@@ -1,15 +1,12 @@
 package GUI;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addComponentListener;
 import javax.swing.*;
-import javax.swing.event.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +39,7 @@ public class Standalone_Calendar{
         
         //Prepare frame
         frmMain = new JFrame ("Yours Calendar"); //Create frame
-        frmMain.setSize(800, 600); //Set size to 400x400 pixels
+        frmMain.setSize(1000, 800); //Set size to 400x400 pixels
         pane = frmMain.getContentPane(); //Get content pane
         pane.setLayout(null); //Apply null layout
         frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Close when X is clicked
@@ -189,12 +186,14 @@ public class Standalone_Calendar{
             
             String tasks = "";
             
-            for (Task task : Loader.getCurrentlyLogged().getUserTasks()) {
-                if (WithoutTime(task.getDeadline()).equals(date)){
-                    tasks = tasks + task.getName() + "\n";
+            if (Loader.getCurrentlyLogged().getUserTasks() != null){
+                for (Task task : Loader.getCurrentlyLogged().getUserTasks()) {
+                    if (WithoutTime(task.getDeadline()).equals(date)){
+                        tasks = tasks + task.getName() + "\n";
+                    }
                 }
+                mtblCalendar.setValueAt(Integer.toString(i)+ "\n" + tasks, row, column);
             }
-            mtblCalendar.setValueAt(Integer.toString(i)+ "\n" + tasks, row, column);
             //mtblCalendar.setValueAt(Integer.toString(i), row, column);
             //mtblCalendar.setValueAt(i, row, column);
         }
@@ -241,10 +240,8 @@ static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer
                 if(i < 4)
                     array_strings.add(line);
             }
-            System.out.println("i = " + i);
             if (i > 3){
                 array_strings.add(Integer.toString(i - 3) + " more tasks");
-                System.out.println("VYIIIIIIIIIIIIIIIIIIIIIIP = " + array_strings.size());
             }
         }
         
@@ -371,6 +368,14 @@ static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer
     }
     static class details_Action implements ActionListener{
         public void actionPerformed (ActionEvent e){
+            int riadok = tblCalendar.getSelectedRow();
+            int stlpec = tblCalendar.getSelectedColumn();
+            
+            if (((String)tblCalendar.getValueAt(riadok, stlpec)).length() == 2){
+                JOptionPane.showMessageDialog(btnNext, "No task at that day.", "No Task", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            
             String[] months =  {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
             int number_month = 0;
             for (String month : months) {
@@ -379,8 +384,6 @@ static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer
                     break;
             }
             
-            int riadok = tblCalendar.getSelectedRow();
-            int stlpec = tblCalendar.getSelectedColumn();
             Object value = tblCalendar.getValueAt(riadok, stlpec);
             
             int day = 0;

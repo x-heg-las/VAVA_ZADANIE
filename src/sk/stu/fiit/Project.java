@@ -11,7 +11,7 @@ import sk.stu.fiit.Tasks.Task;
  * @author patoh
  */
 public class Project implements Serializable {
-    private ArrayList<Team> teams;
+    private ArrayList<Team> teams = new ArrayList<>();
      private ArrayList<Task> tasks;
     
    private User project_manager;

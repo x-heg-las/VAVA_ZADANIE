@@ -13,7 +13,10 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.Admin;
 import sk.stu.fiit.Loader;
+import sk.stu.fiit.Priorities;
+import sk.stu.fiit.Project;
 import sk.stu.fiit.Tasks.Task;
+import sk.stu.fiit.Team;
 import sk.stu.fiit.User;
 
 /**
@@ -27,30 +30,53 @@ public class Login_Screen extends javax.swing.JFrame {
      */
     public Login_Screen() {
         try {
-                    User user = new User("jonas.k", "dlhy","Jonas Kratky", 12, "Ilava 99", "user", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
 
-        Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
-        Task task2 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "Praca na tejto rychle rastujcej stranke o dronoch lulW", "Drony.sk");
-        Task task3 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "Task, ktory vytvara fatkury pre firmu Yanfeng, hlavne ne napadne jako :)", "Yanfeng");
-        Task task4 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "Task pre super firmu Reforamta LOLIIIIK XD", "Reformata stranka");
-        user.addUserTask(task1);
-        user.addUserTask(task2);
-        user.addUserTask(task3);
-        user.addUserTask(task4);
-        Loader.addUser(user);
-        User user1 = new User("edvard.p", "neparny","Edvard Parny", 13, "Ilava 99","user", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
-        Loader.addUser(user1);
-        User user2 = new User("marina.k", "skareda","Marina Krasna", 14, "Ilava 99", "user","C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
-        Loader.addUser(user2);
-        User user3 = new User("petra.s", "vlhka","Petra Sucha", 15, "Ilava 99", "project_manager","C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
-        Loader.addUser(user3);
-        User user4 = new User("matus.v", "smradlavy","Matus Vonavy", 16, "Ilava 99", "user","C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
-        Loader.addUser(user4);
-        User user5 = new User("otepka.d", "otepkis","Dagmar Otepka", 16, "Senica 63", "director", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_2.jpg");
-        Loader.addUser(user5);
-        User user6 = new User("admin", "admin","Dagmar OtepkaLUL", 16, "Senica 63", "admin", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_2.jpg");
-        Loader.addUser(user6);
-        Loader.save();
+            /*Loader.load();
+            Project project = Loader.getUsers().get(0).getProjects().get(3);
+            User user = Loader.getUsers().get(1);
+            user.addProject(project);
+            Loader.save();*/
+            /*ArrayList<User> iny_zanestannci = new ArrayList<>();
+            iny_zanestannci.add(Loader.getUsers().get(1));
+            iny_zanestannci.add(Loader.getUsers().get(2));
+            iny_zanestannci.add(Loader.getUsers().get(3));
+            Team team = new Team(iny_zanestannci, "Dvojkarysky tim");
+            project.add(team);
+            Loader.save();*/
+            
+            /*Loader.load();
+            Project project = new Project("Holikasd", Priorities.NORMAL, "hehe", "11", "Vyuplnovi dilino jako.");
+            Team team = new Team(Loader.getUsers(), "Tim cislo jednicak");
+            project.add(team);
+            User user = Loader.getUsers().get(0);
+            System.out.println("user name = " + user.getUsername());
+            user.addProject(project);
+            Loader.save();*/
+//                    User user = new User("jonas.k", "dlhy","Jonas Kratky", 12, "Ilava 99", "user", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
+//
+//        Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
+//        Task task2 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "Praca na tejto rychle rastujcej stranke o dronoch lulW", "Drony.sk");
+//        Task task3 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "Task, ktory vytvara fatkury pre firmu Yanfeng, hlavne ne napadne jako :)", "Yanfeng");
+//        Task task4 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "Task pre super firmu Reforamta LOLIIIIK XD", "Reformata stranka");
+//        user.addUserTask(task1);
+//        user.addUserTask(task2);
+//        user.addUserTask(task3);
+//        user.addUserTask(task4);
+//        Loader.addUser(user);
+//        User user1 = new User("edvard.p", "neparny","Edvard Parny", 13, "Ilava 99","user", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
+//        Loader.addUser(user1);
+//        User user2 = new User("marina.k", "skareda","Marina Krasna", 14, "Ilava 99", "user","C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
+//        Loader.addUser(user2);
+//        User user3 = new User("petra.s", "vlhka","Petra Sucha", 15, "Ilava 99", "project_manager","C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
+//        Loader.addUser(user3);
+//        User user4 = new User("matus.v", "smradlavy","Matus Vonavy", 16, "Ilava 99", "user","C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_1.png");
+//        Loader.addUser(user4);
+//        User user5 = new User("otepka.d", "otepkis","Dagmar Otepka", 16, "Senica 63", "director", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_2.jpg");
+//        Loader.addUser(user5);
+//        User user6 = new User("admin", "admin","Dagmar OtepkaLUL", 16, "Senica 63", "admin", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_2.jpg");
+//        Loader.addUser(user6);
+//        Loader.save();
+
 Loader.load();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Login_Screen.class.getName()).log(Level.SEVERE, null, ex);
@@ -243,8 +269,10 @@ Loader.load();
         String password = String.valueOf(jPasswordField1.getPassword());
         
         ArrayList<User> users = Loader.getUsers();
-        System.out.println(users.size());
+        System.out.println("Pocet userov je: " + users.size());
         for (User user : users) {
+            System.out.println("username = " + user.getUsername());
+            System.out.println("password = " + user.getPassword());
             if (user.getUsername().equals(username) && user.getPassword().equals(password))
                 return user;
         }
