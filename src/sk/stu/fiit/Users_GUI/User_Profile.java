@@ -253,12 +253,12 @@ public class User_Profile extends javax.swing.JFrame {
             return;
         }
         
-        Loader.getCurrentlyLogged().setName(name.getText());
-        Loader.getCurrentlyLogged().setUsername(username.getText());
-        Loader.getCurrentlyLogged().setAge(Integer.parseInt(age.getText()));
-        Loader.getCurrentlyLogged().setAddress(address.getText());
-        Loader.getCurrentlyLogged().setPassword(password.getText());
-        Loader.getCurrentlyLogged().setPicture(image_path);
+        Loader.findUser(Loader.getCurrentlyLogged().getUsername()).setName(name.getText());
+        Loader.findUser(Loader.getCurrentlyLogged().getUsername()).setUsername(username.getText());
+        Loader.findUser(Loader.getCurrentlyLogged().getUsername()).setAge(Integer.parseInt(age.getText()));
+        Loader.findUser(Loader.getCurrentlyLogged().getUsername()).setAddress(address.getText());
+        Loader.findUser(Loader.getCurrentlyLogged().getUsername()).setPassword(password.getText());
+        Loader.findUser(Loader.getCurrentlyLogged().getUsername()).setPicture(image_path);
         
         Loader.save();
         JOptionPane.showMessageDialog(rootPane, "Changes saved!", "Succes", JOptionPane.INFORMATION_MESSAGE);
