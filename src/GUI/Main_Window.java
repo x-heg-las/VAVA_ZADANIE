@@ -42,6 +42,7 @@ import sk.stu.fiit.Users_GUI.User_Profile;
 public class Main_Window extends javax.swing.JFrame {
     private User user;
     private Teammates teammates;
+    private static Main_Window instance;
     //public JTextPane jTextPane = new JTextPane();
     /**
      * Creates new form Main_Window
@@ -53,7 +54,7 @@ public class Main_Window extends javax.swing.JFrame {
         calendarProgram.create(jPanel7, this.getContentPane());
         
         hide_buttons();
-        
+        instance = this;
         showGraph();
         showUsersProject(null);
         showNotes();
@@ -597,7 +598,7 @@ public class Main_Window extends javax.swing.JFrame {
     /**
      * Tato metoda zobrazi graf s rozlozenim prace na Taskoch.
      */
-    private void showGraph(){
+    protected void showGraph(){
         JPanel graph = new UserTaskChart(user);
         graph.setPreferredSize(graphPanel.getPreferredSize());
         
@@ -610,6 +611,15 @@ public class Main_Window extends javax.swing.JFrame {
        
     }
     
+    /**
+     * Metoda sluzi pre zistenie aktualnej instancie okna.
+     * @return Instancia triedy Main_Window
+     */
+    public static Main_Window getInstance(){
+        return instance;
+    }
+    
+        
     /**
      * Metoda, ktora zobrazi vsetkych spolupracovnikov na projekte.
      * @param project 

@@ -467,8 +467,10 @@ public class Tasks_window extends javax.swing.JFrame {
     private void updateTaskChart(){
         UserTaskChart chartInstance =  UserTaskChart.getCurrentInstance();
         if(chartInstance != null){
-            if(Loader.getCurrentlyLogged() != null)
+            if(Loader.getCurrentlyLogged() != null && Main_Window.getInstance() != null){
                 chartInstance.updateChartInstance(Loader.getCurrentlyLogged());
+                Main_Window.getInstance().showGraph();
+            }
         }
     }
 }
