@@ -457,17 +457,22 @@ class ProjectDetailTableCellRender implements TableCellRenderer{
 
 
  class MyCellRenderer extends JPanel implements ListCellRenderer<Object> {
+     
+     /**
+      * Konstruktor pre CellRender listu zobrazujuceho projekty
+      */
      public MyCellRenderer() {
         // setOpaque(true);
      }
 
     /**
-     * Funkcia zaznamen
-     * @param list
-     * @param value
-     * @param index
-     * @param isSelected
-     * @param cellHasFocus
+     * Funkcia inicializuje hodnoty komponentu podla priradeneho projektu (value),
+     * ktory je priradeny ako hodnota.
+     * @param list Instancia JList, ktoremu bude CellRender priradeny.
+     * @param value Hodnota, ktora je vlozena ako zaznam do listu.
+     * @param index Intex zaznamu v JList.
+     * @param isSelected Hodnota sledujuca, ci je bunka zvolena.
+     * @param cellHasFocus Sleduje focus na zaznam listu.
      * @return 
      */
     @Override

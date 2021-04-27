@@ -219,6 +219,8 @@ public class ProjectSummary extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         add(jLabel1, gridBagConstraints);
+
+        deadline.setMinimumSize(new java.awt.Dimension(202, 27));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -230,9 +232,11 @@ public class ProjectSummary extends javax.swing.JPanel {
         
         Date deadlinedate = ((Calendar) deadline.getModel().getValue()).getTime();
         if(deadline != null){
+           
             project.setDeadline(deadlinedate);
             Loader.addProject(project);
             SwingUtilities.getWindowAncestor(this).dispose();
+            Loader.findUser(Loader.getCurrentlyLogged().getUsername()).addProject(project);
         }
     }//GEN-LAST:event_btnCreateProjectMouseClicked
 
@@ -285,13 +289,6 @@ public class ProjectSummary extends javax.swing.JPanel {
         }
         
     }
-   
-    
-    
-    
-    
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateProject;

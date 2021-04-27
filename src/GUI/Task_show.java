@@ -19,7 +19,7 @@ import sk.stu.fiit.Tasks.Task;
  * @author adamh
  */
 public class Task_show extends javax.swing.JPanel {
-    Task task;
+    private Task task;
     private static Task_show instance = null;
     /**
      * Creates new form Task_show

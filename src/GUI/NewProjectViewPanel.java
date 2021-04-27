@@ -6,6 +6,7 @@
 package GUI;
 
 import java.awt.Container;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -15,14 +16,16 @@ import sk.stu.fiit.Priorities;
 import sk.stu.fiit.Project;
 
 /**
- *
- * @author patoh
+ * Trieda ovladajuca JFrame pre zadavanie novych projektov.
+ * @author Patrik Heglas
  */
 public class NewProjectViewPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ProjectViewPanel
      */
+    
+    private static final Logger LOG = Logger.getLogger(NewProjectViewPanel.class.getName());
     public NewProjectViewPanel() {
         initComponents();
     }
@@ -215,6 +218,11 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
             //Overenie vstupu
             InputVerifiers.hasEmptyFields(taDescription, taID, taName, taTag);
             Priorities priority;
+            
+            if(Loader.getProjects().containsKey(taID.getText())){
+                
+                JOptionPane.showMessageDialog(null ,"Username already used", "Warning" , JOptionPane.WARNING_MESSAGE);
+            }
             
             if(Loader.getProjects().containsKey(taID.getText())){
                 errMessage = "Duplicit project ID, consider changing it.";

@@ -348,11 +348,16 @@ public class NewTask extends javax.swing.JFrame {
 
                 if(project != null){
                     task.setAsignedTo(asignedTo);
+                    
+                    //priradenie uloh k pouzivatelom
+                    for(User user : asignedTo){
+                        Loader.findUser(user.getUsername()).addUserTask(task);
+                    }
                     project.add(task);
                 }
                 else if (curentUser != null){
                     
-                    curentUser.addUserTask(task);
+                    Loader.findUser(curentUser.getUsername()).addUserTask(task);
                 }
                 dispose();
                 
@@ -372,6 +377,8 @@ public class NewTask extends javax.swing.JFrame {
         }catch(Exception ex){
             //TODO :: pridaj logger
         }
+        
+        Loader.save();
     }//GEN-LAST:event_btnCreateTaskMouseClicked
 
     private void bntCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntCancelMouseClicked
