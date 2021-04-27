@@ -6,7 +6,12 @@
 package sk.stu.fiit.Users_GUI;
 
 import java.awt.Image;
+import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import sk.stu.fiit.InputVerifiers;
+import sk.stu.fiit.Loader;
 import sk.stu.fiit.User;
 
 /**
@@ -15,6 +20,7 @@ import sk.stu.fiit.User;
  */
 public class User_Profile extends javax.swing.JFrame {
     private User user;
+    private String image_path = "";
     /**
      * Creates new form User_Profile
      */
@@ -22,6 +28,7 @@ public class User_Profile extends javax.swing.JFrame {
         this.user = user;
         initComponents();
         SetImageSize();
+        enable_input();
     }
 
     /**
@@ -39,68 +46,75 @@ public class User_Profile extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        username = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        age = new javax.swing.JTextField();
+        address = new javax.swing.JTextField();
         picture = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        name = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        password = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jLabel1.setText("Name");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Username");
         jLabel1.setPreferredSize(new java.awt.Dimension(120, 40));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        getContentPane().add(jLabel1, gridBagConstraints);
+        getContentPane().add(jLabel1, new java.awt.GridBagConstraints());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Type");
         jLabel2.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         getContentPane().add(jLabel2, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Age");
         jLabel3.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         getContentPane().add(jLabel3, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Address");
         jLabel4.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         getContentPane().add(jLabel4, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Picture");
         jLabel5.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         getContentPane().add(jLabel5, gridBagConstraints);
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jTextField1.setText(user.getName());
-        jTextField1.setPreferredSize(new java.awt.Dimension(120, 40));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        username.setEditable(false);
+        username.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        if(user.getUsername().equals(Loader.getCurrentlyLogged().getUsername()))
+        username.setText(user.getUsername());
+        else password.setText("Not accesible");
+        username.setPreferredSize(new java.awt.Dimension(120, 40));
+        username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                usernameActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        getContentPane().add(jTextField1, gridBagConstraints);
+        getContentPane().add(username, new java.awt.GridBagConstraints());
 
         jTextField2.setEditable(false);
         jTextField2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
@@ -108,41 +122,163 @@ public class User_Profile extends javax.swing.JFrame {
         jTextField2.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         getContentPane().add(jTextField2, gridBagConstraints);
 
-        jTextField3.setEditable(false);
-        jTextField3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jTextField3.setText(Integer.toString(user.getAge()));
-        jTextField3.setPreferredSize(new java.awt.Dimension(120, 40));
+        age.setEditable(false);
+        age.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        age.setText(Integer.toString(user.getAge()));
+        age.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        getContentPane().add(jTextField3, gridBagConstraints);
+        gridBagConstraints.gridy = 4;
+        getContentPane().add(age, gridBagConstraints);
 
-        jTextField4.setEditable(false);
-        jTextField4.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jTextField4.setText(user.getAddress());
-        jTextField4.setPreferredSize(new java.awt.Dimension(120, 40));
+        address.setEditable(false);
+        address.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        address.setText(user.getAddress());
+        address.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        getContentPane().add(jTextField4, gridBagConstraints);
+        gridBagConstraints.gridy = 5;
+        getContentPane().add(address, gridBagConstraints);
 
         picture.setText("jLable1");
         picture.setPreferredSize(new java.awt.Dimension(120, 120));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridheight = 3;
         getContentPane().add(picture, gridBagConstraints);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Password");
+        jLabel6.setPreferredSize(new java.awt.Dimension(120, 40));
+        getContentPane().add(jLabel6, new java.awt.GridBagConstraints());
+
+        name.setEditable(false);
+        name.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        name.setText(user.getName());
+        name.setPreferredSize(new java.awt.Dimension(120, 40));
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        getContentPane().add(name, gridBagConstraints);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Name");
+        jLabel7.setPreferredSize(new java.awt.Dimension(120, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        getContentPane().add(jLabel7, gridBagConstraints);
+
+        password.setEditable(false);
+        password.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        if(user.getUsername().equals(Loader.getCurrentlyLogged().getUsername()))
+        password.setText(user.getPassword());
+        else password.setText("Not accesible");
+        password.setPreferredSize(new java.awt.Dimension(120, 40));
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
+            }
+        });
+        getContentPane().add(password, new java.awt.GridBagConstraints());
+
+        jButton1.setText("Confirm");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton1MouseReleased(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(jButton1, gridBagConstraints);
+        if(!user.getUsername().equals(Loader.getCurrentlyLogged().getUsername()))
+        jButton1.setVisible(false);
+
+        jButton2.setText("New Image");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton2MouseReleased(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(jButton2, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_usernameActionPerformed
+
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
+
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordActionPerformed
+
+    private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
+        // TODO add your handling code here:
+        String regex = "\\d+";
+        try{
+            InputVerifiers.hasEmptyFields(username, password, name, address, age);
+            if (!age.getText().matches(regex)){
+                JOptionPane.showMessageDialog(rootPane, "Age can contain only numbers!", "Wrong age type!", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, "All fields mus be filled!\n", "Wrong input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Loader.getCurrentlyLogged().setName(name.getText());
+        Loader.getCurrentlyLogged().setUsername(username.getText());
+        Loader.getCurrentlyLogged().setAge(Integer.parseInt(age.getText()));
+        Loader.getCurrentlyLogged().setAddress(address.getText());
+        Loader.getCurrentlyLogged().setPassword(password.getText());
+        Loader.getCurrentlyLogged().setPicture(image_path);
+        
+        Loader.save();
+        JOptionPane.showMessageDialog(rootPane, "Changes saved!", "Succes", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+    }//GEN-LAST:event_jButton1MouseReleased
+
+    private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
+        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+          fc.setCurrentDirectory(new File(".")); //NOI18N
+        int desc = fc.showOpenDialog(fc);
+        image_path = fc.getSelectedFile().getAbsolutePath();
+        File file = new File(image_path);
+            if (!InputVerifiers.check_image(file)){
+                JOptionPane.showMessageDialog(rootPane, "Chosen file is not image!", "Wrong age type!", JOptionPane.ERROR_MESSAGE);
+                image_path = "";
+                return;
+            }
+        JOptionPane.showMessageDialog(rootPane, "New image chosen!", "Success", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton2MouseReleased
 
     /**
      * @param args the command line arguments
@@ -180,16 +316,22 @@ public class User_Profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField address;
+    private javax.swing.JTextField age;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField password;
     private javax.swing.JLabel picture;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 
      public void SetImageSize(){
@@ -198,5 +340,15 @@ public class User_Profile extends javax.swing.JFrame {
         Image newImg = img.getScaledInstance(picture.getWidth(), picture.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon newImc = new ImageIcon(newImg);
         picture.setIcon(newImc);
+    }
+     
+    private void enable_input(){
+        if(user.getUsername().equals(Loader.getCurrentlyLogged().getUsername())){
+            username.setEditable(true);
+            name.setEditable(true);
+            age.setEditable(true);
+            address.setEditable(true);
+            password.setEditable(true);
+        }
     }
 }

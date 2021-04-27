@@ -5,8 +5,13 @@
  */
 package sk.stu.fiit;
 
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -36,6 +41,18 @@ public class InputVerifiers {
             
         }
         
+    }
+    
+    public static boolean check_image(File file){        
+        try {
+            Image image = ImageIO.read(new File(file.getAbsolutePath()));
+            if (image == null) {
+                return false;
+            }
+        } catch(IOException ex) {
+            return false;
+        }
+        return true;
     }
     
 }
