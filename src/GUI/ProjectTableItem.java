@@ -160,6 +160,7 @@ public class ProjectTableItem extends javax.swing.JPanel {
     private void setValues() {
         try{
             if(project != null){
+                //TODO: oprav projekt
               lblDeadline.setText(new SimpleDateFormat("dd.MM.yyyy").format(project.getDeadline()));
               lblId.setText(project.getId());
               lblName.setText(project.getProjectName());

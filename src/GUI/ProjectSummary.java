@@ -6,6 +6,8 @@
 package GUI;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -58,6 +60,8 @@ public class ProjectSummary extends javax.swing.JPanel {
         btnTasksDetail = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         taskTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        deadline = new org.jdatepicker.JDatePicker();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Project Tasks", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 0, 18), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -206,13 +210,30 @@ public class ProjectSummary extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         add(jScrollPane2, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Deadline");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
+        add(jLabel1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(deadline, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateProjectMouseClicked
         
-        Loader.addProject(project);
-        SwingUtilities.getWindowAncestor(this).dispose();
-        
+        Date deadlinedate = ((Calendar) deadline.getModel().getValue()).getTime();
+        if(deadline != null){
+            project.setDeadline(deadlinedate);
+            Loader.addProject(project);
+            SwingUtilities.getWindowAncestor(this).dispose();
+        }
     }//GEN-LAST:event_btnCreateProjectMouseClicked
 
     /**
@@ -275,6 +296,8 @@ public class ProjectSummary extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateProject;
     private javax.swing.JButton btnTasksDetail;
+    private org.jdatepicker.JDatePicker deadline;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
