@@ -47,6 +47,7 @@ public class UserTaskChart extends javax.swing.JPanel {
     
     public void updateChartInstance(User user){
         createChart(user);
+        instance = this;
     }
     
     /**
@@ -98,7 +99,7 @@ private void createChart(User user){
             true,
             true
     );
-    
+   
     chartPanel.setLayout(new java.awt.BorderLayout());
     chartPanel.add(new ChartPanel(chart),BorderLayout.CENTER);;
     chartPanel.validate();
