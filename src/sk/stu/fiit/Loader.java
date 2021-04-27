@@ -278,10 +278,10 @@ public class Loader {
             Element dimenson = input.createElement("dimension");
             window.appendChild(dimenson);
             Element width = input.createElement("width");
-            width.appendChild(input.createTextNode(Double.toString(d.getWidth())));
+            width.appendChild(input.createTextNode(Integer.toString((int)d.getWidth())));
             dimenson.appendChild(width);
             Element height = input.createElement("height");
-            height.appendChild(input.createTextNode(Double.toString(d.getHeight())));
+            height.appendChild(input.createTextNode(Integer.toString((int)d.getHeight())));
             dimenson.appendChild(height);
             
             TransformerFactory transformerFactory = TransformerFactory.newInstance();

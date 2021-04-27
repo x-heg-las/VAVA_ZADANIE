@@ -131,6 +131,6 @@ public class User implements Serializable{
 
     @Override
     public String toString() {
-        return  name + "\t" + type ;
+        return  "Name: " + name + "  \t  Role:" + type ;
     }
 }

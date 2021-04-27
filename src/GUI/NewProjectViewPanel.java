@@ -6,10 +6,14 @@
 package GUI;
 
 import java.awt.Container;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UnsupportedLookAndFeelException;
+import sk.stu.fiit.CurrentDateSelectionConstraint;
 import sk.stu.fiit.InputVerifiers;
 import sk.stu.fiit.Loader;
 import sk.stu.fiit.Priorities;
@@ -26,8 +30,16 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
      */
     
     private static final Logger LOG = Logger.getLogger(NewProjectViewPanel.class.getName());
+    /**
+     * Konstruktor triedy NewProjectViewPanel inicializujuci okno pre vytvaranie
+     * projektov .
+     */
     public NewProjectViewPanel() {
+        CurrentDateSelectionConstraint constraint = new CurrentDateSelectionConstraint();
+        
         initComponents();
+        
+        deadline.addDateSelectionConstraint(constraint);
     }
 
     /**
@@ -54,8 +66,9 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
         radioUrgent = new javax.swing.JRadioButton();
         radioNonUrgent = new javax.swing.JRadioButton();
         btnCreateProject = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        deadline = new org.jdatepicker.JDatePicker();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Create Project", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semilight", 0, 24), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -170,7 +183,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
         projectPriorityGroup.add(radioNonUrgent);
 
         btnCreateProject.setBackground(new java.awt.Color(51, 153, 255));
-        btnCreateProject.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnCreateProject.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         btnCreateProject.setForeground(new java.awt.Color(0, 0, 0));
         btnCreateProject.setText("Create project");
         btnCreateProject.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -184,32 +197,25 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         add(btnCreateProject, gridBagConstraints);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Cancel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
-        add(jButton2, gridBagConstraints);
-
         jLabel6.setText("prefix added to the project");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         add(jLabel6, gridBagConstraints);
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Project's Deadline");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        add(jLabel7, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        add(deadline, gridBagConstraints);
+    }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateProjectMouseClicked
         String errMessage = "";
@@ -228,6 +234,9 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
                 errMessage = "Duplicit project ID, consider changing it.";
                 throw new RuntimeException("Duplicit project ID");
             }
+            
+           
+           
 
             if(radioNonUrgent.isSelected())
                 priority = Priorities.NONURGENT;
@@ -240,14 +249,23 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
             JPanel next = new ProjectTeammates(newProject);
             Container pane = this.getParent();
             
+            Date deadlinedate = ((Calendar) deadline.getModel().getValue()).getTime();
+            if(deadline == null){
+                errMessage = "wrong deadline";
+                throw new RuntimeException("Bad Date Input");
+            }
+            
+            newProject.setDeadline(deadlinedate);
+            newProject.setProject_manager(Loader.findUser(Loader.getCurrentlyLogged().getUsername()));
             pane.removeAll();
             next.setVisible(true);
+            
             pane.add(next);
             pane.revalidate();
             pane.repaint();
         
         }catch (RuntimeException runt){
-            //TODO :: add loggger
+            LOG.log(Level.SEVERE, runt.getMessage());
             JOptionPane.showMessageDialog(null ,"Wrong input: " + errMessage , "Warning", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnCreateProjectMouseClicked
@@ -257,13 +275,14 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateProject;
-    private javax.swing.JButton jButton2;
+    private org.jdatepicker.JDatePicker deadline;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.ButtonGroup projectPriorityGroup;
     private javax.swing.JRadioButton radioNonUrgent;

@@ -60,8 +60,9 @@ public class ProjectSummary extends javax.swing.JPanel {
         btnTasksDetail = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         taskTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        deadline = new org.jdatepicker.JDatePicker();
+
+        taskDialog.setMinimumSize(new java.awt.Dimension(400, 300));
+        taskDialog.setPreferredSize(new java.awt.Dimension(400, 300));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Project Tasks", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 0, 18), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -114,19 +115,20 @@ public class ProjectSummary extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 8);
         add(lblDescription, gridBagConstraints);
 
+        teamTable.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         teamTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Name", "Email", "Group", "Role"
+                "Name", "Username", "Role"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -138,6 +140,7 @@ public class ProjectSummary extends javax.swing.JPanel {
             }
         });
         teamTable.setColumnSelectionAllowed(true);
+        teamTable.setRowHeight(36);
         teamTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(teamTable);
         teamTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -153,6 +156,7 @@ public class ProjectSummary extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         add(jScrollPane1, gridBagConstraints);
 
+        btnCreateProject.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         btnCreateProject.setText("Create project");
         btnCreateProject.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -164,6 +168,7 @@ public class ProjectSummary extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         add(btnCreateProject, gridBagConstraints);
 
+        btnTasksDetail.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         btnTasksDetail.setText("Project tasks");
         btnTasksDetail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -175,6 +180,7 @@ public class ProjectSummary extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         add(btnTasksDetail, gridBagConstraints);
 
+        taskTable.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         taskTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -198,6 +204,7 @@ public class ProjectSummary extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        taskTable.setRowHeight(36);
         taskTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(taskTable);
 
@@ -210,34 +217,14 @@ public class ProjectSummary extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         add(jScrollPane2, gridBagConstraints);
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Deadline");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
-        add(jLabel1, gridBagConstraints);
-
-        deadline.setMinimumSize(new java.awt.Dimension(202, 27));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        add(deadline, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateProjectMouseClicked
         
-        Date deadlinedate = ((Calendar) deadline.getModel().getValue()).getTime();
-        if(deadline != null){
-           
-            project.setDeadline(deadlinedate);
-            Loader.addProject(project);
-            SwingUtilities.getWindowAncestor(this).dispose();
-            Loader.findUser(Loader.getCurrentlyLogged().getUsername()).addProject(project);
-        }
+        Loader.addProject(project);
+        SwingUtilities.getWindowAncestor(this).dispose();
+        Loader.findUser(Loader.getCurrentlyLogged().getUsername()).addProject(project);
+        
     }//GEN-LAST:event_btnCreateProjectMouseClicked
 
     /**
@@ -276,7 +263,7 @@ public class ProjectSummary extends javax.swing.JPanel {
             project.getTeams().forEach(team ->{
                 team.getTeamMembers().forEach(member -> {
                     teamModel.addRow(new Object[] {member.getName(), 
-                        member.getUsername(), member.getType(), "nieco :D "  });
+                        member.getUsername(), member.getType()  });
                 });
             });
             
@@ -293,8 +280,6 @@ public class ProjectSummary extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateProject;
     private javax.swing.JButton btnTasksDetail;
-    private org.jdatepicker.JDatePicker deadline;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
