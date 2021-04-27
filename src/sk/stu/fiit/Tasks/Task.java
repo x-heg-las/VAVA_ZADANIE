@@ -22,8 +22,6 @@ public class Task implements Serializable{
     private String name;
     private Date start_date;
     private Date deadline;
-    private LocalTime start_time;
-    private LocalTime end_time;
     private String topic;
     private ArrayList<User> asignedTo;
     private Priorities priority;
@@ -63,7 +61,7 @@ public class Task implements Serializable{
         this.taskState = TaskState.TODO;
     }
 
-    public Task(Date start_date, Date deadline, LocalTime start_time, LocalTime end_time, String topic, String name) {
+    /*public Task(Date start_date, Date deadline, LocalTime start_time, LocalTime end_time, String topic, String name) {
         this.name = name;
         this.start_date = start_date;
         this.deadline = deadline;
@@ -72,7 +70,7 @@ public class Task implements Serializable{
         this.topic = topic;
         this.taskState = TaskState.TODO;
         this.priority = Priorities.NORMAL;
-    }
+    }*/
 
     public String getName() {
         return name;
@@ -82,22 +80,6 @@ public class Task implements Serializable{
         this.name = name;
     }
     
-    public LocalTime getStart_time() {
-        return start_time;
-    }
-
-    public void setStart_time(LocalTime start_time) {
-        this.start_time = start_time;
-    }
-
-    public LocalTime getEnd_time() {
-        return end_time;
-    }
-
-    public void setEnd_time(LocalTime end_time) {
-        this.end_time = end_time;
-    }
-
     public Date getStart_date() {
         return start_date;
     }

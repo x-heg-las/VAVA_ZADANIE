@@ -601,7 +601,7 @@ public class Main_Window extends javax.swing.JFrame {
     
     private void load_arrays(){
         array_projects = new ArrayList<>();
-        Task task = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super brutalny Task, na ktorom sa seci tesime a pracujeme :)))))", "Yenfang_Invoices");
+        Task task = new Task("Yenfang_Invoices", new Date(), new Date(), "toto je super brutalny Task, na ktorom sa seci tesime a pracujeme :)))))");
         //Task task1 = new Task(new GregorianCalendar(), new Date(), new Date(), new Date(), "toto je super brutalny Task, na ktorom sa seci tesime a pracujeme :)))))");
         User project_Manager = new User("jozef.m", "stary","Jozef Mlady", 12, "Mlada Boleslav 41", "project_manager", "nemam obrazok");
         Project project = new Project(new ArrayList(), project_Manager, "Najlepsi projekt na svete", new Date(), Priorities.CRITICAL);
