@@ -28,10 +28,12 @@ public class NewTask extends javax.swing.JFrame {
     private Project project;
     private ArrayList<User> asignedTo;
     private User curentUser;
+    private Main_Window main;
     
     
-    public NewTask(User user)
+    public NewTask(User user, Main_Window main)
     {
+        this.main = main;
         this.project = null;
         this.curentUser = user;
         initComponents();
@@ -359,6 +361,11 @@ public class NewTask extends javax.swing.JFrame {
                     chartInstance.updateChartInstance(Loader.getCurrentlyLogged());
                 }
                 
+                if (main != null){
+                    main.showTask();
+                    main.refreshCalendar();
+                }
+                
             }else
                 throw new Exception("Zle udaje");
             
@@ -402,7 +409,7 @@ public class NewTask extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //testovacia vzorka
-                new NewTask( new User("Patrik", 21, "ahoj", "ahoj") ).setVisible(true);
+                //new NewTask( new User("Patrik", 21, "ahoj", "ahoj") ).setVisible(true);
             }
         });
     }
@@ -449,5 +456,5 @@ public class NewTask extends javax.swing.JFrame {
         }
     
     }
-
+    
 }

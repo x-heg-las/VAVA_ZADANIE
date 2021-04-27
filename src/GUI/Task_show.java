@@ -5,11 +5,13 @@
  */
 package GUI;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import javax.swing.JPanel;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER;
+import org.jfree.chart.ChartPanel;
 import sk.stu.fiit.Tasks.Task;
 
 /**
@@ -18,6 +20,7 @@ import sk.stu.fiit.Tasks.Task;
  */
 public class Task_show extends javax.swing.JPanel {
     Task task;
+    private static Task_show instance = null;
     /**
      * Creates new form Task_show
      */
@@ -25,6 +28,7 @@ public class Task_show extends javax.swing.JPanel {
         this.task = task;
         initComponents();
         fill_values();
+        instance = this;
     }
 
     /**
@@ -97,6 +101,26 @@ public class Task_show extends javax.swing.JPanel {
     
     public JPanel get_panel(){
         return this;
+    }
+    
+    public static Task_show getCurrentInstance(){
+        return instance;
+    }
+    
+    public void update(Task task){
+        Format formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String s = formatter.format(task.getDeadline());
+        
+        jLabel1.setText(task.getName());
+        jLabel3.setText(s);
+        jTextArea1.setText(task.getTopic());
+        
+        //this.setLayout(new java.awt.BorderLayout());
+        //this.add();
+        //this.validate();
+        System.out.println("Preco nejdem :(");
+        this.revalidate();
+        this.repaint();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

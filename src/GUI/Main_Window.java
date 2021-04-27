@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -57,7 +58,7 @@ public class Main_Window extends javax.swing.JFrame {
         showUsersProject(null);
         showNotes();
         showCurrentUser();
-        showTask(null);
+        showTask();
     }
 
     /**
@@ -486,8 +487,11 @@ public class Main_Window extends javax.swing.JFrame {
 
     private void new_taskMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_new_taskMouseReleased
         // TODO add your handling code here:
-        NewTask newTask = new NewTask(user);
+        NewTask newTask = new NewTask(user, this);
         newTask.setVisible(rootPaneCheckingEnabled);
+        
+        System.out.println("Uz som tutkaj mroe :)");
+        showTask();
     }//GEN-LAST:event_new_taskMouseReleased
 
     private void new_projectMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_new_projectMouseReleased
@@ -686,7 +690,14 @@ public class Main_Window extends javax.swing.JFrame {
         current_users.repaint();
     }
     
-    private void showTask(Task task){
+    public void refreshCalendar(){
+        jPanel7.removeAll();
+
+        CalendarProgram calendarProgram = new CalendarProgram();
+        calendarProgram.create(jPanel7, this.getContentPane());
+    }
+    
+    public void showTask(){
         //Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
         JLabel popis;
         JPanel current_none = new JPanel();
@@ -725,7 +736,6 @@ public class Main_Window extends javax.swing.JFrame {
         
         switch (type_of_user) {
             case "user":
-                new_task.setVisible(false);
                 new_project.setVisible(false);
                 new_profile.setVisible(false);
                 break;
