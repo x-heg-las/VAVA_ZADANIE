@@ -7,7 +7,6 @@ package sk.stu.fiit.Tasks;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import sk.stu.fiit.Priorities;

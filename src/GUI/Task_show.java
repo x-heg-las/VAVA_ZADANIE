@@ -5,13 +5,11 @@
  */
 package GUI;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import javax.swing.JPanel;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER;
-import org.jfree.chart.ChartPanel;
 import sk.stu.fiit.Tasks.Task;
 
 /**
@@ -84,6 +82,9 @@ public class Task_show extends javax.swing.JPanel {
         add(jScrollPane1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
     
+    /**
+     * Metoda, ktora naplni Panel s hodnotami Tasku.
+     */
     private void fill_values(){
         Format formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String s = formatter.format(task.getDeadline());
@@ -96,17 +97,20 @@ public class Task_show extends javax.swing.JPanel {
         jLabel1.setText(task.getName());
         jLabel3.setText(s);
         jTextArea1.setText(task.getTopic());
-        //jLabel2.setText(task.getTopic());
     }
     
+    /**
+     * metoda, ktora vrati tanto vytvoreny panel.
+     * @return 
+     */
     public JPanel get_panel(){
         return this;
     }
     
-    public static Task_show getCurrentInstance(){
-        return instance;
-    }
-    
+    /**
+     * Metoda, ktora nahradi zobrazeny task novym po jeho pridani ak splna podmienku.
+     * @param task 
+     */
     public void update(Task task){
         Format formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String s = formatter.format(task.getDeadline());
@@ -115,10 +119,6 @@ public class Task_show extends javax.swing.JPanel {
         jLabel3.setText(s);
         jTextArea1.setText(task.getTopic());
         
-        //this.setLayout(new java.awt.BorderLayout());
-        //this.add();
-        //this.validate();
-        System.out.println("Preco nejdem :(");
         this.revalidate();
         this.repaint();
     }

@@ -5,12 +5,9 @@
  */
 package GUI;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import sk.stu.fiit.Loader;
 import sk.stu.fiit.Project;
@@ -103,15 +100,15 @@ public class Teammates extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
     
+    /**
+     * Metoda, ktora ziska vsetky mena userov na danom projekte.
+     * @param project_name
+     * @return 
+     */
     private String[] get_names(String project_name){
         ArrayList<User> users = Loader.getUsers();
         String[] array_names = new String[Loader.getUsers().size()];
-        /*
-        for (int i = 0; i < users.size(); i++) {
-            array_names[i] = users.get(i).getName();
-            
-        }
-        return array_names;*/
+        
         array_users.clear();
         for (User user : users) {
             for (Project project : user.getProjects()) {
@@ -128,6 +125,10 @@ public class Teammates extends javax.swing.JPanel {
         return array_names;
     }
     
+    /**
+     * Metoda, na ziskanie "kliknuteho" pouzivatela.
+     * @return 
+     */
     public User get_clicked(){
         ArrayList<User> users = Loader.getUsers();
         if ( array_projects.size() == 0 )
@@ -135,13 +136,17 @@ public class Teammates extends javax.swing.JPanel {
         return array_users.get(jList1.getSelectedIndex());
     }
     
+    /**
+     * Tato metoda ziska vsetky projekty, medzi ktorymi si moze user prepinat.
+     * @return 
+     */
     private String[] get_projects(){
         if (Loader.getProjects() == null){
             return null;
         }
         String[] names = new String[Loader.getCurrentlyLogged().getProjects().size()];
         int i = 0;
-        System.out.println("Loliiik = " + Loader.getCurrentlyLogged().getProjects().size());
+        
         for (Project project : Loader.getCurrentlyLogged().getProjects()) {
             array_projects.add(project);
             names[i] = project.getProjectName();

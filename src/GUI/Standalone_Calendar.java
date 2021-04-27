@@ -29,6 +29,9 @@ public class Standalone_Calendar{
         create();
     }
     
+    /**
+     * Metoda, kde sa vytvori samostathne okno s Kalendarom.
+     */
     public static void create(){
         //Look and feel
         try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
@@ -144,6 +147,11 @@ public class Standalone_Calendar{
         stblCalendar.setBounds(10, 50, pnlCalendar.getWidth() - 30, pnlCalendar.getHeight()-60);//300
     }
     
+    /**
+     * Tu sa vyplna tabulka udajmi z kalendara.
+     * @param month
+     * @param year 
+     */
     public static void refreshCalendar(int month, int year){
         //Variables
         String[] months =  {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
@@ -171,13 +179,6 @@ public class Standalone_Calendar{
         nod = cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
         som = cal.get(GregorianCalendar.DAY_OF_WEEK);
         
-        /*Task task_new = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
-        Task task_new1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Yanfeng_Invoices");
-        ArrayList<Task> array_tasks = new ArrayList<>();
-        array_tasks.add(task_new);
-        array_tasks.add(task_new1);*/
-        //Draw calendar
-        //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new TextAreaRenderer_2());
         for (int i=1; i<=nod; i++){
             int row = new Integer((i+som-2)/7);
             int column  =  (i+som-2)%7;
@@ -194,21 +195,17 @@ public class Standalone_Calendar{
                 }
                 mtblCalendar.setValueAt(Integer.toString(i)+ "\n" + tasks, row, column);
             }
-            //mtblCalendar.setValueAt(Integer.toString(i), row, column);
-            //mtblCalendar.setValueAt(i, row, column);
         }
         
         //Apply renderers
-        
-        //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new TextAreaRenderer(task));
         tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new TextAreaRenderer_2());
-        
-        //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
-        //tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer_2());
-//        tblCalendar.setDefaultRenderer(String[].class, new MyTableCellEditor());
-
     }
     
+    /**
+     * Metoda na porovnanie datumov bez ohladu na cas.
+     * @param date
+     * @return 
+     */
     private static Date WithoutTime(Date date) {
             DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -275,60 +272,6 @@ static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer
                      textarea.setBackground(new Color(220, 220, 255));
                  }
              }
-        return this;
-   }
-}
- 
- static class TextAreaRenderer extends JScrollPane implements TableCellRenderer {
-   JTextArea textarea;
-   Task task;
-   public TextAreaRenderer(Task task) {
-      this.task = task;
-      textarea = new JTextArea();
-      textarea.setLineWrap(true);
-      textarea.setWrapStyleWord(true);
-      getViewport().add(textarea);
-      //textarea.setText(task.getTopic());
-   }
-   public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,int row, int column) {
-       System.out.println(value);
-       textarea.setText("");
-       if (isSelected) {
-         setForeground(table.getSelectionForeground());
-         setBackground(table.getSelectionBackground());
-         textarea.setForeground(table.getSelectionForeground());
-         textarea.setBackground(table.getSelectionBackground());
-      } else {
-         setForeground(table.getForeground());
-         setBackground(table.getBackground());
-         textarea.setForeground(table.getForeground());
-         textarea.setBackground(table.getBackground());
-      }
-       //System.out.println(row);
-       //System.out.println(column);
-       System.out.println("----");
-       if (column == 0 || column == 6){ //Week-end
-                textarea.setBackground(new Color(255, 220, 220));
-            }
-            else{ //Week
-                setBackground(new Color(255, 255, 255));
-            }
-            if (value != null){
-                if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
-                    textarea.setBackground(new Color(220, 220, 255));
-                }
-            }
-            /*
-            Task task = (Task)value;
-        textarea.setFont(new java.awt.Font("Segoe UI Light", 0, 10));
-        if (task != null)
-          textarea.setText(task.getTopic());
-        textarea.setCaretPosition(0);*/
-            if (value != null){
-                    Integer num_value = (Integer)value;
-                    textarea.setText(task.getName());
-                    textarea.append("\n" + num_value.toString());
-                }
         return this;
    }
 }

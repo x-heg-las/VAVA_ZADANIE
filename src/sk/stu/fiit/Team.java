@@ -24,12 +24,21 @@ public class Team implements Serializable{
         this.name = name;
     }
     
+    /**
+     * Motada na pridanie usera.
+     * @param user 
+     */
     public void addMember(User user){
         if(teamMembers != null){
             teamMembers.add(user);
         }
     }
     
+    /**
+     * Metoda ktora odstrani zvoleneho usera.
+     * @param user
+     * @return 
+     */
     public boolean removeMember(User user){
         if(teamMembers != null && teamMembers.contains(user)){
             teamMembers.remove(user);

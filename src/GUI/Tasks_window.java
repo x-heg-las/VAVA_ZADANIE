@@ -7,9 +7,7 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -18,7 +16,6 @@ import javax.swing.table.TableCellRenderer;
 import sk.stu.fiit.Loader;
 import sk.stu.fiit.TaskState;
 import sk.stu.fiit.Tasks.Task;
-import sk.stu.fiit.User;
 
 /**
  *
@@ -33,12 +30,6 @@ public class Tasks_window extends javax.swing.JFrame {
      */
     public Tasks_window() {
         initComponents();
-        /*
-        Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "Potrbea zryhclit intrnet vyzaduje, aby sme zrychlili obeh dat po sieti.", "Inernat_Speeed");
-        array_tasks.add(task1);
-        Task task2 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site99");
-        task2.setTaskState(TaskState.DONE);
-        array_tasks.add(task2);*/
         if (Loader.getCurrentlyLogged().getUserTasks() == null){
             JOptionPane.showMessageDialog(rootPane, "This user has no Tasks!", "No Tasks", JOptionPane.ERROR_MESSAGE);
             return;
@@ -390,6 +381,9 @@ public class Tasks_window extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metoda na vypln vsetkych troch tabuliek s datami.
+     */
     private void fill_table(){
         jTable1.setShowGrid(true);
         jTable1.setRowHeight(300);
@@ -424,6 +418,9 @@ public class Tasks_window extends javax.swing.JFrame {
         jTable3.setDefaultRenderer(jTable3.getColumnClass(0), new RssFeedCellRenderer(array_done));
     }
     
+    /**
+     * Metoda na "vycistenie" tabuliek.
+     */
     private void clear_tables(){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
@@ -447,6 +444,9 @@ public class Tasks_window extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Metoda na rozdelenie pola na tri rozne polia.
+     */
     private void divide_arrays(){
         for (Task task : Loader.getCurrentlyLogged().getUserTasks()) {
             switch (task.getTaskState()) {
@@ -463,7 +463,9 @@ public class Tasks_window extends javax.swing.JFrame {
         }
     }
     
-     
+    /**
+     * Metoda na update grafu v hlavnom okne.
+     */
     private void updateTaskChart(){
         UserTaskChart chartInstance =  UserTaskChart.getCurrentInstance();
         if(chartInstance != null){
