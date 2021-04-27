@@ -143,6 +143,16 @@ public class Loader {
         
     }
     
+    
+    public static User findUser(String username){
+        for(User user : users){
+            if(user.getUsername().equals(username))
+                return user;
+        }
+        return null;
+    }
+    
+    
     /**
      * Funkcia sluziaca pre vyhladanie zaznamu s ulozenym rozmerov v XML subore.
      * @param classname Nazov triedy (zaznamu), pre ktore sa vyhladavaju rozmery.
