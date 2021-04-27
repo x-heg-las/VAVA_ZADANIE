@@ -89,6 +89,8 @@ public class Main_Window extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         new_task = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -328,6 +330,23 @@ public class Main_Window extends javax.swing.JFrame {
         });
         pnlToolbar.add(jLabel5);
 
+        jLabel9.setText("  ");
+        pnlToolbar.add(jLabel9);
+
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Settings");
+        jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jLabel12.setMaximumSize(new java.awt.Dimension(150, 454545));
+        jLabel12.setPreferredSize(new java.awt.Dimension(150, 40));
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel12MouseReleased(evt);
+            }
+        });
+        pnlToolbar.add(jLabel12);
+
         jLabel6.setText("  ");
         pnlToolbar.add(jLabel6);
 
@@ -547,6 +566,7 @@ public class Main_Window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;

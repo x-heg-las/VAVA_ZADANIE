@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import sk.stu.fiit.InputVerifiers;
 import sk.stu.fiit.Loader;
 import sk.stu.fiit.User;
@@ -209,7 +210,13 @@ public class NewUserFactory extends javax.swing.JFrame {
         
         if(desc == JFileChooser.APPROVE_OPTION){
             filepath = fc.getSelectedFile().getAbsolutePath();
+            File file = new File(filepath);
             String relative  = new File(".").toURI().relativize(new File(filepath).toURI()).getPath(); //NOI18N
+            
+            if (!InputVerifiers.check_image(file)){
+                JOptionPane.showMessageDialog(rootPane, "Chosen file is not an image!", "Wrong file", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             ImageIcon photo = new ImageIcon(filepath);
             
             if(photo != null){
@@ -241,6 +248,7 @@ public class NewUserFactory extends javax.swing.JFrame {
           
           String status = ((String) statusCombo.getSelectedItem()).trim();
           int age = (int) ageSpinner.getValue();
+          
           
           
           if(!status.isEmpty()){
