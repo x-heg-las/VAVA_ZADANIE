@@ -56,7 +56,7 @@ public class User_Profile extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         password = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        new_image = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -209,10 +209,10 @@ public class User_Profile extends javax.swing.JFrame {
         if(!user.getUsername().equals(Loader.getCurrentlyLogged().getUsername()))
         jButton1.setVisible(false);
 
-        jButton2.setText("New Image");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        new_image.setText("New Image");
+        new_image.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton2MouseReleased(evt);
+                new_imageMouseReleased(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -221,7 +221,8 @@ public class User_Profile extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jButton2, gridBagConstraints);
+        getContentPane().add(new_image, gridBagConstraints);
+        new_image.setVisible(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -265,11 +266,13 @@ public class User_Profile extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1MouseReleased
 
-    private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
+    private void new_imageMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_new_imageMouseReleased
         // TODO add your handling code here:
         JFileChooser fc = new JFileChooser();
           fc.setCurrentDirectory(new File(".")); //NOI18N
         int desc = fc.showOpenDialog(fc);
+        if (desc == 1)
+            return;
         image_path = fc.getSelectedFile().getAbsolutePath();
         File file = new File(image_path);
             if (!InputVerifiers.check_image(file)){
@@ -278,7 +281,7 @@ public class User_Profile extends javax.swing.JFrame {
                 return;
             }
         JOptionPane.showMessageDialog(rootPane, "New image chosen!", "Success", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_jButton2MouseReleased
+    }//GEN-LAST:event_new_imageMouseReleased
 
     /**
      * @param args the command line arguments
@@ -319,7 +322,6 @@ public class User_Profile extends javax.swing.JFrame {
     private javax.swing.JTextField address;
     private javax.swing.JTextField age;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -329,6 +331,7 @@ public class User_Profile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField name;
+    private javax.swing.JButton new_image;
     private javax.swing.JTextField password;
     private javax.swing.JLabel picture;
     private javax.swing.JTextField username;
@@ -355,6 +358,7 @@ public class User_Profile extends javax.swing.JFrame {
             age.setEditable(true);
             address.setEditable(true);
             password.setEditable(true);
+            new_image.setVisible(true);
         }
     }
 }
