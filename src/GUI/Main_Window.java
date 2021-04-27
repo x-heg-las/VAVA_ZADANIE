@@ -95,6 +95,8 @@ public class Main_Window extends javax.swing.JFrame {
         new_project = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         new_profile = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -375,6 +377,25 @@ public class Main_Window extends javax.swing.JFrame {
         });
         pnlToolbar.add(new_profile);
 
+        jLabel11.setText("  ");
+        jLabel11.setMaximumSize(new java.awt.Dimension(80, 16));
+        jLabel11.setPreferredSize(new java.awt.Dimension(80, 16));
+        pnlToolbar.add(jLabel11);
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Log out");
+        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jLabel7.setMaximumSize(new java.awt.Dimension(150, 454545));
+        jLabel7.setPreferredSize(new java.awt.Dimension(150, 40));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel7MouseReleased(evt);
+            }
+        });
+        pnlToolbar.add(jLabel7);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -443,6 +464,14 @@ public class Main_Window extends javax.swing.JFrame {
         newUser.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_new_profileMouseReleased
 
+    private void jLabel7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseReleased
+        // TODO add your handling code here:
+        Loader.save();
+        this.dispose();
+        Login_Screen login  = new Login_Screen();
+        login.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jLabel7MouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -484,11 +513,13 @@ public class Main_Window extends javax.swing.JFrame {
     private javax.swing.JPanel graphPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
@@ -598,17 +629,37 @@ public class Main_Window extends javax.swing.JFrame {
     }
     
     private void showTask(Task task){
-        Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
+        //Task task1 = new Task(new Date(), new Date(), LocalTime.now(), LocalTime.now(), "toto je super husty popis", "Muziker_Site");
+        JLabel popis;
+        JPanel current_none = new JPanel();
+        Task closes_Task;
+        if (Loader.getCurrentlyLogged().getUserTasks() == null){
+            popis = new JLabel("User has no Tasks!");
+            current_none.add(popis);
+            current_none.setVisible(true);
+            tasks.setLayout(new BorderLayout());
+            tasks.removeAll();
+            tasks.add(current_none, BorderLayout.CENTER);
+            tasks.revalidate();
+            tasks.repaint();
+        }
+        else{
+            closes_Task = Loader.getCurrentlyLogged().getUserTasks().get(0);
+            for (Task userTask : Loader.getCurrentlyLogged().getUserTasks()) {
+                if (userTask.getDeadline().before(closes_Task.getDeadline()))
+                    closes_Task = userTask;
+            }
+            JPanel current = new Task_show(closes_Task);
+            tasks.add(current, BorderLayout.CENTER);
+            current.setPreferredSize(tasks.getPreferredSize());
         
-        JPanel current = new Task_show(task1);
-        current.setPreferredSize(tasks.getPreferredSize());
-        
-        current.setVisible(true);
-        tasks.setLayout(new BorderLayout());
-        tasks.removeAll();
-        tasks.add(current, BorderLayout.CENTER);
-        tasks.revalidate();
-        tasks.repaint();
+            current.setVisible(true);
+            tasks.setLayout(new BorderLayout());
+            tasks.removeAll();
+            tasks.add(current, BorderLayout.CENTER);
+            tasks.revalidate();
+            tasks.repaint();
+        }
     }
     
     private void hide_buttons(){
