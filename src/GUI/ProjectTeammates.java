@@ -9,6 +9,7 @@ import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.Loader;
 import sk.stu.fiit.Priorities;
 import sk.stu.fiit.Project;
@@ -46,9 +47,9 @@ public class ProjectTeammates extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         lblDescription = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnAddUser = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        teammateTable = new javax.swing.JTable();
         userCombo = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         btnAddTask = new javax.swing.JButton();
@@ -89,10 +90,15 @@ public class ProjectTeammates extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 0, 0);
         add(lblDescription, gridBagConstraints);
 
-        jButton1.setText("Add user");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAddUser.setText("Add user");
+        btnAddUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddUserMouseClicked(evt);
+            }
+        });
+        btnAddUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAddUserActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -101,15 +107,12 @@ public class ProjectTeammates extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_START;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
-        add(jButton1, gridBagConstraints);
+        add(btnAddUser, gridBagConstraints);
 
-        jTable1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        teammateTable.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        teammateTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Name", "Email", "Group", "Role"
@@ -130,11 +133,11 @@ public class ProjectTeammates extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setColumnSelectionAllowed(true);
-        jTable1.setDragEnabled(true);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        teammateTable.setColumnSelectionAllowed(true);
+        teammateTable.setDragEnabled(true);
+        teammateTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(teammateTable);
+        teammateTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -158,8 +161,6 @@ public class ProjectTeammates extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         add(userCombo, gridBagConstraints);
-
-        jLabel4.setText("usrcnt");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -199,9 +200,9 @@ public class ProjectTeammates extends javax.swing.JPanel {
         add(btnContinue, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAddUserActionPerformed
 
     private void btnAddTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTaskActionPerformed
         // TODO add your handling code here:
@@ -223,20 +224,28 @@ public class ProjectTeammates extends javax.swing.JPanel {
             pane.repaint();
     }//GEN-LAST:event_btnContinueMouseClicked
 
+    private void btnAddUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddUserMouseClicked
+        User selected = (User) userCombo.getSelectedItem();
+        if(selected != null){
+            addUserToTable(selected);
+        }
+        
+    }//GEN-LAST:event_btnAddUserMouseClicked
+
   
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddTask;
+    private javax.swing.JButton btnAddUser;
     private javax.swing.JButton btnContinue;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblDescription;
     private javax.swing.JLabel lblName;
     private javax.swing.ButtonGroup projectPriorityGroup;
+    private javax.swing.JTable teammateTable;
     private javax.swing.JComboBox<User> userCombo;
     // End of variables declaration//GEN-END:variables
 
@@ -250,6 +259,14 @@ public class ProjectTeammates extends javax.swing.JPanel {
         
         
         
+    }
+    
+    
+    private void addUserToTable(User user){
+        if(user != null){
+            DefaultTableModel model =  (DefaultTableModel) teammateTable.getModel();
+            model.addRow(new Object[]{user.getName(), user.getUsername(), user.getType(), "nieco :D " });
+        }
     }
     
 }

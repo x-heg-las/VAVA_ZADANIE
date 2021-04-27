@@ -29,6 +29,8 @@ public class Project implements Serializable {
         this.priority = priority;
         this.id = prefix;
         this.tag = tag;
+        this.teams = new ArrayList<>();
+        this.tasks = new ArrayList<>();
         this.description = description;
     }
     
@@ -40,6 +42,8 @@ public class Project implements Serializable {
         this.projectName = projectName;
         this.deadline = deadline;
         this.priority = priority;
+        this.teams = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
     public ArrayList<Task> getTasks() {
@@ -107,5 +111,17 @@ public class Project implements Serializable {
         this.priority = priority;
     }
     
+    public boolean hasUser(User user){
+        if(user != null){
+            if (teams.stream().filter(team -> (team != null)).anyMatch(team -> 
+                    (team.getTeamMembers().stream().anyMatch(teamMember -> 
+                            (teamMember.getUsername().compareTo(user.getUsername()) == 0))))) 
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
     
 }

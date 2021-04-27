@@ -30,6 +30,7 @@ public class Login_Screen extends javax.swing.JFrame {
      */
     public Login_Screen() {
         try {
+
             /*Loader.load();
             Project project = Loader.getUsers().get(0).getProjects().get(3);
             User user = Loader.getUsers().get(1);
@@ -75,6 +76,7 @@ public class Login_Screen extends javax.swing.JFrame {
 //        User user6 = new User("admin", "admin","Dagmar OtepkaLUL", 16, "Senica 63", "admin", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_2.jpg");
 //        Loader.addUser(user6);
 //        Loader.save();
+
 Loader.load();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Login_Screen.class.getName()).log(Level.SEVERE, null, ex);
