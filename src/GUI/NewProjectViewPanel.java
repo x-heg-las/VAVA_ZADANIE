@@ -256,7 +256,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
             }
             
             newProject.setDeadline(deadlinedate);
-            newProject.setProject_manager(Loader.findUser(Loader.getCurrentlyLogged().getUsername()));
+            //newProject.setProject_manager(Loader.findUser(Loader.getCurrentlyLogged().getUsername()));
             pane.removeAll();
             next.setVisible(true);
             

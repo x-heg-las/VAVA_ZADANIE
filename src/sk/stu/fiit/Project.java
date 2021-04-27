@@ -14,7 +14,7 @@ public class Project implements Serializable {
     private ArrayList<Team> teams = new ArrayList<>();
      private ArrayList<Task> tasks;
     
-   private User project_manager;
+    private User project_manager;
 
     private String projectName;
     private Date deadline;
