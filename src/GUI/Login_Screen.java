@@ -5,18 +5,11 @@
  */
 package GUI;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import sk.stu.fiit.Admin;
 import sk.stu.fiit.Loader;
-import sk.stu.fiit.Priorities;
-import sk.stu.fiit.Project;
-import sk.stu.fiit.Tasks.Task;
-import sk.stu.fiit.Team;
 import sk.stu.fiit.User;
 
 /**
@@ -239,6 +232,8 @@ Loader.load();
             main_Window.setVisible(rootPaneCheckingEnabled);
             this.dispose();
         }
+        else
+            JOptionPane.showMessageDialog(rootPane, "Wrong username or password!", "Wrong credentials", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_jButton1MouseReleased
 
     /**
@@ -289,13 +284,16 @@ Loader.load();
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Kontrola ci su spravne prihlasovacie udaje.
+     * @return 
+     */
     public User log_user(){
         User user_new;
         String username = jTextField1.getText();
         String password = String.valueOf(jPasswordField1.getPassword());
         
         ArrayList<User> users = Loader.getUsers();
-        System.out.println("Pocet userov je: " + users.size());
         
         if (users.isEmpty()){
             user_new = new User("admin", "admin","admin", 0, "None", "admin", null);
@@ -303,14 +301,9 @@ Loader.load();
         }
         
         for (User user : users) {
-            System.out.println("username = " + user.getUsername());
-            System.out.println("password = " + user.getPassword());
             if (user.getUsername().equals(username) && user.getPassword().equals(password))
                 return user;
         }
-        
-        System.out.println("password = " + password);
-        System.out.println("username = " + username);
         
         return null;
     }
