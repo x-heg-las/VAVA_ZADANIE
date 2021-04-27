@@ -290,11 +290,18 @@ Loader.load();
     // End of variables declaration//GEN-END:variables
 
     public User log_user(){
+        User user_new;
         String username = jTextField1.getText();
         String password = String.valueOf(jPasswordField1.getPassword());
         
         ArrayList<User> users = Loader.getUsers();
         System.out.println("Pocet userov je: " + users.size());
+        
+        if (users.isEmpty()){
+            user_new = new User("admin", "admin","admin", 0, "None", "admin", null);
+            Loader.addUser(user_new);
+        }
+        
         for (User user : users) {
             System.out.println("username = " + user.getUsername());
             System.out.println("password = " + user.getPassword());
