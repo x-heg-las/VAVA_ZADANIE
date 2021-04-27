@@ -169,7 +169,7 @@ public class Loader {
                     }catch(ClassCastException cxe){
                         continue;
                     }     
-                    if("name".equals(record.getNodeName())){
+                    if("name".equals(record.getNodeName()) && classname.equals(record.getFirstChild().getNodeValue())){
                         
                         NodeList dimensions = (((Element)windowNodes).getElementsByTagName("dimension")).item(0).getChildNodes();
                         for(int j = 0; j < dimensions.getLength(); j++){
@@ -220,7 +220,7 @@ public class Loader {
                     }catch(ClassCastException cxe){
                         continue;
                     }     
-                    if("name".equals(record.getNodeName())){
+                    if("name".equals(record.getNodeName())&& classname.equals(record.getFirstChild().getNodeValue())){
                         
                         NodeList dimensions = (((Element)windowNodes).getElementsByTagName("dimension")).item(0).getChildNodes();
                         for(int j = 0; j < dimensions.getLength(); j++){

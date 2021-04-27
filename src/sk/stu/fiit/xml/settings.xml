@@ -7,8 +7,15 @@
     <window>
         <name>GUI.AllProjectsSummary</name>
         <dimension>
-            <width>1719</width>
+            <width>810</width>
             <height>401</height>
+        </dimension>
+    </window>
+    <window>
+        <name>GUI.NewJFrame</name>
+        <dimension>
+            <width>612</width>
+            <height>466</height>
         </dimension>
     </window>
 </settings>
