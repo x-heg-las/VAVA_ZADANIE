@@ -6,6 +6,7 @@
 package sk.stu.fiit.Tasks;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -127,5 +128,16 @@ public class Task implements Serializable{
         
         asignedTo.add(user);
     }
+
+    @Override
+    public String toString() {
+        String text;
+        
+        text = name + ", PRIORITY: " + priority + ", UNTIL: " + 
+                new SimpleDateFormat("dd.MM.yyyy").format(deadline);
+        
+        return text;
+    }
+    
     
 }
