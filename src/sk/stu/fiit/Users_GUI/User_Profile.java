@@ -333,15 +333,21 @@ public class User_Profile extends javax.swing.JFrame {
     private javax.swing.JLabel picture;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
-
-     public void SetImageSize(){
+    
+    /**
+     * Metoda na upravu velkosti obrazka pre okno.
+     */
+    public void SetImageSize(){
         ImageIcon icon = new ImageIcon(user.getPicture());
         Image img = icon.getImage();
         Image newImg = img.getScaledInstance(picture.getWidth(), picture.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon newImc = new ImageIcon(newImg);
         picture.setIcon(newImc);
     }
-     
+    
+    /**
+     * Metoda v pripade, ze chcem zmenit svoje nastavenia.
+     */
     private void enable_input(){
         if(user.getUsername().equals(Loader.getCurrentlyLogged().getUsername())){
             username.setEditable(true);

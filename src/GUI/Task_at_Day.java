@@ -5,13 +5,8 @@
  */
 package GUI;
 
-import java.awt.Color;
-import java.awt.Component;
 import java.util.ArrayList;
-import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import sk.stu.fiit.Tasks.Task;
 
 /**
@@ -119,7 +114,10 @@ public class Task_at_Day extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
+    
+    /**
+     * Metoda naplni tabulku s vsetkymi taskami usera pre ten den.
+     */
     private void fill_table(){
         jTable1.setShowGrid(true);
         jTable1.setRowHeight(300);
