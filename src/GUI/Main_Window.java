@@ -494,7 +494,7 @@ public class Main_Window extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFrame window = new JFrame();
         JPanel panel = new NewProjectViewPanel();
-        window.setSize(800, 600);
+        window.setSize(1000, 800);
         window.add(panel);
         window.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_new_projectMouseReleased

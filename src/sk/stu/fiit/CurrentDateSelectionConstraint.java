@@ -18,6 +18,15 @@ import org.jdatepicker.constraints.DateSelectionConstraint;
 public class CurrentDateSelectionConstraint implements DateSelectionConstraint{
 
     private static final SimpleDateFormat formatter;
+    private Date upperConstraint;
+    
+    public CurrentDateSelectionConstraint() {
+        upperConstraint = null;
+    }
+    
+    public CurrentDateSelectionConstraint(Date upperConstraint){
+        this.upperConstraint = upperConstraint;
+    }
     
     static{
         formatter = new SimpleDateFormat("yyyy.MM.dd");
@@ -29,10 +38,21 @@ public class CurrentDateSelectionConstraint implements DateSelectionConstraint{
         
         Calendar cal = (Calendar) dm.getValue();
         
+          
         if(cal == null){
             cal = Calendar.getInstance();
-            cal.set(dm.getYear(), dm.getMonth(), dm.getDay());
+            cal.set(dm.getYear(), dm.getMonth(), dm.getDay(),0,0,0);
         }
+        
+        if(upperConstraint != null ){
+            
+            if(cal.getTime().after(upperConstraint)){
+                dm.setValue(null);
+                return false;
+                
+            }
+        }
+      
         //Kontrola ci zvoleny den je skor ako aktualny den;
         return new Date().before(cal.getTime());
        
