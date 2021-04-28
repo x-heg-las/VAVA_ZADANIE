@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import sk.stu.fiit.Tasks.Task;
 
 /**
- *
+ * Trieda reprezentujuca pouzivatela programu.
  * @author adamh
  */
 public class User implements Serializable{

@@ -15,7 +15,7 @@ import sk.stu.fiit.Loader;
 import sk.stu.fiit.User;
 
 /**
- *
+ * Trieda pre zobrazenie pouzivatela.
  * @author adamh
  */
 public class User_Profile extends javax.swing.JFrame {

@@ -8,7 +8,7 @@ package sk.stu.fiit.Users_GUI;
 import sk.stu.fiit.Team;
 
 /**
- *
+ * Trieda na zobrazenie detailov timu.
  * @author patoh
  */
 public class Team_Profile extends javax.swing.JFrame {

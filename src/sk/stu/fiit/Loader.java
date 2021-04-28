@@ -31,7 +31,7 @@ import org.xml.sax.SAXException;
 
 
 /**
- *
+ * Trieda ktora sa stara o ukladanie a nacitanie ulozenych dat.
  * @author patoh
  */
 public class Loader {

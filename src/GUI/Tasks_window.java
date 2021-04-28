@@ -18,7 +18,7 @@ import sk.stu.fiit.TaskState;
 import sk.stu.fiit.Tasks.Task;
 
 /**
- *
+ * Trieda, ktora spracuva presuvanie Taskov.
  * @author adamh
  */
 public class Tasks_window extends javax.swing.JFrame {

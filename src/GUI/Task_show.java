@@ -13,7 +13,7 @@ import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER;
 import sk.stu.fiit.Tasks.Task;
 
 /**
- *
+ * Trieda, ktora tvori panel s detailom daneho Task-u.
  * @author adamh
  */
 public class Task_show extends javax.swing.JPanel {
