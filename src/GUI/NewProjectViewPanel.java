@@ -76,7 +76,8 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Name");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle"); // NOI18N
+        jLabel1.setText(bundle.getString("NAME")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
         gridBagConstraints.weightx = 1.0;
@@ -85,7 +86,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("ID");
+        jLabel2.setText(bundle.getString("ID")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
@@ -95,7 +96,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Tag");
+        jLabel3.setText(bundle.getString("TAG")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
@@ -105,7 +106,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Description");
+        jLabel4.setText(bundle.getString("DESCRIPTION")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
@@ -115,7 +116,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Project Priority");
+        jLabel5.setText(bundle.getString("PROJECT PRIORITY")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
@@ -164,7 +165,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
 
         radioUrgent.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         radioUrgent.setForeground(new java.awt.Color(0, 0, 0));
-        radioUrgent.setText("Urgent");
+        radioUrgent.setText(bundle.getString("URGENT")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 4;
         gridBagConstraints.weightx = 1.0;
@@ -174,7 +175,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
 
         radioNonUrgent.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         radioNonUrgent.setForeground(new java.awt.Color(0, 0, 0));
-        radioNonUrgent.setText("Non-Urgent");
+        radioNonUrgent.setText(bundle.getString("NON-URGENT")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 4;
         gridBagConstraints.weightx = 1.0;
@@ -185,7 +186,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
         btnCreateProject.setBackground(new java.awt.Color(51, 153, 255));
         btnCreateProject.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         btnCreateProject.setForeground(new java.awt.Color(0, 0, 0));
-        btnCreateProject.setText("Create project");
+        btnCreateProject.setText(bundle.getString("CREATE PROJECT")); // NOI18N
         btnCreateProject.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCreateProjectMouseClicked(evt);
@@ -197,7 +198,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         add(btnCreateProject, gridBagConstraints);
 
-        jLabel6.setText("prefix added to the project");
+        jLabel6.setText(bundle.getString("PREFIX ADDED TO THE PROJECT")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -206,7 +207,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Project's Deadline");
+        jLabel7.setText(bundle.getString("PROJECT'S DEADLINE")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -223,21 +224,21 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
      * @param evt 
      */
     private void btnCreateProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateProjectMouseClicked
-        String errMessage = "";
+        String errMessage = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("");
         try{
-            errMessage = "";
+            errMessage = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("");
             //Overenie vstupu
             InputVerifiers.hasEmptyFields(taDescription, taID, taName, taTag);
             Priorities priority;
             
             if(Loader.getProjects().containsKey(taID.getText())){
                 
-                JOptionPane.showMessageDialog(null ,"Username already used", "Warning" , JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null ,java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("USERNAME ALREADY USED"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WARNING") , JOptionPane.WARNING_MESSAGE);
             }
             
             if(Loader.getProjects().containsKey(taID.getText())){
-                errMessage = "Duplicit project ID, consider changing it.";
-                throw new RuntimeException("Duplicit project ID");
+                errMessage = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("DUPLICIT PROJECT ID, CONSIDER CHANGING IT.");
+                throw new RuntimeException(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("DUPLICIT PROJECT ID"));
             }
             
            
@@ -256,8 +257,8 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
             
             Date deadlinedate = ((Calendar) deadline.getModel().getValue()).getTime();
             if(deadline == null){
-                errMessage = "wrong deadline";
-                throw new RuntimeException("Bad Date Input");
+                errMessage = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WRONG DEADLINE");
+                throw new RuntimeException(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("BAD DATE INPUT"));
             }
             
             newProject.setDeadline(deadlinedate);
@@ -271,7 +272,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
         
         }catch (RuntimeException runt){
             LOG.log(Level.SEVERE, runt.getMessage());
-            JOptionPane.showMessageDialog(null ,"Wrong input: " + errMessage , "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null ,java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WRONG INPUT: {0}"), new Object[] {errMessage}) , java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WARNING"), JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnCreateProjectMouseClicked
 

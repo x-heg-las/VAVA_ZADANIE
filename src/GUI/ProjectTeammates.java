@@ -76,7 +76,8 @@ public class ProjectTeammates extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("TEAMMATES");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle"); // NOI18N
+        jLabel1.setText(bundle.getString("TEAMMATES")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -86,7 +87,7 @@ public class ProjectTeammates extends javax.swing.JPanel {
 
         lblName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         lblName.setForeground(new java.awt.Color(0, 0, 0));
-        lblName.setText("jLabel2");
+        lblName.setText(bundle.getString("JLABEL2")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -97,7 +98,7 @@ public class ProjectTeammates extends javax.swing.JPanel {
 
         lblDescription.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         lblDescription.setForeground(new java.awt.Color(0, 0, 0));
-        lblDescription.setText("jLabel3");
+        lblDescription.setText(bundle.getString("JLABEL3")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -107,7 +108,7 @@ public class ProjectTeammates extends javax.swing.JPanel {
         add(lblDescription, gridBagConstraints);
 
         btnAddUser.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btnAddUser.setText("Add user");
+        btnAddUser.setText(bundle.getString("ADD USER")); // NOI18N
         btnAddUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddUserMouseClicked(evt);
@@ -183,7 +184,7 @@ public class ProjectTeammates extends javax.swing.JPanel {
         add(jLabel4, gridBagConstraints);
 
         btnAddTask.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btnAddTask.setText("Add task");
+        btnAddTask.setText(bundle.getString("ADD TASK")); // NOI18N
         btnAddTask.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddTaskMouseClicked(evt);
@@ -197,7 +198,7 @@ public class ProjectTeammates extends javax.swing.JPanel {
         add(btnAddTask, gridBagConstraints);
 
         btnContinue.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btnContinue.setText("Continue");
+        btnContinue.setText(bundle.getString("CONTINUE")); // NOI18N
         btnContinue.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnContinueMouseClicked(evt);
@@ -229,7 +230,7 @@ public class ProjectTeammates extends javax.swing.JPanel {
         users.add(project.getProject_manager());
         
         if(users.size() > 0){
-             project.add(new Team(users, "Core Team"));
+             project.add(new Team(users, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("CORE TEAM")));
          }
          
         JPanel next = new ProjectSummary(project);

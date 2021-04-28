@@ -101,7 +101,7 @@ public class UserTaskChart extends javax.swing.JPanel {
     private void createChart(User user){
 
         JFreeChart chart = ChartFactory.createPieChart(
-            "User's progress",
+            java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("USER'S PROGRESS"),
             createDataset(user),
             true,
             true,

@@ -29,6 +29,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+
 /**
  *
  * @author patoh
@@ -51,9 +52,9 @@ public class Loader {
     }
     
     //cesta k suboru kde sa ukladaju data
-    private static final String SAVEFILE = "save.ser";
+    private static final String SAVEFILE = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("SAVE.SER");
     //cesta k XML suboru
-    private static final String SETTINGSFILE = "src/sk/stu/fiit/xml/settings.xml";
+    private static final String SETTINGSFILE = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("SRC/SK/STU/FIIT/XML/SETTINGS.XML");
 
     public static User getCurrentlyLogged() {
         return currentlyLogged;
@@ -101,17 +102,17 @@ public class Loader {
             output.writeObject(projects);
             output.close();
             savefile.close();
-            LOGGER.log(Level.INFO, "Data bili ulozene");
+              LOGGER.log(Level.INFO, "Data uspesne nacitane");
                   
         }catch(IOException ex){
-            LOGGER.log(Level.SEVERE, "Chyba pri ukladani dat.\n{0}", ex.getMessage());
+            LOGGER.log(Level.INFO, "Nepodarilo sa uspesne nacitat data.{0}", ex.getMessage());
         }
    
     }
 
     /**
      * Funkcia sluziaca pre nacitavanie serializovanych dat.
-     * @throws ClassNotFoundException 
+     * 
      */
     public static void load() throws ClassNotFoundException{
               
@@ -125,10 +126,10 @@ public class Loader {
             projects = (HashMap<String,Project>)input.readObject();
             input.close();
             input.close();
-            LOGGER.log(Level.INFO, "Data uspesne nacitane");
+            LOGGER.log(Level.INFO, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("DATA USPESNE NACITANE"));
                   
         }catch(IOException | ClassNotFoundException ex){
-            LOGGER.log(Level.INFO, "Nepodarilo sa uspesne nacitat data.{0}", ex.getMessage());
+            LOGGER.log(Level.INFO, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NEPODARILO SA USPESNE NACITAT DATA.{0}"), ex.getMessage());
         }
        
         
@@ -163,7 +164,7 @@ public class Loader {
             
             Node root = input.getFirstChild();
             
-            NodeList windows = ((Element)root).getElementsByTagName("window");
+            NodeList windows = ((Element)root).getElementsByTagName(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WINDOW"));
             int width = 0;
             int height = 0;
             
@@ -181,15 +182,15 @@ public class Loader {
                     }catch(ClassCastException cxe){
                         continue;
                     }     
-                    if("name".equals(record.getNodeName()) && classname.equals(record.getFirstChild().getNodeValue())){
+                    if(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NAME").equals(record.getNodeName()) && classname.equals(record.getFirstChild().getNodeValue())){
                         
-                        NodeList dimensions = (((Element)windowNodes).getElementsByTagName("dimension")).item(0).getChildNodes();
+                        NodeList dimensions = (((Element)windowNodes).getElementsByTagName(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("DIMENSION"))).item(0).getChildNodes();
                         for(int j = 0; j < dimensions.getLength(); j++){
                             Node dimension = dimensions.item(j);
-                            if("width".equals(dimension.getNodeName())){
+                            if(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WIDTH").equals(dimension.getNodeName())){
                                
                                  width = Integer.parseInt((String)dimension.getFirstChild().getNodeValue());
-                            }else if("height".equals(dimension.getNodeName())){
+                            }else if(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("HEIGHT").equals(dimension.getNodeName())){
                                 height =  Integer.parseInt(dimension.getFirstChild().getNodeValue());
                             }else
                                 continue;
@@ -223,7 +224,7 @@ public class Loader {
             Node root = input.getFirstChild();
 
             
-            NodeList windows = ((Element)root).getElementsByTagName("window");
+            NodeList windows = ((Element)root).getElementsByTagName(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WINDOW"));
             
             for(int i =0; i < windows.getLength(); i++){
                 Element window = (Element) windows.item(i);
@@ -238,14 +239,14 @@ public class Loader {
                     }catch(ClassCastException cxe){
                         continue;
                     }     
-                    if("name".equals(record.getNodeName())&& classname.equals(record.getFirstChild().getNodeValue())){
+                    if(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NAME").equals(record.getNodeName())&& classname.equals(record.getFirstChild().getNodeValue())){
                         
-                        NodeList dimensions = (((Element)windowNodes).getElementsByTagName("dimension")).item(0).getChildNodes();
+                        NodeList dimensions = (((Element)windowNodes).getElementsByTagName(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("DIMENSION"))).item(0).getChildNodes();
                         for(int j = 0; j < dimensions.getLength(); j++){
                             Node dimension = dimensions.item(j);
-                            if("width".equals(dimension.getNodeName())){
+                            if(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WIDTH").equals(dimension.getNodeName())){
                                 dimension.setTextContent(Integer.toString((int)d.getWidth()));
-                            }else if("height".equals(dimension.getNodeName())){
+                            }else if(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("HEIGHT").equals(dimension.getNodeName())){
                                 dimension.setTextContent(Integer.toString((int)d.getHeight()));
                             }else
                                 continue;
@@ -258,24 +259,24 @@ public class Loader {
 
                            
                         }
-                         System.out.println("updated");
+                         System.out.println(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("UPDATED"));
                           return;
                     }
                 }
             }
         
             //ak nebol najdeny zaznam tak sa vytvori novy
-            Element window = input.createElement("window");
+            Element window = input.createElement(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WINDOW"));
             root.appendChild(window);
-            Element nameElement = input.createElement("name");
+            Element nameElement = input.createElement(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NAME"));
             nameElement.appendChild(input.createTextNode(classname));
             window.appendChild(nameElement);
-            Element dimenson = input.createElement("dimension");
+            Element dimenson = input.createElement(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("DIMENSION"));
             window.appendChild(dimenson);
-            Element width = input.createElement("width");
+            Element width = input.createElement(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WIDTH"));
             width.appendChild(input.createTextNode(Integer.toString((int)d.getWidth())));
             dimenson.appendChild(width);
-            Element height = input.createElement("height");
+            Element height = input.createElement(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("HEIGHT"));
             height.appendChild(input.createTextNode(Integer.toString((int)d.getHeight())));
             dimenson.appendChild(height);
             
@@ -285,7 +286,7 @@ public class Loader {
             StreamResult result = new StreamResult(new File(SETTINGSFILE));
             transformer.transform(source, result);
             
-        System.out.println("new node ");
+        System.out.println(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NEW NODE "));
             
         } catch (ParserConfigurationException | SAXException | IOException | TransformerException ex) {
             Logger.getLogger(Loader.class.getName()).log(Level.SEVERE, null, ex);

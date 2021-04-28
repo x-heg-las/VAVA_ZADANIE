@@ -42,7 +42,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
         initComponents();
         setProjectValues();
         
-        if(user.getType().equals("project_manager") ||  user.getType().equals("admin"))
+        if(user.getType().equals(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("PROJECT_MANAGER")) ||  user.getType().equals(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("ADMIN")))
             btnAddTask.setVisible(true);
         else
             btnAddTask.setVisible(false);
@@ -105,7 +105,8 @@ public class AllProjectsSummary extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Project Name");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle"); // NOI18N
+        jLabel1.setText(bundle.getString("PROJECT NAME")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
@@ -113,7 +114,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Project ID");
+        jLabel2.setText(bundle.getString("PROJECT ID")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
@@ -122,7 +123,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Deadline");
+        jLabel3.setText(bundle.getString("DEADLINE")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
@@ -154,7 +155,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Description");
+        jLabel7.setText(bundle.getString("DESCRIPTION")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
@@ -163,7 +164,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Assigned to");
+        jLabel8.setText(bundle.getString("ASSIGNED TO")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -202,7 +203,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
         jPanel2.add(jScrollPane3, gridBagConstraints);
 
         btnAddTask.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btnAddTask.setText("Add task");
+        btnAddTask.setText(bundle.getString("ADD TASK")); // NOI18N
         btnAddTask.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddTaskMouseClicked(evt);
@@ -262,7 +263,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
             this.setPreferredSize(Loader.lookupDimension(this.getClass().getName()));
             pack();
         }catch(Exception ex){
-            LOG.log(Level.SEVERE, "Chyba pri citani rozmerov z XML suboru");
+            LOG.log(Level.SEVERE, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("CHYBA PRI CITANI ROZMEROV Z XML SUBORU"));
         }
     }//GEN-LAST:event_formWindowOpened
     
@@ -305,7 +306,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if (java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NIMBUS").equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -335,7 +336,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
      */
     private void setProjectValues(Project project){
         if(project != null){
-            lblPDate.setText(new SimpleDateFormat("dd.MM.yyyy").format(project.getDeadline()));
+            lblPDate.setText(new SimpleDateFormat(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("DD.MM.YYYY")).format(project.getDeadline()));
             lblPName.setText(project.getProjectName());
             lblPid.setText(project.getId());
             description.setText(project.getDescription());
@@ -384,8 +385,8 @@ public class AllProjectsSummary extends javax.swing.JFrame {
         
         Loader.getProjects().values().forEach(project ->{
             if(user == null ||
-                    (user.getType().equals("project_manager") && project.getProject_manager().getUsername().equals(user.getUsername())) ||
-                    user.getType().equals("admin") ||
+                    (user.getType().equals(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("PROJECT_MANAGER")) && project.getProject_manager().getUsername().equals(user.getUsername())) ||
+                    user.getType().equals(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("ADMIN")) ||
                          project.hasUser(user)){
                 
                     model.addElement(project);

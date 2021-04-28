@@ -57,7 +57,8 @@ public class ProjectTableItem extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Project Name");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle"); // NOI18N
+        jLabel1.setText(bundle.getString("PROJECT NAME")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 0.1;
@@ -67,7 +68,7 @@ public class ProjectTableItem extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Project ID");
+        jLabel2.setText(bundle.getString("PROJECT ID")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
@@ -78,7 +79,7 @@ public class ProjectTableItem extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Deadline");
+        jLabel3.setText(bundle.getString("DEADLINE")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -89,7 +90,7 @@ public class ProjectTableItem extends javax.swing.JPanel {
 
         lblDeadline.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         lblDeadline.setForeground(new java.awt.Color(0, 0, 0));
-        lblDeadline.setText("jLabel4");
+        lblDeadline.setText(bundle.getString("JLABEL4")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
@@ -99,7 +100,7 @@ public class ProjectTableItem extends javax.swing.JPanel {
 
         lblId.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         lblId.setForeground(new java.awt.Color(0, 0, 0));
-        lblId.setText("jLabel5");
+        lblId.setText(bundle.getString("JLABEL5")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -110,7 +111,7 @@ public class ProjectTableItem extends javax.swing.JPanel {
 
         lblName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         lblName.setForeground(new java.awt.Color(0, 0, 0));
-        lblName.setText("jLabel7");
+        lblName.setText(bundle.getString("JLABEL7")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -121,7 +122,7 @@ public class ProjectTableItem extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Project Manager");
+        jLabel4.setText(bundle.getString("PROJECT MANAGER")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -132,7 +133,7 @@ public class ProjectTableItem extends javax.swing.JPanel {
 
         lblProjectManager.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         lblProjectManager.setForeground(new java.awt.Color(0, 0, 0));
-        lblProjectManager.setText("jLabel5");
+        lblProjectManager.setText(bundle.getString("JLABEL5")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
@@ -161,7 +162,7 @@ public class ProjectTableItem extends javax.swing.JPanel {
     private void setValues() {
         try{
             if(project != null){
-              lblDeadline.setText(new SimpleDateFormat("dd.MM.yyyy").format(project.getDeadline()));
+              lblDeadline.setText(new SimpleDateFormat(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("DD.MM.YYYY")).format(project.getDeadline()));
               lblId.setText(project.getId());
               lblName.setText(project.getProjectName());
               lblProjectManager.setText(project.getProject_manager().getName());

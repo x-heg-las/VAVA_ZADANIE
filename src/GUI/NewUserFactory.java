@@ -71,7 +71,8 @@ public class NewUserFactory extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         btnCreateUser.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btnCreateUser.setText("Create Profile");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle"); // NOI18N
+        btnCreateUser.setText(bundle.getString("CREATE PROFILE")); // NOI18N
         btnCreateUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCreateUserMouseClicked(evt);
@@ -104,7 +105,7 @@ public class NewUserFactory extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Name");
+        jLabel1.setText(bundle.getString("NAME")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -114,7 +115,7 @@ public class NewUserFactory extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Address");
+        jLabel2.setText(bundle.getString("ADDRESS")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -124,7 +125,7 @@ public class NewUserFactory extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Age");
+        jLabel3.setText(bundle.getString("AGE")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -144,7 +145,7 @@ public class NewUserFactory extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Password");
+        jLabel4.setText(bundle.getString("PASSWORD")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -154,7 +155,7 @@ public class NewUserFactory extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Status");
+        jLabel5.setText(bundle.getString("STATUS")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -182,7 +183,7 @@ public class NewUserFactory extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Username");
+        jLabel6.setText(bundle.getString("USERNAME")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -199,7 +200,7 @@ public class NewUserFactory extends javax.swing.JFrame {
         jPanel1.add(usernameField, gridBagConstraints);
 
         photoLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        photoLbl.setText("No profile picture");
+        photoLbl.setText(bundle.getString("NO PROFILE PICTURE")); // NOI18N
         photoLbl.setMaximumSize(new java.awt.Dimension(200, 200));
         photoLbl.setMinimumSize(new java.awt.Dimension(100, 100));
         photoLbl.setPreferredSize(new java.awt.Dimension(150, 150));
@@ -211,7 +212,7 @@ public class NewUserFactory extends javax.swing.JFrame {
         jPanel1.add(photoLbl, gridBagConstraints);
 
         addPictureBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        addPictureBtn.setText("Profile Picture");
+        addPictureBtn.setText(bundle.getString("PROFILE PICTURE")); // NOI18N
         addPictureBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addPictureBtnMouseClicked(evt);
@@ -244,7 +245,7 @@ public class NewUserFactory extends javax.swing.JFrame {
             String relative  = new File(".").toURI().relativize(new File(filepath).toURI()).getPath(); //NOI18N
             
             if (!InputVerifiers.check_image(file)){
-                JOptionPane.showMessageDialog(rootPane, "Chosen file is not an image!", "Wrong file", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("CHOSEN FILE IS NOT AN IMAGE!"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WRONG FILE"), JOptionPane.ERROR_MESSAGE);
                 return;
             }
             ImageIcon photo = new ImageIcon(filepath);

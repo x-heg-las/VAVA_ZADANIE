@@ -106,7 +106,8 @@ public class NewTask extends javax.swing.JFrame {
         btnAssignUser = new javax.swing.JButton();
         userCombo = new javax.swing.JComboBox<>();
 
-        jTextField1.setText("jTextField1");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle"); // NOI18N
+        jTextField1.setText(bundle.getString("JTEXTFIELD1")); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -124,14 +125,14 @@ public class NewTask extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Summary");
+        jLabel1.setText(bundle.getString("SUMMARY")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(8, 8, 8, 8);
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Description");
+        jLabel2.setText(bundle.getString("DESCRIPTION")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
@@ -177,7 +178,7 @@ public class NewTask extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel4.setText("Priority");
+        jLabel4.setText(bundle.getString("PRIORITY")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -185,7 +186,7 @@ public class NewTask extends javax.swing.JFrame {
         jPanel2.add(jLabel4, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel5.setText("State");
+        jLabel5.setText(bundle.getString("STATE")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -211,7 +212,7 @@ public class NewTask extends javax.swing.JFrame {
         jPanel2.add(stateCombo, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel6.setText("Deadline");
+        jLabel6.setText(bundle.getString("DEADLINE")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -244,7 +245,7 @@ public class NewTask extends javax.swing.JFrame {
         jPanel2.add(jScrollPane2, gridBagConstraints);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel7.setText("Assigned to");
+        jLabel7.setText(bundle.getString("ASSIGNED TO")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -253,21 +254,21 @@ public class NewTask extends javax.swing.JFrame {
         jPanel2.add(jLabel7, gridBagConstraints);
 
         projectLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        projectLabel.setText("Project");
+        projectLabel.setText(bundle.getString("PROJECT")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         jPanel2.add(projectLabel, gridBagConstraints);
 
         idLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        idLabel.setText("ID");
+        idLabel.setText(bundle.getString("ID")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         jPanel2.add(idLabel, gridBagConstraints);
 
         projectTextLbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        projectTextLbl.setText("jLabel10");
+        projectTextLbl.setText(bundle.getString("JLABEL10")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -275,7 +276,7 @@ public class NewTask extends javax.swing.JFrame {
         jPanel2.add(projectTextLbl, gridBagConstraints);
 
         projectIdLbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        projectIdLbl.setText("jLabel11");
+        projectIdLbl.setText(bundle.getString("JLABEL11")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -291,7 +292,7 @@ public class NewTask extends javax.swing.JFrame {
         jPanel1.add(jPanel2, gridBagConstraints);
 
         btnCreateTask.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btnCreateTask.setText("Create");
+        btnCreateTask.setText(bundle.getString("CREATE")); // NOI18N
         btnCreateTask.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCreateTaskMouseClicked(evt);
@@ -305,7 +306,7 @@ public class NewTask extends javax.swing.JFrame {
         jPanel1.add(btnCreateTask, gridBagConstraints);
 
         bntCancel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        bntCancel.setText("Cancel");
+        bntCancel.setText(bundle.getString("CANCEL")); // NOI18N
         bntCancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bntCancelMouseClicked(evt);
@@ -319,7 +320,7 @@ public class NewTask extends javax.swing.JFrame {
         jPanel1.add(bntCancel, gridBagConstraints);
 
         btnAssignUser.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btnAssignUser.setText("Assign");
+        btnAssignUser.setText(bundle.getString("ASSIGN")); // NOI18N
         btnAssignUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAssignUserMouseClicked(evt);
@@ -419,10 +420,10 @@ public class NewTask extends javax.swing.JFrame {
                 }
                 
             }else
-                throw new Exception("Zle udaje");
+                throw new Exception(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("ZLE UDAJE"));
             
         }catch(Exception ex){
-           LOG.log(Level.SEVERE, "Chyba pri vytvarani task-u.");
+           LOG.log(Level.SEVERE, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("CHYBA PRI VYTVARANI TASK-U."));
         }
         
         Loader.save();
@@ -455,7 +456,7 @@ public class NewTask extends javax.swing.JFrame {
             this.setPreferredSize(Loader.lookupDimension(this.getClass().getName()));
             pack();
         }catch(Exception ex){
-            LOG.log(Level.SEVERE, "Chyba pri citani rozmerov z XML suboru");
+            LOG.log(Level.SEVERE, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("CHYBA PRI CITANI ROZMEROV Z XML SUBORU"));
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -470,7 +471,7 @@ public class NewTask extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if (java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NIMBUS").equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

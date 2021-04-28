@@ -356,4 +356,3 @@ static class TextAreaRenderer_2 extends JScrollPane implements TableCellRenderer
         }
     }
 }
-
