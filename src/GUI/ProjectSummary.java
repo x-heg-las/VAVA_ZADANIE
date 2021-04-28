@@ -16,16 +16,20 @@ import sk.stu.fiit.Team;
 import sk.stu.fiit.User;
 
 /**
- *
- * @author patoh
+ * Trieda, v ktorej su ovladane komponenty JPanel pri dokoncovani vytvarania
+ * noveho projektu.
  */
 public class ProjectSummary extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ProjectViewPanel
-     */
+  
     private Project project;
     
+    /**
+     * Konstruktor, v ktorom sa inicializuju komponenty okna podla vytvaraneho
+     * projektu.
+     * @param project Projekt, ktory chceme vytvorit. Sluzi pre ziskanie detailov
+     * projektu.
+     */
     public ProjectSummary(Project project) {
         this.project = project;
         initComponents();
@@ -217,6 +221,11 @@ public class ProjectSummary extends javax.swing.JPanel {
         add(jScrollPane2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Funkcia sluzi pre zachytenie udalosti kliknutia na tlacidlo "vytvorit projekt"
+     * a zabezpecuje priradenie projektu a uloh k pouzivatelom.
+     * @param evt 
+     */
     private void btnCreateProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateProjectMouseClicked
         
         Loader.addProject(project);

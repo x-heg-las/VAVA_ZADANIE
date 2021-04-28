@@ -23,8 +23,7 @@ import sk.stu.fiit.Team;
 import sk.stu.fiit.User;
 
 /**
- *
- * @author patoh
+ * Trieda spracujuca zobreazenie sumaru projektov v JFrame
  */
 public class AllProjectsSummary extends javax.swing.JFrame {
 
@@ -399,6 +398,9 @@ public class AllProjectsSummary extends javax.swing.JFrame {
 
 }
 
+/**
+ * Trieda reprezentujuca custom render pre bunku tabulky JTable
+ */
 class ProjectDetailTableCellRender implements TableCellRenderer{
 
    
@@ -455,7 +457,9 @@ class ProjectDetailTableCellRender implements TableCellRenderer{
     
 }
 
-
+/**
+ *  Trieda reprezentujuca custom cell render pre JList 
+ */
  class MyCellRenderer extends JPanel implements ListCellRenderer<Object> {
      
      /**
