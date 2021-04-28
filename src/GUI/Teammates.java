@@ -80,7 +80,7 @@ public class Teammates extends javax.swing.JPanel {
         jList1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             //String[] strings = get_names(array_projects.get(0).getProjectName());
-            String[] strings = {"None"};
+            String[] strings = {java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NONE")};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -136,7 +136,7 @@ public class Teammates extends javax.swing.JPanel {
         return array_users.get(jList1.getSelectedIndex());
     }
     
-    /**
+       /**
      * Tato metoda ziska vsetky projekty, medzi ktorymi si moze user prepinat.
      * @return 
      */

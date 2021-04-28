@@ -31,7 +31,7 @@ public class Tasks_window extends javax.swing.JFrame {
     public Tasks_window() {
         initComponents();
         if (Loader.getCurrentlyLogged().getUserTasks() == null){
-            JOptionPane.showMessageDialog(rootPane, "This user has no Tasks!", "No Tasks", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("THIS USER HAS NO TASKS!"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NO TASKS"), JOptionPane.ERROR_MESSAGE);
             return;
         }
         divide_arrays();
@@ -66,7 +66,6 @@ public class Tasks_window extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1806, 900));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
@@ -226,7 +225,8 @@ public class Tasks_window extends javax.swing.JFrame {
         getContentPane().add(jButton4, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
-        jLabel1.setText("TODO");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle"); // NOI18N
+        jLabel1.setText(bundle.getString("TODO")); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(150, 40));
         jLabel1.setPreferredSize(new java.awt.Dimension(150, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -235,7 +235,7 @@ public class Tasks_window extends javax.swing.JFrame {
         getContentPane().add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
-        jLabel2.setText("DOING");
+        jLabel2.setText(bundle.getString("DOING")); // NOI18N
         jLabel2.setMaximumSize(new java.awt.Dimension(150, 40));
         jLabel2.setPreferredSize(new java.awt.Dimension(150, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -244,7 +244,7 @@ public class Tasks_window extends javax.swing.JFrame {
         getContentPane().add(jLabel2, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
-        jLabel3.setText("DONE");
+        jLabel3.setText(bundle.getString("DONE")); // NOI18N
         jLabel3.setMaximumSize(new java.awt.Dimension(150, 40));
         jLabel3.setPreferredSize(new java.awt.Dimension(150, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -258,7 +258,7 @@ public class Tasks_window extends javax.swing.JFrame {
     private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
         // TODO add your handling code here:
         if (jTable1.getSelectedRow() == -1){
-            JOptionPane.showMessageDialog(rootPane, "You have to choose task!", "Wrong input", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("YOU HAVE TO CHOOSE TASK!"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WRONG INPUT"), JOptionPane.ERROR_MESSAGE);
             return;
         }
         Task task = array_todo.get(jTable1.getSelectedRow());
@@ -276,7 +276,7 @@ public class Tasks_window extends javax.swing.JFrame {
     private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
         // TODO add your handling code here:
         if (jTable2.getSelectedRow() == -1){
-            JOptionPane.showMessageDialog(rootPane, "You have to choose task!", "Wrong input", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("YOU HAVE TO CHOOSE TASK!"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WRONG INPUT"), JOptionPane.ERROR_MESSAGE);
             return;
         }
         Task task = array_doing.get(jTable2.getSelectedRow());
@@ -294,7 +294,7 @@ public class Tasks_window extends javax.swing.JFrame {
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
         // TODO add your handling code here:
         if (jTable2.getSelectedRow() == -1){
-            JOptionPane.showMessageDialog(rootPane, "You have to choose task!", "Wrong input", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("YOU HAVE TO CHOOSE TASK!"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WRONG INPUT"), JOptionPane.ERROR_MESSAGE);
             return;
         }
         Task task = array_doing.get(jTable2.getSelectedRow());
@@ -312,7 +312,7 @@ public class Tasks_window extends javax.swing.JFrame {
     private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
         // TODO add your handling code here:
         if (jTable3.getSelectedRow() == -1){
-            JOptionPane.showMessageDialog(rootPane, "You have to choose task!", "Wrong input", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("YOU HAVE TO CHOOSE TASK!"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WRONG INPUT"), JOptionPane.ERROR_MESSAGE);
             return;
         }
         Task task = array_done.get(jTable3.getSelectedRow());
@@ -338,7 +338,7 @@ public class Tasks_window extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if (java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NIMBUS").equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

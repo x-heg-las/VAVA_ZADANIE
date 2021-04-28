@@ -60,12 +60,13 @@ public class Team_Profile extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        btnAddMember.setText("Add Members...");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle"); // NOI18N
+        btnAddMember.setText(bundle.getString("ADD MEMBERS...")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         jPanel1.add(btnAddMember, gridBagConstraints);
 
-        jButton2.setText("Remove from team");
+        jButton2.setText(bundle.getString("REMOVE FROM TEAM")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         jPanel1.add(jButton2, gridBagConstraints);
@@ -73,15 +74,15 @@ public class Team_Profile extends javax.swing.JFrame {
         detailPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(51, 153, 255), new java.awt.Color(204, 204, 204)));
         detailPanel.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText(bundle.getString("JLABEL1")); // NOI18N
         detailPanel.add(jLabel1, new java.awt.GridBagConstraints());
 
-        jLabel2.setText("Name: ");
+        jLabel2.setText(bundle.getString("NAME: ")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         detailPanel.add(jLabel2, gridBagConstraints);
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText(bundle.getString("JLABEL3")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         detailPanel.add(jLabel3, gridBagConstraints);
@@ -132,41 +133,7 @@ public class Team_Profile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Team_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Team_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Team_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Team_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Team_Profile().setVisible(true);
-//            }
-//        });
-//    }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog addTeamMember;
     private javax.swing.JButton btnAddMember;

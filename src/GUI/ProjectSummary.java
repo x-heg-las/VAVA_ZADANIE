@@ -64,7 +64,6 @@ public class ProjectSummary extends javax.swing.JPanel {
         taskTable = new javax.swing.JTable();
 
         taskDialog.setMinimumSize(new java.awt.Dimension(400, 300));
-        taskDialog.setPreferredSize(new java.awt.Dimension(400, 300));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Project Tasks", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 0, 18), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -91,7 +90,8 @@ public class ProjectSummary extends javax.swing.JPanel {
 
         lablDescription.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         lablDescription.setForeground(new java.awt.Color(0, 0, 0));
-        lablDescription.setText("TEAM");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle"); // NOI18N
+        lablDescription.setText(bundle.getString("TEAM")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -101,7 +101,7 @@ public class ProjectSummary extends javax.swing.JPanel {
 
         lblName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         lblName.setForeground(new java.awt.Color(0, 0, 0));
-        lblName.setText("jLabel2");
+        lblName.setText(bundle.getString("JLABEL2")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -111,7 +111,7 @@ public class ProjectSummary extends javax.swing.JPanel {
 
         lblDescription.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         lblDescription.setForeground(new java.awt.Color(0, 0, 0));
-        lblDescription.setText("jLabel3");
+        lblDescription.setText(bundle.getString("JLABEL3")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 8);
@@ -159,7 +159,7 @@ public class ProjectSummary extends javax.swing.JPanel {
         add(jScrollPane1, gridBagConstraints);
 
         btnCreateProject.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btnCreateProject.setText("Create project");
+        btnCreateProject.setText(bundle.getString("CREATE PROJECT")); // NOI18N
         btnCreateProject.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCreateProjectMouseClicked(evt);
@@ -171,7 +171,7 @@ public class ProjectSummary extends javax.swing.JPanel {
         add(btnCreateProject, gridBagConstraints);
 
         btnTasksDetail.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btnTasksDetail.setText("Project tasks");
+        btnTasksDetail.setText(bundle.getString("PROJECT TASKS")); // NOI18N
         btnTasksDetail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnTasksDetailMouseClicked(evt);
@@ -265,7 +265,7 @@ public class ProjectSummary extends javax.swing.JPanel {
      */
     private void loadData(){
         
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("DD.MM.YYYY"));
         
         if(project != null){
             lblDescription.setText(project.getDescription());

@@ -29,7 +29,7 @@ public class InputVerifiers {
      * vynimku.
      */
     public static void hasEmptyFields(JComponent... components) throws RuntimeException{
-        String content = "";
+        String content = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("");
         for(JComponent component : components){
             
             if(component instanceof JTextField)
@@ -42,7 +42,7 @@ public class InputVerifiers {
                 continue;
                 
             if(content.trim().isEmpty()){
-                throw new RuntimeException("EmptyField");
+                throw new RuntimeException(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("EMPTYFIELD"));
             }
             
         }

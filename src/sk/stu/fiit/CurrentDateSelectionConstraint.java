@@ -37,7 +37,7 @@ public class CurrentDateSelectionConstraint implements DateSelectionConstraint{
     }
     
     static{
-        formatter = new SimpleDateFormat("yyyy.MM.dd");
+        formatter = new SimpleDateFormat(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("YYYY.MM.DD"));
     }
     
     /**

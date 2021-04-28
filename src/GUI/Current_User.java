@@ -43,7 +43,8 @@ public class Current_User extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jLabel1.setText("jLabel1");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle"); // NOI18N
+        jLabel1.setText(bundle.getString("JLABEL1")); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Type", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Light", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(47, 80));
         jLabel1.setPreferredSize(new java.awt.Dimension(47, 80));
@@ -55,7 +56,7 @@ public class Current_User extends javax.swing.JPanel {
         add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLabel2.setText(bundle.getString("JLABEL2")); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Name", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Light", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

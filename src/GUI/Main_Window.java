@@ -8,30 +8,22 @@ package GUI;
 import GUI.CalendarProgram;
 import GUI.*;
 import java.awt.BorderLayout;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
-import javax.swing.JTree;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.Document;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.tree.DefaultMutableTreeNode;
 import sk.stu.fiit.Loader;
-import sk.stu.fiit.Priorities;
 import sk.stu.fiit.Project;
 import sk.stu.fiit.Tasks.Task;
-import sk.stu.fiit.Team;
 import sk.stu.fiit.User;
 import sk.stu.fiit.Users_GUI.User_Profile;
 
@@ -43,9 +35,11 @@ public class Main_Window extends javax.swing.JFrame {
     private User user;
     private Teammates teammates;
     private static Main_Window instance;
+    private static final Logger LOG = Logger.getLogger(Main_Window.class.getName());
     //public JTextPane jTextPane = new JTextPane();
     /**
      * Creates new form Main_Window
+     * @param user Pouzivatel, pre ktoreho sa generuje hlavne okno
      */
     public Main_Window(User user) {
         this.user = user;
@@ -109,6 +103,14 @@ public class Main_Window extends javax.swing.JFrame {
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 formComponentResized(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
@@ -288,7 +290,8 @@ public class Main_Window extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Tasks");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle"); // NOI18N
+        jLabel2.setText(bundle.getString("TASKS")); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jLabel2.setMaximumSize(new java.awt.Dimension(150, 454545));
         jLabel2.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -299,13 +302,13 @@ public class Main_Window extends javax.swing.JFrame {
         });
         pnlToolbar.add(jLabel2);
 
-        jLabel1.setText("  ");
+        jLabel1.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel1);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 51));
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Details");
+        jLabel3.setText(bundle.getString("DETAILS")); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jLabel3.setMaximumSize(new java.awt.Dimension(150, 40));
         jLabel3.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -316,13 +319,13 @@ public class Main_Window extends javax.swing.JFrame {
         });
         pnlToolbar.add(jLabel3);
 
-        jLabel4.setText("  ");
+        jLabel4.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel4);
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 51));
         jLabel5.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Calendar");
+        jLabel5.setText(bundle.getString("CALENDAR")); // NOI18N
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jLabel5.setMaximumSize(new java.awt.Dimension(150, 40));
         jLabel5.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -333,13 +336,13 @@ public class Main_Window extends javax.swing.JFrame {
         });
         pnlToolbar.add(jLabel5);
 
-        jLabel9.setText("  ");
+        jLabel9.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel9);
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Settings");
+        jLabel12.setText(bundle.getString("SETTINGS")); // NOI18N
         jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jLabel12.setMaximumSize(new java.awt.Dimension(150, 454545));
         jLabel12.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -350,13 +353,13 @@ public class Main_Window extends javax.swing.JFrame {
         });
         pnlToolbar.add(jLabel12);
 
-        jLabel14.setText("  ");
+        jLabel14.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel14);
 
         AllProjects.setBackground(new java.awt.Color(255, 255, 51));
         AllProjects.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         AllProjects.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        AllProjects.setText("Projects");
+        AllProjects.setText(bundle.getString("PROJECTS")); // NOI18N
         AllProjects.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         AllProjects.setMaximumSize(new java.awt.Dimension(150, 40));
         AllProjects.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -367,13 +370,13 @@ public class Main_Window extends javax.swing.JFrame {
         });
         pnlToolbar.add(AllProjects);
 
-        jLabel6.setText("  ");
+        jLabel6.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel6);
 
         new_task.setBackground(new java.awt.Color(255, 255, 51));
         new_task.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         new_task.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        new_task.setText("New Task");
+        new_task.setText(bundle.getString("NEW TASK")); // NOI18N
         new_task.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         new_task.setMaximumSize(new java.awt.Dimension(150, 40));
         new_task.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -384,13 +387,13 @@ public class Main_Window extends javax.swing.JFrame {
         });
         pnlToolbar.add(new_task);
 
-        jLabel8.setText("  ");
+        jLabel8.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel8);
 
         new_project.setBackground(new java.awt.Color(255, 255, 51));
         new_project.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         new_project.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        new_project.setText("New Project");
+        new_project.setText(bundle.getString("NEW PROJECT")); // NOI18N
         new_project.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         new_project.setMaximumSize(new java.awt.Dimension(150, 40));
         new_project.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -401,13 +404,13 @@ public class Main_Window extends javax.swing.JFrame {
         });
         pnlToolbar.add(new_project);
 
-        jLabel10.setText("  ");
+        jLabel10.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel10);
 
         new_profile.setBackground(new java.awt.Color(255, 255, 51));
         new_profile.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         new_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        new_profile.setText("New Profile");
+        new_profile.setText(bundle.getString("NEW PROFILE")); // NOI18N
         new_profile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         new_profile.setMaximumSize(new java.awt.Dimension(150, 40));
         new_profile.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -418,10 +421,10 @@ public class Main_Window extends javax.swing.JFrame {
         });
         pnlToolbar.add(new_profile);
 
-        jLabel13.setText("  ");
+        jLabel13.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel13);
 
-        jLabel11.setText("  ");
+        jLabel11.setText(bundle.getString("  ")); // NOI18N
         jLabel11.setMaximumSize(new java.awt.Dimension(80, 16));
         jLabel11.setPreferredSize(new java.awt.Dimension(80, 16));
         pnlToolbar.add(jLabel11);
@@ -429,7 +432,7 @@ public class Main_Window extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Log out");
+        jLabel7.setText(bundle.getString("LOG OUT")); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jLabel7.setMaximumSize(new java.awt.Dimension(150, 454545));
         jLabel7.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -525,6 +528,19 @@ public class Main_Window extends javax.swing.JFrame {
         projects.setVisible(true);
     }//GEN-LAST:event_AllProjectsMouseReleased
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        Loader.saveDimension(this.getClass().getName(), this.getSize());
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try{
+            this.setPreferredSize(Loader.lookupDimension(this.getClass().getName()));
+            pack();
+        }catch(Exception ex){
+            LOG.log(Level.SEVERE, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("CHYBA PRI CITANI ROZMEROV Z XML SUBORU"));
+        }
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -536,7 +552,7 @@ public class Main_Window extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if (java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NIMBUS").equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -553,7 +569,7 @@ public class Main_Window extends javax.swing.JFrame {
         //</editor-fold>
         ArrayList<Project> array_project = new ArrayList<Project>();
         /* Create and display the form */
-        User user = new User("andrea", "adam","AdA", 88, "Holic 12", "user", "cesta k obrazku");
+        User user = new User(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("ANDREA"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("ADAM"),java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("ADA"), 88, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("HOLIC 12"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("USER"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("CESTA K OBRAZKU"));
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main_Window(user).setVisible(true);
@@ -644,8 +660,8 @@ public class Main_Window extends javax.swing.JFrame {
     private void showNotes(){
         JTextPane jTextPane = new JTextPane();
         JScrollPane scrollPane = new JScrollPane(jTextPane);
-        JLabel jLabel = new JLabel("Notes");
-        jLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 20));
+        JLabel jLabel = new JLabel(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NOTES"));
+        jLabel.setFont(new java.awt.Font(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("SEGOE UI LIGHT"), 0, 20));
         
         notes.setLayout(new BorderLayout());
         notes.removeAll();
@@ -653,7 +669,7 @@ public class Main_Window extends javax.swing.JFrame {
         
         notes.add(jLabel, BorderLayout.NORTH);
         notes.add(scrollPane, BorderLayout.CENTER);
-        jTextPane.setFont(new java.awt.Font("Segoe UI Light", 0, 15));
+        jTextPane.setFont(new java.awt.Font(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("SEGOE UI LIGHT"), 0, 15));
         
         SimpleAttributeSet attributeSet = new SimpleAttributeSet();
         StyleConstants.setBold(attributeSet, true);
@@ -674,7 +690,7 @@ public class Main_Window extends javax.swing.JFrame {
      * Tato metoda zobrazi inforamacie o momentalnom pouzivatelovi.
      */
     private void showCurrentUser(){
-        System.out.println("user = " + user.getType());
+        //Sysstem.out.println(java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("USER = {0}"), new Object[] {user.getType())});
         JPanel current = new Current_User(user);
         current.setPreferredSize(current_users.getPreferredSize());
         
@@ -704,7 +720,7 @@ public class Main_Window extends javax.swing.JFrame {
         JPanel current_none = new JPanel();
         Task closes_Task;
         if (Loader.getCurrentlyLogged().getUserTasks() == null){
-            popis = new JLabel("User has no Tasks!");
+            popis = new JLabel(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("USER HAS NO TASKS!"));
             current_none.add(popis);
             current_none.setVisible(true);
             tasks.setLayout(new BorderLayout());

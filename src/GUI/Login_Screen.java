@@ -134,7 +134,7 @@ Loader.load();
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
-        jLabel2.setText("Vitajte v programe!");
+        jLabel2.setText(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("VITAJTE V PROGRAME!"));
         jLabel2.setPreferredSize(new java.awt.Dimension(400, 300));
         jPanel1.add(jLabel2, new java.awt.GridBagConstraints());
 
@@ -167,7 +167,7 @@ Loader.load();
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel3.setText("Username:");
+        jLabel3.setText(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("USERNAME:"));
         jLabel3.setPreferredSize(new java.awt.Dimension(100, 80));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -176,7 +176,7 @@ Loader.load();
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel4.setText("Password:");
+        jLabel4.setText(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("PASSWORD:"));
         jLabel4.setPreferredSize(new java.awt.Dimension(100, 80));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -184,7 +184,7 @@ Loader.load();
         jPanel2.add(jLabel4, gridBagConstraints);
 
         jButton1.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
-        jButton1.setText("Login");
+        jButton1.setText(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("LOGIN"));
         jButton1.setPreferredSize(new java.awt.Dimension(200, 80));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -233,7 +233,7 @@ Loader.load();
             this.dispose();
         }
         else
-            JOptionPane.showMessageDialog(rootPane, "Wrong username or password!", "Wrong credentials", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WRONG USERNAME OR PASSWORD!"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WRONG CREDENTIALS"), JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_jButton1MouseReleased
 
     /**
@@ -247,7 +247,7 @@ Loader.load();
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if (java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NIMBUS").equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -296,7 +296,7 @@ Loader.load();
         ArrayList<User> users = Loader.getUsers();
         
         if (users.isEmpty()){
-            user_new = new User("admin", "admin","admin", 0, "None", "admin", null);
+            user_new = new User(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("ADMIN"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("ADMIN"),java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("ADMIN"), 0, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NONE"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("ADMIN"), null);
             Loader.addUser(user_new);
         }
         

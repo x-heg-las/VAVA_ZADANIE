@@ -114,8 +114,8 @@ public class Task implements Serializable{
     public String toString() {
         String text;
         
-        text = name + ", PRIORITY: " + priority + ", UNTIL: " + 
-                new SimpleDateFormat("dd.MM.yyyy").format(deadline);
+         text = name + ", PRIORITY: " + priority + ", UNTIL: " + 
+                new SimpleDateFormat("dd.MM.yyyy").format(deadline);               new SimpleDateFormat(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("DD.MM.YYYY")).format(deadline);
         
         return text;
     }

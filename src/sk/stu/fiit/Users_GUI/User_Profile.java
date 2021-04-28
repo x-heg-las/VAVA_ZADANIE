@@ -20,7 +20,7 @@ import sk.stu.fiit.User;
  */
 public class User_Profile extends javax.swing.JFrame {
     private User user;
-    private String image_path = "";
+    private String image_path = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("");
     /**
      * Creates new form User_Profile
      */
@@ -63,13 +63,14 @@ public class User_Profile extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Username");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle"); // NOI18N
+        jLabel1.setText(bundle.getString("USERNAME")); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(120, 40));
         getContentPane().add(jLabel1, new java.awt.GridBagConstraints());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Type");
+        jLabel2.setText(bundle.getString("TYPE")); // NOI18N
         jLabel2.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -78,7 +79,7 @@ public class User_Profile extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Age");
+        jLabel3.setText(bundle.getString("AGE")); // NOI18N
         jLabel3.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -87,7 +88,7 @@ public class User_Profile extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Address");
+        jLabel4.setText(bundle.getString("ADDRESS")); // NOI18N
         jLabel4.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -96,7 +97,7 @@ public class User_Profile extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Picture");
+        jLabel5.setText(bundle.getString("PICTURE")); // NOI18N
         jLabel5.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -143,7 +144,7 @@ public class User_Profile extends javax.swing.JFrame {
         gridBagConstraints.gridy = 5;
         getContentPane().add(address, gridBagConstraints);
 
-        picture.setText("jLable1");
+        picture.setText(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("JLABLE1"));
         picture.setPreferredSize(new java.awt.Dimension(120, 120));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -153,7 +154,7 @@ public class User_Profile extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Password");
+        jLabel6.setText(bundle.getString("PASSWORD")); // NOI18N
         jLabel6.setPreferredSize(new java.awt.Dimension(120, 40));
         getContentPane().add(jLabel6, new java.awt.GridBagConstraints());
 
@@ -173,7 +174,7 @@ public class User_Profile extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Name");
+        jLabel7.setText(bundle.getString("NAME")); // NOI18N
         jLabel7.setPreferredSize(new java.awt.Dimension(120, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -193,7 +194,7 @@ public class User_Profile extends javax.swing.JFrame {
         });
         getContentPane().add(password, new java.awt.GridBagConstraints());
 
-        jButton1.setText("Confirm");
+        jButton1.setText(bundle.getString("CONFIRM")); // NOI18N
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jButton1MouseReleased(evt);
@@ -209,7 +210,7 @@ public class User_Profile extends javax.swing.JFrame {
         if(!user.getUsername().equals(Loader.getCurrentlyLogged().getUsername()))
         jButton1.setVisible(false);
 
-        new_image.setText("New Image");
+        new_image.setText(bundle.getString("NEW IMAGE")); // NOI18N
         new_image.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 new_imageMouseReleased(evt);
@@ -241,16 +242,16 @@ public class User_Profile extends javax.swing.JFrame {
 
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
         // TODO add your handling code here:
-        String regex = "\\d+";
+        String regex = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("\\D+");
         try{
             InputVerifiers.hasEmptyFields(username, password, name, address, age);
             if (!age.getText().matches(regex)){
-                JOptionPane.showMessageDialog(rootPane, "Age can contain only numbers!", "Wrong age type!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("AGE CAN CONTAIN ONLY NUMBERS!"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WRONG AGE TYPE!"), JOptionPane.ERROR_MESSAGE);
                 return;
             }
             
         } catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane, "All fields mus be filled!\n", "Wrong input", JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog(rootPane, "Chosen file is not image!", "Wrong age type!", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
@@ -262,7 +263,7 @@ public class User_Profile extends javax.swing.JFrame {
         Loader.findUser(Loader.getCurrentlyLogged().getUsername()).setPicture(image_path);
         
         Loader.save();
-        JOptionPane.showMessageDialog(rootPane, "Changes saved!", "Succes", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(rootPane, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("CHANGES SAVED!"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("SUCCES"), JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
     }//GEN-LAST:event_jButton1MouseReleased
 
@@ -276,11 +277,11 @@ public class User_Profile extends javax.swing.JFrame {
         image_path = fc.getSelectedFile().getAbsolutePath();
         File file = new File(image_path);
             if (!InputVerifiers.check_image(file)){
-                JOptionPane.showMessageDialog(rootPane, "Chosen file is not image!", "Wrong age type!", JOptionPane.ERROR_MESSAGE);
-                image_path = "";
+                JOptionPane.showMessageDialog(rootPane, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("CHOSEN FILE IS NOT IMAGE!"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WRONG AGE TYPE!"), JOptionPane.ERROR_MESSAGE);
+                image_path = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("");
                 return;
             }
-        JOptionPane.showMessageDialog(rootPane, "New image chosen!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(rootPane, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NEW IMAGE CHOSEN!"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("SUCCESS"), JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_new_imageMouseReleased
 
     /**
@@ -294,7 +295,7 @@ public class User_Profile extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if (java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NIMBUS").equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -309,7 +310,7 @@ public class User_Profile extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(User_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        User user = new User("ignac.b", "lajza","Ignac Bajza", 44, "Hodonin 17","user", "C:\\Users\\adamh\\Pictures\\FIITka - obrazky\\VAVA\\logo_2.jpg");
+        User user = new User(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("IGNAC.B"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("LAJZA"),java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("IGNAC BAJZA"), 44, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("HODONIN 17"),java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("USER"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("C:\\USERS\\ADAMH\\PICTURES\\FIITKA - OBRAZKY\\VAVA\\LOGO_2.JPG"));
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -23,7 +23,7 @@ public class User implements Serializable{
     private String type;
     private ArrayList<Project> projects;
     private ArrayList<Task> userTasks;
-    private String notes = "";
+    private String notes = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("");
     private boolean firtTimeLogged;
 
     public ArrayList<Task> getUserTasks() {
@@ -131,6 +131,6 @@ public class User implements Serializable{
 
     @Override
     public String toString() {
-        return  "Name: " + name + "  \t  Role:" + type ;
+           return  "Name: " + name + "  \t  Role:" + type ;
     }
 }
