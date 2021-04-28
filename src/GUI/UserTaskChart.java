@@ -7,44 +7,48 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
-import sk.stu.fiit.Loader;
-import sk.stu.fiit.Priorities;
-import sk.stu.fiit.Project;
 import sk.stu.fiit.TaskState;
-import sk.stu.fiit.Tasks.Task;
 import sk.stu.fiit.User;
 
 /**
- *
+ *  Trieda, ktora sluzi na vytvorenie kolacoveho grafu.
  * @author patoh
  */
 public class UserTaskChart extends javax.swing.JPanel {
 
-    /**
-     * Creates new form UserTaskChart
-     */
-    
+   
+    //Instancia aktualne zobrazovaneho grafu.
     private static UserTaskChart instance = null;
     
+    /**
+     * Konstruktor, ktory inicializuje komponenty v JPanel a zaroven
+     * vytvori graf na zaklade uloh, ktore su priradene pouzivatelovi.
+     * @param user Pouzivatel, podla ktoreho uloh sa vytvara kolacovy graf.
+     */
     public UserTaskChart(User user) {
         initComponents();
         createChart(user);
         instance = this;
     }
     
+    /**
+     * Funkcia pre ziskanie aktualnej instancie grafu.
+     * @return Aktualna instancia grafu (JPanel).
+     */
     public static UserTaskChart getCurrentInstance(){
         return instance;
     }
     
+    /**
+     * Finkcia, ktora je volana vzdy ak chceme upravit informacie zobrazovane
+     * v grafe.
+     * @param user Pouzivatel, podla ktoreho informacii je graf zostavovany.
+     */
     public void updateChartInstance(User user){
         createChart(user);
         instance = this;
@@ -90,9 +94,13 @@ public class UserTaskChart extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 
-private void createChart(User user){
+    /**
+     * Funkcia sluziaca na vytvorenie grafu.
+     * @param user Pouzivatel, ktoreho informacie su pouzite pri vytvarani grafu.
+     */
+    private void createChart(User user){
 
-    JFreeChart chart = ChartFactory.createPieChart(
+        JFreeChart chart = ChartFactory.createPieChart(
             "User's progress",
             createDataset(user),
             true,
@@ -105,7 +113,12 @@ private void createChart(User user){
     chartPanel.validate();
   }
     
-    
+    /**
+     * Funkcia sluziaca pre vytvorenie datasetu, ktory bude zobrazovany grafom.
+     * @param user Pouzivatel, ktoreho informacie su pouzite pri vytvarani datasetu.
+     * @return Dataset reprezentujuci pocetnost stavov jednotlivych uloh patriacich
+     * pouzivatelovi.
+     */
   private static PieDataset createDataset(User user){
       
       DefaultPieDataset dataset = new DefaultPieDataset();

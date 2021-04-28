@@ -217,6 +217,11 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
         add(deadline, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Po kliknuti sa vytvori nova instancia objektu Project, ktora sa dalej
+     * spracovava.
+     * @param evt 
+     */
     private void btnCreateProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateProjectMouseClicked
         String errMessage = "";
         try{
@@ -256,7 +261,7 @@ public class NewProjectViewPanel extends javax.swing.JPanel {
             }
             
             newProject.setDeadline(deadlinedate);
-            //newProject.setProject_manager(Loader.findUser(Loader.getCurrentlyLogged().getUsername()));
+            newProject.setProject_manager(Loader.findUser(Loader.getCurrentlyLogged().getUsername()));
             pane.removeAll();
             next.setVisible(true);
             

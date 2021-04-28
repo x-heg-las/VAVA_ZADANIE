@@ -12,18 +12,26 @@ import org.jdatepicker.DateModel;
 import org.jdatepicker.constraints.DateSelectionConstraint;
 
 /**
- *
- * @author patoh
+ *  Trieda reprezentujuca obmedzenie vyberu dna, ktore sa moze aplikovat na komponent
+ *  JDatePicker. Trieda implementuje rozhranie DateSelectionConstraint.
  */
 public class CurrentDateSelectionConstraint implements DateSelectionConstraint{
 
     private static final SimpleDateFormat formatter;
     private Date upperConstraint;
     
+    /**
+     * Zakladny konstruktor triedy. 
+     */
     public CurrentDateSelectionConstraint() {
         upperConstraint = null;
     }
     
+    /**
+     * Konstruktor triedy, ktory sposobi to, ze sa obmedzenie vyberu datumu aplikuje
+     * z oboch stran.
+     * @param upperConstraint Horna hranica, od ktorej bude vyber zakazany.
+     */
     public CurrentDateSelectionConstraint(Date upperConstraint){
         this.upperConstraint = upperConstraint;
     }
@@ -32,6 +40,11 @@ public class CurrentDateSelectionConstraint implements DateSelectionConstraint{
         formatter = new SimpleDateFormat("yyyy.MM.dd");
     }
     
+    /**
+     * Funkcia kontrolujuca, ktory datum je mozne podla zadanych informacii vybrat.
+     * @param dm Model datumu.
+     * @return True ak je mozne vybrat skumany datum, inak false.
+     */
     @Override
     public boolean isValidSelection(DateModel<?> dm) {
         

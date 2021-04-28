@@ -10,15 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author patoh
+ *  Trieda reprezentujuca jednotlive timy pouzivatelov.
  */
 public class Team implements Serializable{
     private String name;
     private ArrayList<User> teamMembers;
     private User leader;
     
-
+    /**
+     * Konstruktor pre vytvorenie timu.
+     * @param users Zoznam pouzivatelov v time.
+     * @param name Nazov timu.
+     */
     public Team(List<User> users, String name) {
         teamMembers = (ArrayList<User>) users;
         this.name = name;
@@ -26,7 +29,7 @@ public class Team implements Serializable{
     
     /**
      * Motada na pridanie usera.
-     * @param user 
+     * @param user pridavany user.
      */
     public void addMember(User user){
         if(teamMembers != null){
@@ -36,8 +39,8 @@ public class Team implements Serializable{
     
     /**
      * Metoda ktora odstrani zvoleneho usera.
-     * @param user
-     * @return 
+     * @param user User, ktoreho chceme odstranit
+     * @return True ak bol odstraneny, inak false.
      */
     public boolean removeMember(User user){
         if(teamMembers != null && teamMembers.contains(user)){

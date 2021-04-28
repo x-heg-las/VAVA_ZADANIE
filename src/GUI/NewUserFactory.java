@@ -10,6 +10,8 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -18,16 +20,17 @@ import sk.stu.fiit.Loader;
 import sk.stu.fiit.User;
 
 /**
- *
- * @author patoh
+ *  Trieda, ktorej ulohou je zabezpecit vytvorenie noveho pouzivatela.
+ * @author Patrik Heglas
  */
 public class NewUserFactory extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewUserFactory
-     */
+   
     private  String filepath = null;
-    
+    private static final Logger LOG = Logger.getLogger(NewUserFactory.class.getName());
+    /**
+     * Konstruktor, v ktorom sa inicializuju komponenty okna
+     */
     public NewUserFactory() {
         initComponents();
     }
@@ -44,7 +47,7 @@ public class NewUserFactory extends javax.swing.JFrame {
 
         fileChooser = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnCreateUser = new javax.swing.JButton();
         nameField = new javax.swing.JTextField();
         addressField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -67,16 +70,19 @@ public class NewUserFactory extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "New User", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 0, 18), new java.awt.Color(0, 0, 0))); // NOI18N
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setText("Create Profile");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCreateUser.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btnCreateUser.setText("Create Profile");
+        btnCreateUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnCreateUserMouseClicked(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
-        jPanel1.add(jButton1, gridBagConstraints);
+        jPanel1.add(btnCreateUser, gridBagConstraints);
+
+        nameField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -85,6 +91,8 @@ public class NewUserFactory extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel1.add(nameField, gridBagConstraints);
+
+        addressField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -94,6 +102,8 @@ public class NewUserFactory extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel1.add(addressField, gridBagConstraints);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -102,6 +112,8 @@ public class NewUserFactory extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel1.add(jLabel1, gridBagConstraints);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Address");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -110,6 +122,8 @@ public class NewUserFactory extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel1.add(jLabel2, gridBagConstraints);
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Age");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -118,6 +132,7 @@ public class NewUserFactory extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         jPanel1.add(jLabel3, gridBagConstraints);
 
+        ageSpinner.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         ageSpinner.setModel(new javax.swing.SpinnerNumberModel(16, 16, 80, 1));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -127,6 +142,8 @@ public class NewUserFactory extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel1.add(ageSpinner, gridBagConstraints);
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Password");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -135,6 +152,8 @@ public class NewUserFactory extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel1.add(jLabel4, gridBagConstraints);
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Status");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -142,6 +161,8 @@ public class NewUserFactory extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel1.add(jLabel5, gridBagConstraints);
+
+        passwordField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -150,6 +171,7 @@ public class NewUserFactory extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel1.add(passwordField, gridBagConstraints);
 
+        statusCombo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         statusCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "admin", "user", "director" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -158,6 +180,8 @@ public class NewUserFactory extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel1.add(statusCombo, gridBagConstraints);
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Username");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -165,6 +189,8 @@ public class NewUserFactory extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel1.add(jLabel6, gridBagConstraints);
+
+        usernameField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -184,6 +210,7 @@ public class NewUserFactory extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel1.add(photoLbl, gridBagConstraints);
 
+        addPictureBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         addPictureBtn.setText("Profile Picture");
         addPictureBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -200,6 +227,10 @@ public class NewUserFactory extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Pridanie fotky k pouzivatelovi.
+     * @param evt 
+     */
     private void addPictureBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPictureBtnMouseClicked
          final JFileChooser fc = new JFileChooser();
           fc.setCurrentDirectory(new File(".")); //NOI18N
@@ -238,75 +269,44 @@ public class NewUserFactory extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addPictureBtnMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-      try{
-          InputVerifiers.hasEmptyFields(nameField, usernameField, passwordField,
-                  addressField);
-          
-          User newUser = null;
-          
-          String status = ((String) statusCombo.getSelectedItem()).trim();
-          int age = (int) ageSpinner.getValue();
-          
-          
-          
-          if(!status.isEmpty()){
-             newUser = new User(usernameField.getText(), String.valueOf(passwordField.getPassword()),
-                     nameField.getText(), age, addressField.getText(), status, filepath);
-          }
-          
-          if(newUser != null)
-            Loader.addUser(newUser);
-          
-          this.dispose();
-       
-      }catch(RuntimeException ex){
-          //TODO:: logger
-          System.err.println("nejaka chybicka se vloudila :D");
-      }
-    }//GEN-LAST:event_jButton1MouseClicked
+    /**
+     * Funkcia zabezpecuje pridavanie noveho pouzivatela do systemu.
+     */
+    private void btnCreateUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateUserMouseClicked
+        try{
+            InputVerifiers.hasEmptyFields(nameField, usernameField, passwordField,
+                    addressField);
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(NewUserFactory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(NewUserFactory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(NewUserFactory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(NewUserFactory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new NewUserFactory().setVisible(true);
-//            }
-//        });
-//    }
+            User newUser = null;
+
+            String status = ((String) statusCombo.getSelectedItem()).trim();
+            int age = (int) ageSpinner.getValue();
+
+
+
+            if(!status.isEmpty()){
+               newUser = new User(usernameField.getText(), String.valueOf(passwordField.getPassword()),
+                       nameField.getText(), age, addressField.getText(), status, filepath);
+            }
+
+            if(newUser != null)
+              Loader.addUser(newUser);
+
+            this.dispose();
+
+        }catch(RuntimeException ex){
+            LOG.log(Level.SEVERE, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnCreateUserMouseClicked
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addPictureBtn;
     private javax.swing.JTextField addressField;
     private javax.swing.JSpinner ageSpinner;
+    private javax.swing.JButton btnCreateUser;
     private javax.swing.JFileChooser fileChooser;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

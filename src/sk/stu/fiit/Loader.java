@@ -6,36 +6,23 @@
 package sk.stu.fiit;
 
 import java.awt.Dimension;
-import java.beans.XMLDecoder;
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.XMLConstants;
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -54,18 +41,18 @@ public class Loader {
     private static ArrayList<User> users;
     //key : project ID
     private static HashMap<String, Project> projects;
-    
+    private static final Logger LOGGER = Logger.getLogger(Loader.class.getName());
     
     static{
         currentlyLogged = null;
         users = new  ArrayList<>();
         projects = new HashMap<>();
         
-        //users.add(new User("jaja", 10, "Adresa", "pic"));
     }
     
-    
+    //cesta k suboru kde sa ukladaju data
     private static final String SAVEFILE = "save.ser";
+    //cesta k XML suboru
     private static final String SETTINGSFILE = "src/sk/stu/fiit/xml/settings.xml";
 
     public static User getCurrentlyLogged() {
@@ -99,27 +86,33 @@ public class Loader {
         return users;
     }
     
+    /**
+     * Funkcia, ktora vykona serializaciu statickych kolekcii v tejto triede,
+     * Uklada zoznam projektov a zoznam vytvorenych pouzivatelov.
+     */
     public static void save(){
         FileOutputStream savefile;
         
         try{
             savefile = new FileOutputStream(SAVEFILE);
             ObjectOutputStream output = new ObjectOutputStream(savefile);
-            //TODO : pridaj veci na ulozenie
+            
             output.writeObject(users);
             output.writeObject(projects);
             output.close();
             savefile.close();
-            //TODO : logger add logger
+            LOGGER.log(Level.INFO, "Data bili ulozene");
                   
         }catch(IOException ex){
-            //TODO: logger
+            LOGGER.log(Level.SEVERE, "Chyba pri ukladani dat.\n{0}", ex.getMessage());
         }
-
    
     }
 
-    
+    /**
+     * Funkcia sluziaca pre nacitavanie serializovanych dat.
+     * @throws ClassNotFoundException 
+     */
     public static void load() throws ClassNotFoundException{
               
             FileInputStream savefile;
@@ -127,23 +120,27 @@ public class Loader {
         try{
             savefile = new FileInputStream(SAVEFILE);
             ObjectInputStream input = new ObjectInputStream(savefile);
-            //TODO : pridaj veci na ulozenie
+            
             users = (ArrayList<User>)input.readObject();
             projects = (HashMap<String,Project>)input.readObject();
             input.close();
             input.close();
-            //TODO : logger add logger
+            LOGGER.log(Level.INFO, "Data uspesne nacitane");
                   
         }catch(IOException | ClassNotFoundException ex){
-            //TODO: logger
+            LOGGER.log(Level.INFO, "Nepodarilo sa uspesne nacitat data.{0}", ex.getMessage());
         }
        
         
-        
-        
     }
     
-    
+    /**
+     * Funkcia sluziaca pre najdene pouzivatela v zozname pouzivatelov podla
+     * jeho prihlasovacieho mena.
+     * @param username Prihlasovacie meno pouzivatela.
+     * @return Ak sa v zozname nachadza pouzivatel so zadanym pouzivatelskym menom
+     * tak vrati jeho instanciu. Inak null.
+     */
     public static User findUser(String username){
         for(User user : users){
             if(user.getUsername().equals(username))
@@ -225,8 +222,6 @@ public class Loader {
             
             Node root = input.getFirstChild();
 
-          ;
-                 
             
             NodeList windows = ((Element)root).getElementsByTagName("window");
             

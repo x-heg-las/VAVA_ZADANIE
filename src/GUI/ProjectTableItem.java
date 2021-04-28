@@ -6,18 +6,19 @@
 package GUI;
 
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sk.stu.fiit.Project;
 
 /**
- *
- * @author patoh
+ *  Trieda reprezentujuca JPanel, ktory sa vyuziva ako custom render v zozname
+ * s projektmi.
+ * @author Patrik Heglas
  */
 public class ProjectTableItem extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ProjectTableItem
-     */
     private final Project project;
+    private static final Logger LOG = Logger.getLogger(ProjectTableItem.class.getName());
     
     /**
      * Konstruktor pre JPanel, ktory sluzi ako polozka v tabulke obsahujucej
@@ -160,15 +161,13 @@ public class ProjectTableItem extends javax.swing.JPanel {
     private void setValues() {
         try{
             if(project != null){
-                //TODO: oprav projekt
               lblDeadline.setText(new SimpleDateFormat("dd.MM.yyyy").format(project.getDeadline()));
               lblId.setText(project.getId());
               lblName.setText(project.getProjectName());
               lblProjectManager.setText(project.getProject_manager().getName());
             }
         }catch(Exception ex){
-            //TODO : premen na logger
-            System.out.println("Nepodarilo sa vsetko nacitat");
+            LOG.log(Level.SEVERE, ex.getMessage());
         }
     }
 }

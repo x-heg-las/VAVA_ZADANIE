@@ -20,17 +20,21 @@ import sk.stu.fiit.Team;
 import sk.stu.fiit.User;
 
 /**
- *
- * @author patoh
+ *  Trieda ovadajuca JPanel zobrazujuci tedal o priradenych pracovnikov
+ * k projektu
+ * @author Patrik Heglas
  */
 public class ProjectTeammates extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ProjectViewPanel
-     */
+    
     
     private Project project;
     private List<User> users;
+    
+    /**
+     * Konstruktor, ktory inicializuje komponenty v okne
+     * @param project Projekt, podla ktoreho sa inicializuju komponenty
+     */
     public ProjectTeammates(Project project) {
         this.project = project;
         users = new ArrayList<>();
@@ -109,11 +113,6 @@ public class ProjectTeammates extends javax.swing.JPanel {
                 btnAddUserMouseClicked(evt);
             }
         });
-        btnAddUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddUserActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
@@ -190,11 +189,6 @@ public class ProjectTeammates extends javax.swing.JPanel {
                 btnAddTaskMouseClicked(evt);
             }
         });
-        btnAddTask.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddTaskActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 2;
@@ -217,19 +211,20 @@ public class ProjectTeammates extends javax.swing.JPanel {
         add(btnContinue, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddUserActionPerformed
-
-    private void btnAddTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTaskActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddTaskActionPerformed
-
+    /**
+     * Po kliknuti na tlacidlo zobrazi okno pre pridanie ulohy.
+     * @param evt 
+     */
     private void btnAddTaskMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddTaskMouseClicked
         JFrame taskFrame = new NewTask(project);
         taskFrame.setVisible(true);
     }//GEN-LAST:event_btnAddTaskMouseClicked
 
+    /**
+     * Po kliknuti na tlacidlo pokracuje na konecne zobrazenie informacii o
+     * vytvaranom projekte.
+     * @param evt 
+     */
     private void btnContinueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContinueMouseClicked
         users.add(project.getProject_manager());
         
@@ -240,8 +235,6 @@ public class ProjectTeammates extends javax.swing.JPanel {
         JPanel next = new ProjectSummary(project);
             Container pane = this.getParent();
             
-           
-            
             pane.removeAll();
             next.setVisible(true);
             pane.add(next);
@@ -249,6 +242,10 @@ public class ProjectTeammates extends javax.swing.JPanel {
             pane.repaint();
     }//GEN-LAST:event_btnContinueMouseClicked
 
+    /**
+     * Po kliknuti na tlacidlo priradi pouzivatela k projektu.
+     * @param evt 
+     */
     private void btnAddUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddUserMouseClicked
         User selected = (User) userCombo.getSelectedItem();
         if(selected != null){
@@ -275,6 +272,10 @@ public class ProjectTeammates extends javax.swing.JPanel {
     private javax.swing.JComboBox<User> userCombo;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Funkcia sluzi pre nastavenie hodnot komponentov v JPanel
+     * podla aktualne vytvaraneho projektu.
+     */
     private void setValues(){
         lblName.setText(project.getProjectName());
         lblDescription.setText(project.getDescription());
@@ -283,11 +284,12 @@ public class ProjectTeammates extends javax.swing.JPanel {
             userCombo.addItem(user);
         });
         
-        
-        
     }
     
-    
+    /**
+     * Funkcia sluzi na vyvorenie zaznamu v tabulke s priradenymi pouzivatelmi.
+     * @param user Pouzivatel, ktoreho informacie sa vkladaju do tabulky.
+     */
     private void addUserToTable(User user){
         if(user != null){
             DefaultTableModel model =  (DefaultTableModel) teammateTable.getModel();

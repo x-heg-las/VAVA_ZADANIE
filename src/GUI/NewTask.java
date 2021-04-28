@@ -22,8 +22,7 @@ import sk.stu.fiit.Loader;
 import sk.stu.fiit.Tasks.Task;
 
 /**
- *
- * @author patoh
+ * Trieda spracujuca vytvorenie novej ulohy.
  */
 public class NewTask extends javax.swing.JFrame {
 
@@ -33,6 +32,11 @@ public class NewTask extends javax.swing.JFrame {
     private Main_Window main;
     private final Logger LOG = Logger.getLogger(NewTask.class.getName());
     
+    /**
+     * Konstruktor triedy, volanu ked si chce pouzivatel zadat novu ulohu.
+     * @param user Pouzivael, ktory si vytvara novu ulohu.
+     * @param main Instancia hlavneho okna programu
+     */
     public NewTask(User user, Main_Window main)
     {
         this.main = main;
@@ -50,6 +54,10 @@ public class NewTask extends javax.swing.JFrame {
         initializeValues();
     }
     
+    /**
+     * Konstruktor triedy, ktory je volany ked sa uloha priraduje projektu.
+     * @param project Projekt, ktoremu je uloha priradena.
+     */
     public NewTask(Project project) {
         this.project = project;
         this.curentUser = null;
@@ -168,6 +176,7 @@ public class NewTask extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(200, 509));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setText("Priority");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -175,6 +184,7 @@ public class NewTask extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel4, gridBagConstraints);
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel5.setText("State");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -200,6 +210,7 @@ public class NewTask extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(stateCombo, gridBagConstraints);
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel6.setText("Deadline");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -232,6 +243,7 @@ public class NewTask extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jScrollPane2, gridBagConstraints);
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel7.setText("Assigned to");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -240,18 +252,21 @@ public class NewTask extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel7, gridBagConstraints);
 
+        projectLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         projectLabel.setText("Project");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         jPanel2.add(projectLabel, gridBagConstraints);
 
+        idLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         idLabel.setText("ID");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         jPanel2.add(idLabel, gridBagConstraints);
 
+        projectTextLbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         projectTextLbl.setText("jLabel10");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -259,6 +274,7 @@ public class NewTask extends javax.swing.JFrame {
         gridBagConstraints.weighty = 0.05;
         jPanel2.add(projectTextLbl, gridBagConstraints);
 
+        projectIdLbl.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         projectIdLbl.setText("jLabel11");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -293,11 +309,6 @@ public class NewTask extends javax.swing.JFrame {
         bntCancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bntCancelMouseClicked(evt);
-            }
-        });
-        bntCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntCancelActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -338,10 +349,10 @@ public class NewTask extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bntCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCancelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bntCancelActionPerformed
-
+    /**
+     * Po stlaceni tlacidla sa priradi pouzivatel k novej ulohe.
+     * @param evt 
+     */
     private void btnAssignUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAssignUserMouseClicked
         int index = userCombo.getSelectedIndex();
         
@@ -358,6 +369,10 @@ public class NewTask extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAssignUserMouseClicked
 
+    /**
+     * Po stlaceni tlacidla sa vytvori a priradu nova uloha.
+     * @param evt 
+     */
     private void btnCreateTaskMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateTaskMouseClicked
         try{
             InputVerifiers.hasEmptyFields(taSummary);
@@ -407,20 +422,34 @@ public class NewTask extends javax.swing.JFrame {
                 throw new Exception("Zle udaje");
             
         }catch(Exception ex){
-            //TODO :: pridaj logger
+           LOG.log(Level.SEVERE, "Chyba pri vytvarani task-u.");
         }
         
         Loader.save();
     }//GEN-LAST:event_btnCreateTaskMouseClicked
 
+    /**
+     * Po stlaceni tlacida sa okno zavrie.
+     * @param evt 
+     */
     private void bntCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntCancelMouseClicked
         dispose();
     }//GEN-LAST:event_bntCancelMouseClicked
 
+    /**
+     * Funkcia volana pri zatvarani okna, kedy sa ulozi aktualny rozmer okna do
+     * XML suboru pre neskorsie pouzitie.
+     * @param evt 
+     */
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
        Loader.saveDimension(this.getClass().getName(), this.getSize());
     }//GEN-LAST:event_formWindowClosing
 
+    /**
+     * Funkcia nacita zaznam o preferovanej velkosti zo suboru XML. Ak zaznam existuje,
+     * zmenu sa velkost zobrazovaneho okna.
+     * @param evt 
+     */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        try{
             this.setPreferredSize(Loader.lookupDimension(this.getClass().getName()));
@@ -495,6 +524,10 @@ public class NewTask extends javax.swing.JFrame {
     private javax.swing.JList<User> userList;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Funkcia ktora inicializuje komponenty na zaklade toho, akej entite sa
+     * vytvara uloha.
+     */
     private void initializeValues(){
     
         if(curentUser != null && project == null){

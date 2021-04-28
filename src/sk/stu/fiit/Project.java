@@ -7,12 +7,11 @@ import java.util.Date;
 import sk.stu.fiit.Tasks.Task;
 
 /**
- *
- * @author patoh
+ *  Trieda reprezentujuca projekty.
  */
 public class Project implements Serializable {
     private ArrayList<Team> teams = new ArrayList<>();
-     private ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
     
     private User project_manager;
 
@@ -24,6 +23,14 @@ public class Project implements Serializable {
 
     private String tag;
 
+    /**
+     * Konstruktor triedy Project
+     * @param projectName Nazov projektu
+     * @param priority Priorita projektu
+     * @param tag Znak priradeny k projektu
+     * @param prefix Jedinecny identifikator projektu
+     * @param description Popis projektu
+     */
     public Project(String projectName, Priorities priority, String tag, String prefix, String description) {
         this.projectName = projectName;
         this.priority = priority;
@@ -34,8 +41,14 @@ public class Project implements Serializable {
         this.description = description;
     }
     
-    //TODO: pridaj tasky
-
+    /**
+     * Konstruktor triedy Project
+     * @param teams Zoznam teamov priradenych k projektu.
+     * @param project_manager Pouzivatel, ktory je riaditelom projektu.
+     * @param projectName Nazov projektu.
+     * @param deadline Casove ohranicenie projektu.
+     * @param priority Priorita projektu.
+     */
     public Project(ArrayList<Team> teams, User project_manager, String projectName, Date deadline, Priorities priority) {
         this.teams = teams;
         this.project_manager = project_manager;
@@ -111,6 +124,12 @@ public class Project implements Serializable {
         this.priority = priority;
     }
     
+    /**
+     * Funkcia zisti ci sa jedotlivy pouzivatel nachadza 
+     * v nejakom time priradenom k tomuto projektu.
+     * @param user Pouzivatel, ktory sa vyhladava.
+     * @return True ak bol pouzivatel najdeny, inak false.
+     */
     public boolean hasUser(User user){
         if(user != null){
             if (teams.stream().filter(team -> (team != null)).anyMatch(team -> 

@@ -17,11 +17,17 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- *
- * @author patoh
+ *  Trieda obsahujuca overovace vstupu.
  */
 public class InputVerifiers {
     
+    /**
+     * Staticka funkcia, ktora kontroluje ci je niektory zo zadanych komponentov
+     * v argumente obsahuje prazdny string.
+     * @param components Zoznam komponentov, ktore chceme skontrolovat
+     * @throws RuntimeException Ak je nejaky komponent prazdny, funkcia vyvola tuto
+     * vynimku.
+     */
     public static void hasEmptyFields(JComponent... components) throws RuntimeException{
         String content = "";
         for(JComponent component : components){
@@ -43,6 +49,11 @@ public class InputVerifiers {
         
     }
     
+    /**
+     * Funkcia kontroluje ci je zadany subor obrazok.
+     * @param file Subor, ktory kontrolujeme.
+     * @return Ak zadany subor nie je obrazok, tak false inak true.
+     */
     public static boolean check_image(File file){        
         try {
             Image image = ImageIO.read(new File(file.getAbsolutePath()));
