@@ -135,7 +135,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.setLayout(new java.awt.GridBagLayout());
 
         tasks.setBackground(new java.awt.Color(204, 204, 255));
-        tasks.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        tasks.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         tasks.setPreferredSize(new java.awt.Dimension(517, 345));
 
         javax.swing.GroupLayout tasksLayout = new javax.swing.GroupLayout(tasks);
@@ -158,7 +158,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(tasks, gridBagConstraints);
 
         notes.setBackground(new java.awt.Color(255, 204, 255));
-        notes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        notes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         notes.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout notesLayout = new javax.swing.GroupLayout(notes);
@@ -181,7 +181,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(notes, gridBagConstraints);
 
         graphPanel.setBackground(new java.awt.Color(255, 204, 204));
-        graphPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        graphPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         graphPanel.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout graphPanelLayout = new javax.swing.GroupLayout(graphPanel);
@@ -204,7 +204,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(graphPanel, gridBagConstraints);
 
         projectPanel.setBackground(new java.awt.Color(255, 255, 204));
-        projectPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        projectPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         projectPanel.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout projectPanelLayout = new javax.swing.GroupLayout(projectPanel);
@@ -226,7 +226,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(projectPanel, gridBagConstraints);
 
         current_users.setBackground(new java.awt.Color(204, 255, 204));
-        current_users.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        current_users.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         current_users.setPreferredSize(new java.awt.Dimension(260, 345));
 
         javax.swing.GroupLayout current_usersLayout = new javax.swing.GroupLayout(current_users);
@@ -248,7 +248,7 @@ public class Main_Window extends javax.swing.JFrame {
         pnlDashboard.add(current_users, gridBagConstraints);
 
         jPanel7.setBackground(new java.awt.Color(255, 51, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 15), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
         jPanel7.setPreferredSize(new java.awt.Dimension(517, 345));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -311,7 +311,7 @@ public class Main_Window extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText(bundle.getString("DETAILS")); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jLabel3.setMaximumSize(new java.awt.Dimension(150, 40));
+        jLabel3.setMaximumSize(new java.awt.Dimension(150, 544545));
         jLabel3.setPreferredSize(new java.awt.Dimension(150, 40));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -329,7 +329,7 @@ public class Main_Window extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText(bundle.getString("CALENDAR")); // NOI18N
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jLabel5.setMaximumSize(new java.awt.Dimension(150, 40));
+        jLabel5.setMaximumSize(new java.awt.Dimension(150, 454501));
         jLabel5.setPreferredSize(new java.awt.Dimension(150, 40));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -365,7 +365,7 @@ public class Main_Window extends javax.swing.JFrame {
         AllProjects.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AllProjects.setText(bundle.getString("PROJECTS")); // NOI18N
         AllProjects.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        AllProjects.setMaximumSize(new java.awt.Dimension(150, 40));
+        AllProjects.setMaximumSize(new java.awt.Dimension(150, 454501));
         AllProjects.setPreferredSize(new java.awt.Dimension(150, 40));
         AllProjects.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -383,7 +383,7 @@ public class Main_Window extends javax.swing.JFrame {
         new_task.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         new_task.setText(bundle.getString("NEW TASK")); // NOI18N
         new_task.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        new_task.setMaximumSize(new java.awt.Dimension(150, 40));
+        new_task.setMaximumSize(new java.awt.Dimension(150, 454501));
         new_task.setPreferredSize(new java.awt.Dimension(150, 40));
         new_task.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -401,7 +401,7 @@ public class Main_Window extends javax.swing.JFrame {
         new_project.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         new_project.setText(bundle.getString("NEW PROJECT")); // NOI18N
         new_project.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        new_project.setMaximumSize(new java.awt.Dimension(150, 40));
+        new_project.setMaximumSize(new java.awt.Dimension(150, 454501));
         new_project.setPreferredSize(new java.awt.Dimension(150, 40));
         new_project.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -419,7 +419,7 @@ public class Main_Window extends javax.swing.JFrame {
         new_profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         new_profile.setText(bundle.getString("NEW PROFILE")); // NOI18N
         new_profile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        new_profile.setMaximumSize(new java.awt.Dimension(150, 40));
+        new_profile.setMaximumSize(new java.awt.Dimension(150, 454501));
         new_profile.setPreferredSize(new java.awt.Dimension(150, 40));
         new_profile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
