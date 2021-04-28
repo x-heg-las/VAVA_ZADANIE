@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
-import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;

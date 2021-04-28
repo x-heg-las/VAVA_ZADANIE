@@ -83,7 +83,6 @@ public class Tree {
             for (User user : Loader.getUsers()) {
                 
                 for (Project project : user.getProjects()) {
-                    System.out.println("project = " + project.getProjectName());
                     if (already_done.contains(project.getId()))
                         continue;
                     already_done.add(project.getId());
