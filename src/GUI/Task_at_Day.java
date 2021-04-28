@@ -71,6 +71,7 @@ public class Task_at_Day extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         getContentPane().add(jLabel1, gridBagConstraints);
+        jLabel1.getAccessibleContext().setAccessibleName(bundle.getString("TASKS_DET")); // NOI18N
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

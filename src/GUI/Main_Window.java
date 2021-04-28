@@ -450,6 +450,7 @@ public class Main_Window extends javax.swing.JFrame {
             }
         });
         pnlToolbar.add(jLabel7);
+        jLabel7.getAccessibleContext().setAccessibleName(bundle.getString("LOGOUT")); // NOI18N
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
