@@ -477,22 +477,19 @@ class ProjectDetailTableCellRender implements TableCellRenderer{
      * @param index Intex zaznamu v JList.
      * @param isSelected Hodnota sledujuca, ci je bunka zvolena.
      * @param cellHasFocus Sleduje focus na zaznam listu.
-     * @return 
+     * @return Panel s inicializovanymi hodnotami.
      */
     @Override
     public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         JPanel projectDetail = new ProjectTableItem((Project) value);
         
         if(isSelected){
-            list.setForeground(list.getSelectionForeground());
-            list.setBackground(list.getSelectionBackground());
-            projectDetail.setForeground(Color.red);
-            projectDetail.setBackground(Color.BLUE);
+           
+            projectDetail.setBackground(new Color(51,204,212));
         }else {
-          list.setForeground(list.getForeground());
-          list.setBackground(list.getBackground());
+
           projectDetail.setForeground(list.getForeground());
-          projectDetail.setBackground(new Color(204,204,255));
+         
         }
         
         return projectDetail;
