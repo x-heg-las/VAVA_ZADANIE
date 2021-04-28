@@ -301,6 +301,7 @@ public class Main_Window extends javax.swing.JFrame {
             }
         });
         pnlToolbar.add(jLabel2);
+        jLabel2.getAccessibleContext().setAccessibleName(bundle.getString("TASKS")); // NOI18N
 
         jLabel1.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel1);
@@ -318,6 +319,7 @@ public class Main_Window extends javax.swing.JFrame {
             }
         });
         pnlToolbar.add(jLabel3);
+        jLabel3.getAccessibleContext().setAccessibleName(bundle.getString("DETAILS")); // NOI18N
 
         jLabel4.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel4);
@@ -335,6 +337,7 @@ public class Main_Window extends javax.swing.JFrame {
             }
         });
         pnlToolbar.add(jLabel5);
+        jLabel5.getAccessibleContext().setAccessibleName(bundle.getString("CALENDAR")); // NOI18N
 
         jLabel9.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel9);
@@ -352,6 +355,7 @@ public class Main_Window extends javax.swing.JFrame {
             }
         });
         pnlToolbar.add(jLabel12);
+        jLabel12.getAccessibleContext().setAccessibleName(bundle.getString("SETTINGS")); // NOI18N
 
         jLabel14.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel14);
@@ -369,6 +373,7 @@ public class Main_Window extends javax.swing.JFrame {
             }
         });
         pnlToolbar.add(AllProjects);
+        AllProjects.getAccessibleContext().setAccessibleName(bundle.getString("PROJECTS")); // NOI18N
 
         jLabel6.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel6);
@@ -386,6 +391,7 @@ public class Main_Window extends javax.swing.JFrame {
             }
         });
         pnlToolbar.add(new_task);
+        new_task.getAccessibleContext().setAccessibleName(bundle.getString("NEW TASK")); // NOI18N
 
         jLabel8.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel8);
@@ -403,6 +409,7 @@ public class Main_Window extends javax.swing.JFrame {
             }
         });
         pnlToolbar.add(new_project);
+        new_project.getAccessibleContext().setAccessibleName(bundle.getString("NEW PROJECT")); // NOI18N
 
         jLabel10.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel10);
@@ -420,6 +427,7 @@ public class Main_Window extends javax.swing.JFrame {
             }
         });
         pnlToolbar.add(new_profile);
+        new_profile.getAccessibleContext().setAccessibleName(bundle.getString("NEW PROFILE")); // NOI18N
 
         jLabel13.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel13);
