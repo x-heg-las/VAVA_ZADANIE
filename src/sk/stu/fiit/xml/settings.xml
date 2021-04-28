@@ -18,4 +18,3 @@
             <height>466</height>
         </dimension>
     </window>
-<window><name>GUI.NewTask</name><dimension><width>1249</width><height>772</height></dimension></window><window><name>GUI.Main_Window</name><dimension><width>1910</width><height>991</height></dimension></window><window><Meno>GUI.Main_Window</Meno><dimension><width>1446</width><height>943</height></dimension></window><window><Meno>GUI.NewTask</Meno><dimension><width>691</width><height>590</height></dimension></window><window><Meno>GUI.AllProjectsSummary</Meno><dimension><width>754</width><height>849</height></dimension></window></settings>

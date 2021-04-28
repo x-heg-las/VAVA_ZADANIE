@@ -6,7 +6,7 @@
 package sk.stu.fiit.Users_GUI;
 
 /**
- *
+ * Trieda na zobrazenie projektovej obrazovky.
  * @author patoh
  */
 public class Project_Frame extends javax.swing.JFrame {

@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.Tasks.Task;
 
 /**
- *
+ * Trieda, ktora zobrazi Tasky pre vybrany den.
  * @author adamh
  */
 public class Task_at_Day extends javax.swing.JFrame {
@@ -129,7 +129,6 @@ public class Task_at_Day extends javax.swing.JFrame {
         for (int i = 0; i < array_task.size(); i++) {
             model.addRow(new Object[]{i});
         }
-        System.out.println("pocet raidok = " + model.getRowCount());
         jTable1.setDefaultRenderer(jTable1.getColumnClass(0), new RssFeedCellRenderer(array_task));
     }
 }

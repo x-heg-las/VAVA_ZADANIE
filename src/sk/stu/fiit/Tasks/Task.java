@@ -14,7 +14,7 @@ import sk.stu.fiit.TaskState;
 import sk.stu.fiit.User;
 
 /**
- *
+ * Trieda pre reprezentaciu Taskov.
  * @author adamh
  */
 public class Task implements Serializable{

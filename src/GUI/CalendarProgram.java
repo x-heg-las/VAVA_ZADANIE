@@ -13,6 +13,10 @@ import java.util.logging.Logger;
 import sk.stu.fiit.Loader;
 import sk.stu.fiit.Tasks.Task;
 
+/**
+ * Trieda na tvorbu samostatneho kalendara.
+ * @author adamh
+ */
 public class CalendarProgram{
     static JLabel lblMonth, lblYear;
     static JButton btnPrev, btnNext;

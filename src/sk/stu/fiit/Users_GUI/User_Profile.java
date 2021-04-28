@@ -15,7 +15,7 @@ import sk.stu.fiit.Loader;
 import sk.stu.fiit.User;
 
 /**
- *
+ * Trieda pre zobrazenie pouzivatela.
  * @author adamh
  */
 public class User_Profile extends javax.swing.JFrame {
@@ -242,6 +242,7 @@ public class User_Profile extends javax.swing.JFrame {
 
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
         // TODO add your handling code here:
+
         String regex = "\\d+";
         try{
             InputVerifiers.hasEmptyFields(username, password, name, address, age);

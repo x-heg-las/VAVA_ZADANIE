@@ -9,12 +9,13 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import sk.stu.fiit.Loader;
 import sk.stu.fiit.Project;
 import sk.stu.fiit.User;
 
 /**
- *
+ * Trieda, kde sa zobrazuju spolupracovnici na projekte.
  * @author patoh
  */
 public class Teammates extends javax.swing.JPanel {
@@ -137,6 +138,10 @@ public class Teammates extends javax.swing.JPanel {
         ArrayList<User> users = Loader.getUsers();
         if ( array_projects.size() == 0 )
             return null;
+        if (jList1.getSelectedIndex() == -1){
+            JOptionPane.showMessageDialog(jComboBox1, "Choose teammate!", "Choose teammate", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
         return array_users.get(jList1.getSelectedIndex());
     }
     
@@ -145,7 +150,6 @@ public class Teammates extends javax.swing.JPanel {
      * @return 
      */
     private String[] get_projects(){
-        System.out.println("dlzka je jako = " + Loader.getCurrentlyLogged().getProjects().size());
         if (Loader.getCurrentlyLogged().getProjects() == null){
             return null;
         }

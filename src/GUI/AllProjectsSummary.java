@@ -19,7 +19,6 @@ import javax.swing.ListCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import sk.stu.fiit.Loader;
 import sk.stu.fiit.Project;
-import sk.stu.fiit.Team;
 import sk.stu.fiit.User;
 
 /**
@@ -303,7 +302,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
      */
     private void setProjectValues(Project project){
         if(project != null){
-            lblPDate.setText(new SimpleDateFormat("dd.mm.yyyy").format(project.getDeadline()));
+            lblPDate.setText(new SimpleDateFormat("dd.MM.yyyy").format(project.getDeadline()));
             lblPName.setText(project.getProjectName());
             lblPid.setText(project.getId());
             description.setText(project.getDescription());
