@@ -8,6 +8,7 @@
     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
         <TitledBorder title="Your Info">
+          <ResourceString PropertyName="titleX" bundle="sk/stu/fiit/bundle.properties" key="YOUR_INFO" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
           <Font PropertyName="font" name="Segoe UI Light" size="12" style="0"/>
           <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
         </TitledBorder>
@@ -40,6 +41,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Type">
+              <ResourceString PropertyName="titleX" bundle="sk/stu/fiit/bundle.properties" key="TYPE_USER" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
               <Font PropertyName="font" name="Segoe UI Light" size="12" style="0"/>
               <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
             </TitledBorder>
@@ -69,6 +71,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Name">
+              <ResourceString PropertyName="titleX" bundle="sk/stu/fiit/bundle.properties" key="NAME_" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
               <Font PropertyName="font" name="Segoe UI Light" size="12" style="0"/>
               <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
             </TitledBorder>
@@ -87,6 +90,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Picture">
+              <ResourceString PropertyName="titleX" bundle="sk/stu/fiit/bundle.properties" key="PICTURE_" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
               <Font PropertyName="font" name="Segoe UI Light" size="12" style="0"/>
               <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
             </TitledBorder>

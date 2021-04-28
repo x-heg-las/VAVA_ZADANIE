@@ -42,7 +42,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
         initComponents();
         setProjectValues();
         
-        if(user.getType().equals(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("PROJECT_MANAGER")) ||  user.getType().equals(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("ADMIN")))
+        if(user.getType().equals("project_manager") ||  user.getType().equals("admin"))
             btnAddTask.setVisible(true);
         else
             btnAddTask.setVisible(false);
@@ -263,7 +263,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
             this.setPreferredSize(Loader.lookupDimension(this.getClass().getName()));
             pack();
         }catch(Exception ex){
-            LOG.log(Level.SEVERE, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("CHYBA PRI CITANI ROZMEROV Z XML SUBORU"));
+            LOG.log(Level.SEVERE, "CHYBA PRI CITANI ROZMEROV Z XML SUBORU");
         }
     }//GEN-LAST:event_formWindowOpened
     
@@ -295,40 +295,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAddTaskMouseClicked
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if (java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NIMBUS").equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AllProjectsSummary.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AllProjectsSummary.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AllProjectsSummary.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AllProjectsSummary.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AllProjectsSummary().setVisible(true);
-            }
-        });
-    }
+   
 
     /**
      * Funkica nastavi hodnoty detailu projektu podla zvolenej polozky
@@ -336,7 +303,7 @@ public class AllProjectsSummary extends javax.swing.JFrame {
      */
     private void setProjectValues(Project project){
         if(project != null){
-            lblPDate.setText(new SimpleDateFormat(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("DD.MM.YYYY")).format(project.getDeadline()));
+            lblPDate.setText(new SimpleDateFormat("dd.mm.yyyy").format(project.getDeadline()));
             lblPName.setText(project.getProjectName());
             lblPid.setText(project.getId());
             description.setText(project.getDescription());
@@ -385,8 +352,8 @@ public class AllProjectsSummary extends javax.swing.JFrame {
         
         Loader.getProjects().values().forEach(project ->{
             if(user == null ||
-                    (user.getType().equals(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("PROJECT_MANAGER")) && project.getProject_manager().getUsername().equals(user.getUsername())) ||
-                    user.getType().equals(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("ADMIN")) ||
+                    (user.getType().equals("project_manager") && project.getProject_manager().getUsername().equals(user.getUsername())) ||
+                    user.getType().equals("admin") ||
                          project.hasUser(user)){
                 
                     model.addElement(project);
