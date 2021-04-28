@@ -425,21 +425,18 @@ public class Tasks_window extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
         for (int i = model.getRowCount() - 1; i >= 0; i--) {
-            System.out.println("y = " + i);
             model.removeRow(i);
         }
         
         DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
         
         for (int i = model2.getRowCount() - 1; i >= 0; i--) {
-            System.out.println("i = " + i);
             model2.removeRow(i);
         }
         
         DefaultTableModel model3= (DefaultTableModel) jTable3.getModel();
         
         for (int i = model3.getRowCount() - 1; i >= 0; i--) {
-            System.out.println("i = " + i);
             model3.removeRow(i);
         }
     }

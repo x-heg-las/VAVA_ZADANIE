@@ -259,8 +259,7 @@ public class Loader {
 
                            
                         }
-                         System.out.println(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("UPDATED"));
-                          return;
+                        return;
                     }
                 }
             }
@@ -285,8 +284,6 @@ public class Loader {
             DOMSource source = new DOMSource(input);
             StreamResult result = new StreamResult(new File(SETTINGSFILE));
             transformer.transform(source, result);
-            
-        System.out.println(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NEW NODE "));
             
         } catch (ParserConfigurationException | SAXException | IOException | TransformerException ex) {
             Logger.getLogger(Loader.class.getName()).log(Level.SEVERE, null, ex);
