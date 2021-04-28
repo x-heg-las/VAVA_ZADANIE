@@ -373,7 +373,7 @@ public class Main_Window extends javax.swing.JFrame {
             }
         });
         pnlToolbar.add(AllProjects);
-        AllProjects.getAccessibleContext().setAccessibleName(bundle.getString("PROJECTS")); // NOI18N
+        AllProjects.getAccessibleContext().setAccessibleName(bundle.getString("PROJECTS_MAIN")); // NOI18N
 
         jLabel6.setText(bundle.getString("  ")); // NOI18N
         pnlToolbar.add(jLabel6);

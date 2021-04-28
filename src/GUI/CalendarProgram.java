@@ -41,8 +41,8 @@ public class CalendarProgram{
         catch (UnsupportedLookAndFeelException e) {}
         
         //Create controls
-        lblMonth = new JLabel ("January");
-        lblYear = new JLabel ("Change year:");
+        lblMonth = new JLabel (java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("JANUARY"));
+        lblYear = new JLabel (java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("CHANGE YEAR:"));
         cmbYear = new JComboBox();
         btnPrev = new JButton ("<");
         btnNext = new JButton (">");
@@ -52,7 +52,7 @@ public class CalendarProgram{
         //pnlCalendar = new JPanel(null);
         
         //Set border
-        pnlCalendar.setBorder(BorderFactory.createTitledBorder("Calendar"));
+        pnlCalendar.setBorder(BorderFactory.createTitledBorder(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("CALENDAR")));
         
         //Register action listeners
         btnPrev.addActionListener(new btnPrev_Action());
@@ -87,7 +87,13 @@ public class CalendarProgram{
         currentYear = realYear;
         
         //Add headers
-        String[] headers = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}; //All headers
+        String[] headers = {java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("SUN"),
+            java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("MON"),
+            java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("TUE"),
+            java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WED"),
+            java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("THU"),
+            java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("FRI"),
+            java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("SAT")}; //All headers
         for (int i=0; i<7; i++){
             mtblCalendar.addColumn(headers[i]);
         }
@@ -140,7 +146,18 @@ public class CalendarProgram{
      */
     public static void refreshCalendar(int month, int year){
         //Variables
-        String[] months =  {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        String[] months =  {java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("JANUARY"),
+                java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("FEBRUARY"),
+                java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("MARCH"),
+                java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("APRIL"),
+                java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("MAY"),
+                java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("JUNE"),
+                java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("JULY"),
+                java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("AUGUST"),
+                java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("SEPTEMBER"),
+                java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("OCTOBER"),
+                java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("NOVEMBER"),
+                java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("DECEMBER")};
         int nod, som; //Number Of Days, Start Of Month
         
         //Allow/disallow buttons
