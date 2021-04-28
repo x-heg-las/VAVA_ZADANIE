@@ -18,3 +18,32 @@
             <height>466</height>
         </dimension>
     </window>
+    <window>
+        <Meno>GUI.AllProjectsSummary</Meno>
+        <dimension>
+            <width>771</width>
+            <height>841</height>
+        </dimension>
+    </window>
+    <window>
+        <Meno>GUI.Main_Window</Meno>
+        <dimension>
+            <width>1400</width>
+            <height>813</height>
+        </dimension>
+    </window>
+    <window>
+        <Name>GUI.AllProjectsSummary</Name>
+        <dimension>
+            <width>1059</width>
+            <height>841</height>
+        </dimension>
+    </window>
+    <window>
+        <Name>GUI.Main_Window</Name>
+        <dimension>
+            <width>1361</width>
+            <height>813</height>
+        </dimension>
+    </window>
+</settings>

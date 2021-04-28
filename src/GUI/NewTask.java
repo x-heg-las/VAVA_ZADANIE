@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import sk.stu.fiit.CurrentDateSelectionConstraint;
 import sk.stu.fiit.InputVerifiers;
@@ -423,6 +424,7 @@ public class NewTask extends javax.swing.JFrame {
                 throw new Exception(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("ZLE UDAJE"));
             
         }catch(Exception ex){
+           JOptionPane.showMessageDialog(rootPane, "Wrong or missing input!", "Error", JOptionPane.ERROR_MESSAGE);
            LOG.log(Level.SEVERE, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("CHYBA PRI VYTVARANI TASK-U."));
         }
         
