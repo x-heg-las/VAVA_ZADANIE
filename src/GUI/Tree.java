@@ -119,7 +119,7 @@ public class Tree {
      * @return 
      */
     private static DefaultMutableTreeNode start(ArrayList<Project> projects){
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Projects");
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("PROJECTS"));
         for (Project project : projects) {
             projects_trees(project, root);
         }

@@ -52,9 +52,9 @@ public class Loader {
     }
     
     //cesta k suboru kde sa ukladaju data
-    private static final String SAVEFILE = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("SAVE.SER");
+    private static final String SAVEFILE = "save.ser";
     //cesta k XML suboru
-    private static final String SETTINGSFILE = java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("SRC/SK/STU/FIIT/XML/SETTINGS.XML");
+    private static final String SETTINGSFILE = "src/sk/stu/fiit/xml/settings.xml";
 
     public static User getCurrentlyLogged() {
         return currentlyLogged;
