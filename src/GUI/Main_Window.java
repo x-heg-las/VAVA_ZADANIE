@@ -28,7 +28,7 @@ import sk.stu.fiit.User;
 import sk.stu.fiit.Users_GUI.User_Profile;
 
 /**
- *
+ * Trieda pre ovladanie hlavneho okna.
  * @author adamh
  */
 public class Main_Window extends javax.swing.JFrame {

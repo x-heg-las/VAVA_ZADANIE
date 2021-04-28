@@ -13,7 +13,7 @@ import sk.stu.fiit.Team;
 import sk.stu.fiit.User;
 
 /**
- *
+ * Trieda na ovladanie bocneho stromu projektov a teamov.
  * @author adamh
  */
 public class Tree {

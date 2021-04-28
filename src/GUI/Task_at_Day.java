@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.Tasks.Task;
 
 /**
- *
+ * Trieda, ktora zobrazi Tasky pre vybrany den.
  * @author adamh
  */
 public class Task_at_Day extends javax.swing.JFrame {

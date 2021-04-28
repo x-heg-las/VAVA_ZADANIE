@@ -15,7 +15,7 @@ import sk.stu.fiit.Project;
 import sk.stu.fiit.User;
 
 /**
- *
+ * Trieda, kde sa zobrazuju spolupracovnici na projekte.
  * @author patoh
  */
 public class Teammates extends javax.swing.JPanel {
