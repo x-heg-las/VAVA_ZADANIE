@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 import sk.stu.fiit.User;
 
 /**
- *
+ * Trieda na vypis detailov momentalneho pouzivatela.
  * @author adamh
  */
 public class Current_User extends javax.swing.JPanel {

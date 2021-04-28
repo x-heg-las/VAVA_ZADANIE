@@ -13,7 +13,7 @@ import sk.stu.fiit.Loader;
 import sk.stu.fiit.User;
 
 /**
- *
+ * Trieda ktora spracuva prihlasovanie.
  * @author adamh
  */
 public class Login_Screen extends javax.swing.JFrame {
