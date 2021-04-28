@@ -233,11 +233,13 @@ public class ProjectSummary extends javax.swing.JPanel {
         for (int i = 0; i < project.getTeams().size(); i++) {
             Team team = project.getTeams().get(i);
             for (User user : team.getTeamMembers()) {
+                if (user.getUsername().equals(Loader.getCurrentlyLogged().getUsername()))
+                    continue;
                 Loader.findUser(user.getUsername()).addProject(project);
             }
         }
         Loader.findUser(Loader.getCurrentlyLogged().getUsername()).addProject(project);
-        
+        Loader.save();
     }//GEN-LAST:event_btnCreateProjectMouseClicked
 
     /**
