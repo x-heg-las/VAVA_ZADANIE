@@ -7,6 +7,7 @@ package sk.stu.fiit.Users_GUI;
 
 import java.awt.Image;
 import java.io.File;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -244,9 +245,10 @@ public class User_Profile extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String regex = "\\d+";
+        Pattern pattern = Pattern.compile(regex);
         try{
             InputVerifiers.hasEmptyFields(username, password, name, address, age);
-            if (!age.getText().matches(regex)){
+            if (!pattern.matcher(age.getText()).matches()){
                 JOptionPane.showMessageDialog(rootPane, java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("AGE CAN CONTAIN ONLY NUMBERS!"), java.util.ResourceBundle.getBundle("sk/stu/fiit/bundle").getString("WRONG AGE TYPE!"), JOptionPane.ERROR_MESSAGE);
                 return;
             }
